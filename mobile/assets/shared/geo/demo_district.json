@@ -1,0 +1,1143 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "source": "OpenStreetMap via Overpass API: taluka boundaries (admin_level 6) and place=village nodes inside them",
+  "licence": "Data (c) OpenStreetMap contributors, ODbL 1.0",
+  "generated_by": "backend/scripts/geocode_villages.py",
+  "generated_on": "2026-09-29",
+  "district": {
+    "code": "pune",
+    "name": {
+      "en": "Pune",
+      "hi": "पुणे",
+      "mr": "पुणे"
+    },
+    "state": "Maharashtra",
+    "centroid": {
+      "lat": 18.55838,
+      "lng": 74.02336
+    }
+  },
+  "demo_cluster_villages": [
+    "junnar_vasaiwadi",
+    "junnar_garewadi",
+    "junnar_dadndavarchiwadi",
+    "junnar_taleran"
+  ],
+  "blocks": [
+    {
+      "code": "junnar",
+      "name": {
+        "en": "Junnar",
+        "hi": "जुन्नर",
+        "mr": "जुन्नर"
+      },
+      "osm": "relation/10351631",
+      "centroid": {
+        "lat": 19.20024,
+        "lng": 73.97448
+      },
+      "hq": {
+        "name": {
+          "en": "Junnar",
+          "hi": "जुन्नर",
+          "mr": "जुन्नर"
+        },
+        "lat": 19.20945,
+        "lng": 73.87719,
+        "osm": "node/1782860682"
+      },
+      "villages": [
+        {
+          "code": "junnar_vasaiwadi",
+          "name": {
+            "en": "Vasaiwadi",
+            "hi": "वसईवाडी",
+            "mr": "वसईवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 19.3122,
+          "lng": 73.7871,
+          "osm": "node/10720685425"
+        },
+        {
+          "code": "junnar_garewadi",
+          "name": {
+            "en": "Garewadi",
+            "hi": "गारेवाडी",
+            "mr": "गारेवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 19.31254,
+          "lng": 73.78967,
+          "osm": "node/10720685424"
+        },
+        {
+          "code": "junnar_dadndavarchiwadi",
+          "name": {
+            "en": "Dadndavarchiwadi",
+            "hi": "दांडावरचीवाडी",
+            "mr": "दांडावरचीवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 19.31175,
+          "lng": 73.79105,
+          "osm": "node/10720685423"
+        },
+        {
+          "code": "junnar_taleran",
+          "name": {
+            "en": "Taleran",
+            "hi": "तळेरान",
+            "mr": "तळेरान"
+          },
+          "name_source": "transliterated",
+          "lat": 19.31061,
+          "lng": 73.7813,
+          "osm": "node/10720685428"
+        },
+        {
+          "code": "junnar_ingaloon",
+          "name": {
+            "en": "Ingaloon",
+            "hi": "इंगळून",
+            "mr": "इंगळून"
+          },
+          "name_source": "osm",
+          "lat": 19.2082,
+          "lng": 73.69904,
+          "osm": "node/10720685456"
+        },
+        {
+          "code": "junnar_ralegaon",
+          "name": {
+            "en": "Ralegaon",
+            "hi": "राळेगांव",
+            "mr": "राळेगांव"
+          },
+          "name_source": "osm",
+          "lat": 19.20138,
+          "lng": 73.77175,
+          "osm": "node/13413581583"
+        },
+        {
+          "code": "junnar_aalephata",
+          "name": {
+            "en": "Aalephata",
+            "hi": "आळेफाटा",
+            "mr": "आळेफाटा"
+          },
+          "name_source": "osm",
+          "lat": 19.18229,
+          "lng": 74.09546,
+          "osm": "node/2213151064"
+        },
+        {
+          "code": "junnar_belhe",
+          "name": {
+            "en": "Belhe",
+            "hi": "बेल्हे",
+            "mr": "बेल्हे"
+          },
+          "name_source": "osm",
+          "lat": 19.11569,
+          "lng": 74.17544,
+          "osm": "node/2272316782"
+        }
+      ]
+    },
+    {
+      "code": "ambegaon",
+      "name": {
+        "en": "Ambegaon",
+        "hi": "आंबेगाव",
+        "mr": "आंबेगाव"
+      },
+      "osm": "relation/10351630",
+      "centroid": {
+        "lat": 19.03216,
+        "lng": 73.83898
+      },
+      "hq": {
+        "name": {
+          "en": "Ghodegaon",
+          "hi": "घोडेगाव",
+          "mr": "घोडेगाव"
+        },
+        "lat": 19.0466,
+        "lng": 73.83867,
+        "osm": "node/5063480845"
+      },
+      "villages": [
+        {
+          "code": "ambegaon_pargaon_tarf_khed",
+          "name": {
+            "en": "Pargaon Tarf Khed",
+            "hi": "पारगाँव तर्फे खेड़",
+            "mr": "पारगाव तर्फे खेड"
+          },
+          "name_source": "osm",
+          "lat": 18.91004,
+          "lng": 73.95584,
+          "osm": "node/13521028914"
+        },
+        {
+          "code": "ambegaon_kondhval",
+          "name": {
+            "en": "Kondhval",
+            "hi": "कोंढवळ",
+            "mr": "कोंढवळ"
+          },
+          "name_source": "transliterated",
+          "lat": 19.10837,
+          "lng": 73.55724,
+          "osm": "node/10711496751"
+        },
+        {
+          "code": "ambegaon_ambegaon",
+          "name": {
+            "en": "Ambegaon",
+            "hi": "आंबेगाव",
+            "mr": "आंबेगाव"
+          },
+          "name_source": "transliterated",
+          "lat": 19.14306,
+          "lng": 73.63859,
+          "osm": "node/245675961"
+        },
+        {
+          "code": "ambegaon_kolharwadi",
+          "name": {
+            "en": "Kolharwadi",
+            "hi": "कोल्हारवाडी",
+            "mr": "कोल्हारवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 18.96335,
+          "lng": 73.88791,
+          "osm": "node/4625716811"
+        },
+        {
+          "code": "ambegaon_ghodegaon",
+          "name": {
+            "en": "Ghodegaon",
+            "hi": "घोडेगाव",
+            "mr": "घोडेगाव"
+          },
+          "name_source": "transliterated",
+          "lat": 19.0466,
+          "lng": 73.83867,
+          "osm": "node/5063480845"
+        }
+      ]
+    },
+    {
+      "code": "khed",
+      "name": {
+        "en": "Khed",
+        "hi": "खेड",
+        "mr": "खेड"
+      },
+      "osm": "relation/10351629",
+      "centroid": {
+        "lat": 18.85047,
+        "lng": 73.77991
+      },
+      "hq": null,
+      "villages": [
+        {
+          "code": "khed_hundanwadi",
+          "name": {
+            "en": "Hundanwadi",
+            "hi": "हुंडणवाडी",
+            "mr": "हुंडणवाडी"
+          },
+          "name_source": "osm",
+          "lat": 19.00433,
+          "lng": 73.74735,
+          "osm": "node/245658970"
+        },
+        {
+          "code": "khed_bhimashankar",
+          "name": {
+            "en": "Bhimashankar",
+            "hi": "भीमाशंकर",
+            "mr": "भीमाशंकर"
+          },
+          "name_source": "osm",
+          "lat": 19.072,
+          "lng": 73.53576,
+          "osm": "node/3077355144"
+        },
+        {
+          "code": "khed_alandi",
+          "name": {
+            "en": "Alandi",
+            "hi": "आळंदी",
+            "mr": "आळंदी"
+          },
+          "name_source": "osm",
+          "lat": 18.67724,
+          "lng": 73.89811,
+          "osm": "node/3237435456"
+        },
+        {
+          "code": "khed_panmandwadi",
+          "name": {
+            "en": "Panmandwadi",
+            "hi": "पानमंदवाडी",
+            "mr": "पानमंदवाडी"
+          },
+          "name_source": "osm",
+          "lat": 18.90709,
+          "lng": 73.77909,
+          "osm": "node/3375010918"
+        },
+        {
+          "code": "khed_shel_pimpalgaon",
+          "name": {
+            "en": "Shel Pimpalgaon",
+            "hi": "शेल पिंपळगाव",
+            "mr": "शेल पिंपळगाव"
+          },
+          "name_source": "osm",
+          "lat": 18.73559,
+          "lng": 73.94843,
+          "osm": "node/342117499"
+        }
+      ]
+    },
+    {
+      "code": "shirur",
+      "name": {
+        "en": "Shirur",
+        "hi": "शिरूर",
+        "mr": "शिरूर"
+      },
+      "osm": "relation/10351619",
+      "centroid": {
+        "lat": 18.76043,
+        "lng": 74.28716
+      },
+      "hq": {
+        "name": {
+          "en": "Shirur",
+          "hi": "शिरूर",
+          "mr": "शिरूर"
+        },
+        "lat": 18.82659,
+        "lng": 74.37253,
+        "osm": "node/245652090"
+      },
+      "villages": [
+        {
+          "code": "shirur_karegaon",
+          "name": {
+            "en": "Karegaon",
+            "hi": "कारेगाव",
+            "mr": "कारेगाव"
+          },
+          "name_source": "osm",
+          "lat": 18.78281,
+          "lng": 74.29662,
+          "osm": "node/342117422"
+        },
+        {
+          "code": "shirur_ranjangaon",
+          "name": {
+            "en": "Ranjangaon",
+            "hi": "रांजणगाव",
+            "mr": "रांजणगाव"
+          },
+          "name_source": "osm",
+          "lat": 18.75364,
+          "lng": 74.24458,
+          "osm": "node/342117431"
+        },
+        {
+          "code": "shirur_khairenagar",
+          "name": {
+            "en": "Khairenagar",
+            "hi": "खैरेनगर",
+            "mr": "खैरेनगर"
+          },
+          "name_source": "transliterated",
+          "lat": 18.82183,
+          "lng": 74.09618,
+          "osm": "node/10796620139"
+        },
+        {
+          "code": "shirur_inamgaon",
+          "name": {
+            "en": "Inamgaon",
+            "hi": "इनामगाव",
+            "mr": "इनामगाव"
+          },
+          "name_source": "transliterated",
+          "lat": 18.59003,
+          "lng": 74.53771,
+          "osm": "node/12836718104"
+        },
+        {
+          "code": "shirur_babhulsar_budruk",
+          "name": {
+            "en": "Babhulsar Budruk",
+            "hi": "बाभुळसर बुद्रुक",
+            "mr": "बाभुळसर बुद्रुक"
+          },
+          "name_source": "transliterated",
+          "lat": 18.50139,
+          "lng": 74.50521,
+          "osm": "node/2207721049"
+        }
+      ]
+    },
+    {
+      "code": "maval",
+      "name": {
+        "en": "Maval",
+        "hi": "मावळ",
+        "mr": "मावळ"
+      },
+      "osm": "relation/10351628",
+      "centroid": {
+        "lat": 18.78812,
+        "lng": 73.55186
+      },
+      "hq": null,
+      "villages": [
+        {
+          "code": "maval_vadavali",
+          "name": {
+            "en": "Vadavali",
+            "hi": "वडवली",
+            "mr": "वडवली"
+          },
+          "name_source": "osm",
+          "lat": 18.81075,
+          "lng": 73.51327,
+          "osm": "node/10560896136"
+        },
+        {
+          "code": "maval_karunj",
+          "name": {
+            "en": "Karunj",
+            "hi": "करुंज",
+            "mr": "करुंज"
+          },
+          "name_source": "osm",
+          "lat": 18.70961,
+          "lng": 73.54713,
+          "osm": "node/10603861013"
+        },
+        {
+          "code": "maval_aadhale_budruk",
+          "name": {
+            "en": "Aadhale Budruk",
+            "hi": "आढले बुद्रुक",
+            "mr": "आढले बुद्रुक"
+          },
+          "name_source": "osm",
+          "lat": 18.65815,
+          "lng": 73.59951,
+          "osm": "node/10692810644"
+        },
+        {
+          "code": "maval_kusgaav",
+          "name": {
+            "en": "Kusgaav",
+            "hi": "कुसगाव",
+            "mr": "कुसगाव"
+          },
+          "name_source": "osm",
+          "lat": 18.61249,
+          "lng": 73.65756,
+          "osm": "node/10855739069"
+        },
+        {
+          "code": "maval_somatane",
+          "name": {
+            "en": "Somatane",
+            "hi": "सोमाटणे",
+            "mr": "सोमाटणे"
+          },
+          "name_source": "osm",
+          "lat": 18.70345,
+          "lng": 73.68058,
+          "osm": "node/10855739072"
+        }
+      ]
+    },
+    {
+      "code": "mulshi",
+      "name": {
+        "en": "Mulshi",
+        "hi": "मुळशी",
+        "mr": "मुळशी"
+      },
+      "osm": "relation/10351625",
+      "centroid": {
+        "lat": 18.5147,
+        "lng": 73.55405
+      },
+      "hq": {
+        "name": {
+          "en": "Paud",
+          "hi": "पौड",
+          "mr": "पौड"
+        },
+        "lat": 18.52427,
+        "lng": 73.61551,
+        "osm": "node/12757261659"
+      },
+      "villages": [
+        {
+          "code": "mulshi_lavale",
+          "name": {
+            "en": "Lavale",
+            "hi": "लावले",
+            "mr": "लावले"
+          },
+          "name_source": "osm",
+          "lat": 18.52302,
+          "lng": 73.7224,
+          "osm": "node/1065064446"
+        },
+        {
+          "code": "mulshi_dasve",
+          "name": {
+            "en": "Dasve",
+            "hi": "दासवे",
+            "mr": "दासवे"
+          },
+          "name_source": "osm",
+          "lat": 18.40103,
+          "lng": 73.50042,
+          "osm": "node/1065783462"
+        },
+        {
+          "code": "mulshi_jaambe",
+          "name": {
+            "en": "Jaambe",
+            "hi": "जांबे",
+            "mr": "जांबे"
+          },
+          "name_source": "osm",
+          "lat": 18.64185,
+          "lng": 73.72315,
+          "osm": "node/10855739083"
+        },
+        {
+          "code": "mulshi_ghotawade",
+          "name": {
+            "en": "Ghotawade",
+            "hi": "घोटावडे",
+            "mr": "घोटावडे"
+          },
+          "name_source": "osm",
+          "lat": 18.54959,
+          "lng": 73.66256,
+          "osm": "node/11033786507"
+        },
+        {
+          "code": "mulshi_chaale",
+          "name": {
+            "en": "Chaale",
+            "hi": "चाले",
+            "mr": "चाले"
+          },
+          "name_source": "osm",
+          "lat": 18.55328,
+          "lng": 73.59806,
+          "osm": "node/11034031157"
+        }
+      ]
+    },
+    {
+      "code": "haveli",
+      "name": {
+        "en": "Haveli",
+        "hi": "हवेली",
+        "mr": "हवेली"
+      },
+      "osm": "relation/10351627",
+      "centroid": {
+        "lat": 18.51049,
+        "lng": 73.91537
+      },
+      "hq": null,
+      "villages": [
+        {
+          "code": "haveli_kalyan_gaon",
+          "name": {
+            "en": "Kalyan Gaon",
+            "hi": "कल्याण गाव",
+            "mr": "कल्याण गाव"
+          },
+          "name_source": "osm",
+          "lat": 18.35004,
+          "lng": 73.76478,
+          "osm": "node/1065737737"
+        },
+        {
+          "code": "haveli_mamurdi",
+          "name": {
+            "en": "Mamurdi",
+            "hi": "मामुर्डी",
+            "mr": "मामुर्डी"
+          },
+          "name_source": "osm",
+          "lat": 18.68524,
+          "lng": 73.72261,
+          "osm": "node/11516508280"
+        },
+        {
+          "code": "haveli_loni_kalbhor",
+          "name": {
+            "en": "Loni Kalbhor",
+            "hi": "लोणी काळभोर",
+            "mr": "लोणी काळभोर"
+          },
+          "name_source": "osm",
+          "lat": 18.48835,
+          "lng": 74.02219,
+          "osm": "node/1645591501"
+        },
+        {
+          "code": "haveli_tulapur",
+          "name": {
+            "en": "Tulapur",
+            "hi": "तुळापूर",
+            "mr": "तुळापूर"
+          },
+          "name_source": "osm",
+          "lat": 18.66994,
+          "lng": 73.99544,
+          "osm": "node/2222457722"
+        },
+        {
+          "code": "haveli_gorhe",
+          "name": {
+            "en": "Gorhe",
+            "hi": "गोऱ्हे",
+            "mr": "गोऱ्हे"
+          },
+          "name_source": "osm",
+          "lat": 18.42095,
+          "lng": 73.75579,
+          "osm": "node/2550515283"
+        }
+      ]
+    },
+    {
+      "code": "daund",
+      "name": {
+        "en": "Daund",
+        "hi": "दौंड",
+        "mr": "दौंड"
+      },
+      "osm": "relation/10351620",
+      "centroid": {
+        "lat": 18.48349,
+        "lng": 74.49449
+      },
+      "hq": {
+        "name": {
+          "en": "Daund",
+          "hi": "दौंड",
+          "mr": "दौंड"
+        },
+        "lat": 18.461,
+        "lng": 74.57906,
+        "osm": "node/2306724212"
+      },
+      "villages": [
+        {
+          "code": "daund_arvi",
+          "name": {
+            "en": "Arvi",
+            "hi": "आर्वी",
+            "mr": "आर्वी"
+          },
+          "name_source": "osm",
+          "lat": 18.45291,
+          "lng": 74.67957,
+          "osm": "node/342117355"
+        },
+        {
+          "code": "daund_nandur",
+          "name": {
+            "en": "Nandur",
+            "hi": "नांदूर",
+            "mr": "नांदूर"
+          },
+          "name_source": "transliterated",
+          "lat": 18.52758,
+          "lng": 74.1993,
+          "osm": "node/12071741257"
+        },
+        {
+          "code": "daund_kurkumb",
+          "name": {
+            "en": "Kurkumb",
+            "hi": "कुरकुंभ",
+            "mr": "कुरकुंभ"
+          },
+          "name_source": "transliterated",
+          "lat": 18.39535,
+          "lng": 74.54086,
+          "osm": "node/245644494"
+        },
+        {
+          "code": "daund_yavat",
+          "name": {
+            "en": "Yavat",
+            "hi": "यवत",
+            "mr": "यवत"
+          },
+          "name_source": "transliterated",
+          "lat": 18.47672,
+          "lng": 74.27315,
+          "osm": "node/245645681"
+        },
+        {
+          "code": "daund_gar",
+          "name": {
+            "en": "Gar",
+            "hi": "गार",
+            "mr": "गार"
+          },
+          "name_source": "transliterated",
+          "lat": 18.48848,
+          "lng": 74.50674,
+          "osm": "node/2716518148"
+        }
+      ]
+    },
+    {
+      "code": "purandar",
+      "name": {
+        "en": "Purandar",
+        "hi": "पुरंदर",
+        "mr": "पुरंदर"
+      },
+      "osm": "relation/10351622",
+      "centroid": {
+        "lat": 18.27097,
+        "lng": 74.0948
+      },
+      "hq": {
+        "name": {
+          "en": "Saswad",
+          "hi": "सासवड़",
+          "mr": "सासवड"
+        },
+        "lat": 18.34443,
+        "lng": 74.02952,
+        "osm": "node/517126667"
+      },
+      "villages": [
+        {
+          "code": "purandar_narayanpur",
+          "name": {
+            "en": "Narayanpur",
+            "hi": "नारायणपूर",
+            "mr": "नारायणपूर"
+          },
+          "name_source": "osm",
+          "lat": 18.30154,
+          "lng": 73.97482,
+          "osm": "node/1065705238"
+        },
+        {
+          "code": "purandar_pondhe",
+          "name": {
+            "en": "Pondhe",
+            "hi": "पोंढे",
+            "mr": "पोंढे"
+          },
+          "name_source": "osm",
+          "lat": 18.4248,
+          "lng": 74.27513,
+          "osm": "node/2321900445"
+        },
+        {
+          "code": "purandar_mandaki",
+          "name": {
+            "en": "Mandaki",
+            "hi": "मांडकी",
+            "mr": "मांडकी"
+          },
+          "name_source": "osm",
+          "lat": 18.14266,
+          "lng": 74.13836,
+          "osm": "node/6471399323"
+        },
+        {
+          "code": "purandar_pargaon_memane",
+          "name": {
+            "en": "Pargaon Memane",
+            "hi": "पारगाव मेमाणे",
+            "mr": "पारगाव मेमाणे"
+          },
+          "name_source": "osm",
+          "lat": 18.35881,
+          "lng": 74.1221,
+          "osm": "node/6473173999"
+        },
+        {
+          "code": "purandar_garade",
+          "name": {
+            "en": "Garade",
+            "hi": "गराडे",
+            "mr": "गराडे"
+          },
+          "name_source": "osm",
+          "lat": 18.34997,
+          "lng": 73.92907,
+          "osm": "node/6895038127"
+        }
+      ]
+    },
+    {
+      "code": "velhe",
+      "name": {
+        "en": "Velhe",
+        "hi": "वेल्हे",
+        "mr": "वेल्हे"
+      },
+      "osm": "relation/10351624",
+      "centroid": {
+        "lat": 18.30372,
+        "lng": 73.61709
+      },
+      "hq": {
+        "name": {
+          "en": "Velhe",
+          "hi": null,
+          "mr": null
+        },
+        "lat": 18.29775,
+        "lng": 73.63632,
+        "osm": "node/3018215933"
+      },
+      "villages": [
+        {
+          "code": "velhe_gunjavane",
+          "name": {
+            "en": "Gunjavane",
+            "hi": "गुंजवणे",
+            "mr": "गुंजवणे"
+          },
+          "name_source": "transliterated",
+          "lat": 18.25385,
+          "lng": 73.70516,
+          "osm": "node/1065737746"
+        },
+        {
+          "code": "velhe_khanu",
+          "name": {
+            "en": "Khanu",
+            "hi": "खानू",
+            "mr": "खानू"
+          },
+          "name_source": "transliterated",
+          "lat": 18.29061,
+          "lng": 73.48313,
+          "osm": "node/10711590707"
+        },
+        {
+          "code": "velhe_pole",
+          "name": {
+            "en": "Pole",
+            "hi": "पोळे",
+            "mr": "पोळे"
+          },
+          "name_source": "transliterated",
+          "lat": 18.33026,
+          "lng": 73.52451,
+          "osm": "node/10711633364"
+        },
+        {
+          "code": "velhe_karanavdi",
+          "name": {
+            "en": "Karanavdi",
+            "hi": "करनवडी",
+            "mr": "करनवडी"
+          },
+          "name_source": "transliterated",
+          "lat": 18.18472,
+          "lng": 73.5841,
+          "osm": "node/10713536330"
+        },
+        {
+          "code": "velhe_nivi",
+          "name": {
+            "en": "Nivi",
+            "hi": "निवी",
+            "mr": "निवी"
+          },
+          "name_source": "transliterated",
+          "lat": 18.29474,
+          "lng": 73.58308,
+          "osm": "node/10720795046"
+        }
+      ]
+    },
+    {
+      "code": "bhor",
+      "name": {
+        "en": "Bhor",
+        "hi": "भोर",
+        "mr": "भोर"
+      },
+      "osm": "relation/10351623",
+      "centroid": {
+        "lat": 18.2124,
+        "lng": 73.82259
+      },
+      "hq": {
+        "name": {
+          "en": "Bhor",
+          "hi": "भोर",
+          "mr": "भोर"
+        },
+        "lat": 18.15081,
+        "lng": 73.84306,
+        "osm": "node/517126647"
+      },
+      "villages": [
+        {
+          "code": "bhor_shindewadi",
+          "name": {
+            "en": "Shindewadi",
+            "hi": "शिंदेवाडी",
+            "mr": "शिंदेवाडी"
+          },
+          "name_source": "osm",
+          "lat": 18.37713,
+          "lng": 73.85641,
+          "osm": "node/10720795088"
+        },
+        {
+          "code": "bhor_penjalwadi",
+          "name": {
+            "en": "Penjalwadi",
+            "hi": "पेंजळवाडी",
+            "mr": "पेंजळवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 18.17239,
+          "lng": 74.02259,
+          "osm": "node/11391375777"
+        },
+        {
+          "code": "bhor_rayri",
+          "name": {
+            "en": "Rayri",
+            "hi": "रायरी",
+            "mr": "रायरी"
+          },
+          "name_source": "transliterated",
+          "lat": 18.07308,
+          "lng": 73.7336,
+          "osm": "node/11422319120"
+        },
+        {
+          "code": "bhor_ambeghar",
+          "name": {
+            "en": "Ambeghar",
+            "hi": "आंबेघर",
+            "mr": "आंबेघर"
+          },
+          "name_source": "transliterated",
+          "lat": 18.1333,
+          "lng": 73.79961,
+          "osm": "node/11438464807"
+        },
+        {
+          "code": "bhor_gudhe",
+          "name": {
+            "en": "Gudhe",
+            "hi": "गुढे",
+            "mr": "गुढे"
+          },
+          "name_source": "transliterated",
+          "lat": 18.06298,
+          "lng": 73.67334,
+          "osm": "node/13649003922"
+        }
+      ]
+    },
+    {
+      "code": "baramati",
+      "name": {
+        "en": "Baramati",
+        "hi": "बारामती",
+        "mr": "बारामती"
+      },
+      "osm": "relation/10351621",
+      "centroid": {
+        "lat": 18.21869,
+        "lng": 74.46254
+      },
+      "hq": {
+        "name": {
+          "en": "Baramati",
+          "hi": "बारामती",
+          "mr": "बारामती"
+        },
+        "lat": 18.14788,
+        "lng": 74.5734,
+        "osm": "node/2315565493"
+      },
+      "villages": [
+        {
+          "code": "baramati_morgaon",
+          "name": {
+            "en": "Morgaon",
+            "hi": "मोरगाव",
+            "mr": "मोरगाव"
+          },
+          "name_source": "osm",
+          "lat": 18.27714,
+          "lng": 74.31675,
+          "osm": "node/245643987"
+        },
+        {
+          "code": "baramati_malegaon",
+          "name": {
+            "en": "Malegaon",
+            "hi": "मालेगांव",
+            "mr": "मालेगाव"
+          },
+          "name_source": "osm",
+          "lat": 18.13319,
+          "lng": 74.5106,
+          "osm": "node/3604516595"
+        },
+        {
+          "code": "baramati_karkhel",
+          "name": {
+            "en": "Karkhel",
+            "hi": "कारखेल",
+            "mr": "कारखेल"
+          },
+          "name_source": "osm",
+          "lat": 18.29167,
+          "lng": 74.49793,
+          "osm": "node/4936361786"
+        },
+        {
+          "code": "baramati_parwadi",
+          "name": {
+            "en": "Parwadi",
+            "hi": "पारवडी",
+            "mr": "पारवडी"
+          },
+          "name_source": "transliterated",
+          "lat": 18.28144,
+          "lng": 74.65152,
+          "osm": "node/11590934206"
+        },
+        {
+          "code": "baramati_late",
+          "name": {
+            "en": "Late",
+            "hi": "लाटे",
+            "mr": "लाटे"
+          },
+          "name_source": "transliterated",
+          "lat": 18.07307,
+          "lng": 74.40715,
+          "osm": "node/2331538868"
+        }
+      ]
+    },
+    {
+      "code": "indapur",
+      "name": {
+        "en": "Indapur",
+        "hi": "इंदापूर",
+        "mr": "इंदापूर"
+      },
+      "osm": "relation/10351618",
+      "centroid": {
+        "lat": 18.11305,
+        "lng": 74.91032
+      },
+      "hq": {
+        "name": {
+          "en": "Indapur",
+          "hi": "इंदापूर",
+          "mr": "इंदापूर"
+        },
+        "lat": 18.11713,
+        "lng": 75.02628,
+        "osm": "node/245643248"
+      },
+      "villages": [
+        {
+          "code": "indapur_nimsakhar",
+          "name": {
+            "en": "Nimsakhar",
+            "hi": "निमसाखर",
+            "mr": "निमसाखर"
+          },
+          "name_source": "transliterated",
+          "lat": 18.01322,
+          "lng": 74.82664,
+          "osm": "node/10101988220"
+        },
+        {
+          "code": "indapur_tannu",
+          "name": {
+            "en": "Tannu",
+            "hi": "तन्नू",
+            "mr": "तन्नू"
+          },
+          "name_source": "transliterated",
+          "lat": 17.9726,
+          "lng": 75.09535,
+          "osm": "node/10832227434"
+        },
+        {
+          "code": "indapur_dalaj_no_3",
+          "name": {
+            "en": "Dalaj No. 3",
+            "hi": "डाळज नं. ३",
+            "mr": "डाळज नं. ३"
+          },
+          "name_source": "transliterated",
+          "lat": 18.22793,
+          "lng": 74.82715,
+          "osm": "node/11513218427"
+        },
+        {
+          "code": "indapur_boratwadi",
+          "name": {
+            "en": "Boratwadi",
+            "hi": "बोराटवाडी",
+            "mr": "बोराटवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 17.94287,
+          "lng": 74.88899,
+          "osm": "node/12383941640"
+        },
+        {
+          "code": "indapur_reda",
+          "name": {
+            "en": "Reda",
+            "hi": "रेडा",
+            "mr": "रेडा"
+          },
+          "name_source": "transliterated",
+          "lat": 18.00165,
+          "lng": 74.91889,
+          "osm": "node/12383984744"
+        }
+      ]
+    }
+  ]
+}

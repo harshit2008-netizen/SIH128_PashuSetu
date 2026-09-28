@@ -1,0 +1,22 @@
+{
+  "id": "ppr",
+  "version": 1,
+  "name": {"en": "PPR (goat plague)", "hi": "पीपीआर (बकरी प्लेग)", "mr": "पीपीआर (शेळ्यांचा प्लेग)"},
+  "species": ["goat", "sheep"],
+  "notifiable": true,
+  "zoonotic": false,
+  "required": [["mouth_sores"], ["diarrhoea", "nasal_discharge", "ocular_discharge"]],
+  "signs": {"mouth_sores": 4, "diarrhoea": 3, "fever": 2, "nasal_discharge": 2,
+            "ocular_discharge": 2, "coughing": 2, "difficulty_breathing": 1, "anorexia": 1},
+  "gate_fail_multiplier": 0.3,
+  "season": {"high_risk_months": [], "boost": 1.0},
+  "mortality_weight": 0.3,
+  "severity_floor": "urgent",
+  "image_model": null,
+  "differentials": ["fmd", "contagious_ecthyma", "pasteurellosis"],
+  "advisory_template": "ppr_nearby",
+  "actions": ["isolate_animal", "stop_animal_movement", "call_vet", "vaccinate_flock"],
+  "safety_note": null,
+  "source_note": "Case definition summarised from WOAH/DAHD guidance; reviewed by: pending vet review",
+  "needs_native_review": true
+}

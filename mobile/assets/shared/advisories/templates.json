@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "Advisory text per language. {placeholders} are filled per recipient; {helpline} comes from the HELPLINE_NUMBER setting (default 1962).",
+  "templates": [
+    {
+      "id": "lsd_nearby",
+      "disease": "lsd",
+      "placeholders": ["village", "helpline"],
+      "text": {
+        "en": "Lumpy skin disease is suspected in cattle near {village}. Keep sick animals apart, protect them from flies and mosquitoes, and call {helpline} if you see lumps on the skin.",
+        "hi": "{village} के पास पशुओं में लम्पी स्किन रोग की आशंका है। बीमार पशु को अलग रखें, मक्खी-मच्छर से बचाएं, और त्वचा पर गांठ दिखे तो {helpline} पर कॉल करें।",
+        "mr": "{village} जवळ जनावरांमध्ये लम्पी स्किन आजाराचा संशय आहे. आजारी जनावर वेगळे ठेवा, माश्या-डासांपासून वाचवा, आणि त्वचेवर गाठी दिसल्यास {helpline} वर फोन करा."
+      }
+    },
+    {
+      "id": "fmd_nearby",
+      "disease": "fmd",
+      "placeholders": ["village", "helpline"],
+      "text": {
+        "en": "Foot-and-mouth disease is suspected near {village}. Do not move or sell animals for now, keep sick animals apart, and call {helpline}.",
+        "hi": "{village} के पास खुरपका-मुंहपका रोग की आशंका है। अभी पशुओं को बाहर न ले जाएं और न बेचें, बीमार पशु को अलग रखें, और {helpline} पर कॉल करें।",
+        "mr": "{village} जवळ लाळ्या खुरकूत आजाराचा संशय आहे. सध्या जनावरे बाहेर नेऊ नका किंवा विकू नका, आजारी जनावर वेगळे ठेवा, आणि {helpline} वर फोन करा."
+      }
+    },
+    {
+      "id": "hs_season",
+      "disease": "hs",
+      "placeholders": ["helpline"],
+      "text": {
+        "en": "Rainy weather raises the risk of HS (galghotu) in cattle and buffalo. Get animals vaccinated, and call {helpline} if you see throat swelling or hard breathing.",
+        "hi": "बारिश के मौसम में गाय-भैंस में गलघोंटू का खतरा बढ़ जाता है। टीका लगवाएं, और गले में सूजन या सांस में तकलीफ दिखे तो {helpline} पर कॉल करें।",
+        "mr": "पावसाळ्यात गाई-म्हशींमध्ये घटसर्पाचा धोका वाढतो. लसीकरण करून घ्या, आणि गळ्याला सूज किंवा श्वास घेण्यास त्रास दिसल्यास {helpline} वर फोन करा."
+      }
+    },
+    {
+      "id": "anthrax_alert",
+      "disease": "anthrax",
+      "placeholders": ["village", "helpline"],
+      "text": {
+        "en": "An animal death near {village} may be anthrax. Do not cut or open the body, keep people and animals away, and call {helpline} now.",
+        "hi": "{village} के पास एक पशु की मौत एंथ्रेक्स से हो सकती है। शव को न काटें, न खोलें, लोगों और पशुओं को दूर रखें, और तुरंत {helpline} पर कॉल करें।",
+        "mr": "{village} जवळ एका जनावराचा मृत्यू अँथ्रॅक्समुळे झाला असू शकतो. मृतदेह कापू नका किंवा उघडू नका, लोक आणि जनावरांना दूर ठेवा, आणि लगेच {helpline} वर फोन करा."
+      }
+    },
+    {
+      "id": "ppr_nearby",
+      "disease": "ppr",
+      "placeholders": ["village", "helpline"],
+      "text": {
+        "en": "PPR is suspected in goats near {village}. Keep new or sick goats apart, do not buy goats from the market this week, and call {helpline}.",
+        "hi": "{village} के पास बकरियों में पीपीआर की आशंका है। नई या बीमार बकरियों को अलग रखें, इस हफ्ते बाजार से बकरी न खरीदें, और {helpline} पर कॉल करें।",
+        "mr": "{village} जवळ शेळ्यांमध्ये पीपीआरचा संशय आहे. नवीन किंवा आजारी शेळ्या वेगळ्या ठेवा, या आठवड्यात बाजारातून शेळ्या विकत घेऊ नका, आणि {helpline} वर फोन करा."
+      }
+    },
+    {
+      "id": "hpai_nearby",
+      "disease": "hpai",
+      "placeholders": ["village", "helpline"],
+      "text": {
+        "en": "Bird flu is suspected near {village}. Do not touch dead birds with bare hands, keep children away, and call {helpline} now.",
+        "hi": "{village} के पास बर्ड फ्लू की आशंका है। मरे हुए पक्षियों को नंगे हाथ से न छुएं, बच्चों को दूर रखें, और तुरंत {helpline} पर कॉल करें।",
+        "mr": "{village} जवळ बर्ड फ्लूचा संशय आहे. मेलेल्या पक्ष्यांना उघड्या हातांनी स्पर्श करू नका, मुलांना दूर ठेवा, आणि लगेच {helpline} वर फोन करा."
+      }
+    },
+    {
+      "id": "vaccination_due",
+      "disease": null,
+      "placeholders": ["animal_name", "vaccine", "date"],
+      "text": {
+        "en": "{animal_name}'s {vaccine} vaccine is due on {date}. Contact your pashu sevak.",
+        "hi": "{animal_name} का {vaccine} टीका {date} को लगना है। अपने पशु सेवक से संपर्क करें।",
+        "mr": "{animal_name} चे {vaccine} लसीकरण {date} रोजी करायचे आहे. आपल्या पशुसेवकाशी संपर्क साधा."
+      }
+    }
+  ]
+}

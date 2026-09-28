@@ -1,0 +1,27 @@
+{
+  "id": "hpai",
+  "version": 1,
+  "name": {"en": "Bird flu (avian influenza)", "hi": "बर्ड फ्लू", "mr": "बर्ड फ्लू"},
+  "species": ["poultry"],
+  "notifiable": true,
+  "zoonotic": true,
+  "required": [["sudden_high_mortality", "swollen_head_comb_wattles", "cyanosis_comb_wattles"]],
+  "signs": {"sudden_high_mortality": 5, "swollen_head_comb_wattles": 3, "cyanosis_comb_wattles": 3,
+            "drop_in_egg_production": 2, "difficulty_breathing": 2, "neurological_signs": 2,
+            "shank_haemorrhages": 2, "diarrhoea": 1},
+  "gate_fail_multiplier": 0.3,
+  "season": {"high_risk_months": [], "boost": 1.0},
+  "mortality_weight": 0.5,
+  "severity_floor": "emergency",
+  "image_model": null,
+  "differentials": ["newcastle_disease", "fowl_cholera"],
+  "advisory_template": "hpai_nearby",
+  "actions": ["do_not_touch_dead_birds", "isolate_flock", "call_vet_urgently", "inform_health_department"],
+  "safety_note": {
+    "en": "Do not touch dead birds with bare hands. Keep children away. Report now.",
+    "hi": "मरे हुए पक्षियों को नंगे हाथ से न छुएं। बच्चों को दूर रखें। तुरंत सूचना दें।",
+    "mr": "मेलेल्या पक्ष्यांना उघड्या हातांनी स्पर्श करू नका. मुलांना दूर ठेवा. लगेच कळवा."
+  },
+  "source_note": "Case definition summarised from WOAH/DAHD guidance; reviewed by: pending vet review",
+  "needs_native_review": true
+}

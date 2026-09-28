@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "Spoken phrases -> ids, per app language. 'hi' also holds romanised Hindi (Hinglish). The parser (Phase 5) normalises text, matches the longest phrase first, and always shows results as editable tiles; it never sends a report on its own.",
+  "symptoms": {
+    "fever": {
+      "hi": ["बुखार", "ताप", "गरम", "शरीर गरम", "bukhar", "bukhaar", "garam"],
+      "mr": ["ताप", "अंग गरम", "ताप आला", "taap"],
+      "en": ["fever", "hot body", "feels hot", "temperature"]
+    },
+    "anorexia": {
+      "hi": ["चारा नहीं", "खाना नहीं खा", "चारा नहीं खा", "कुछ नहीं खा", "chara nahi", "khana nahi"],
+      "mr": ["चारा खात नाही", "खात नाही", "वैरण खात नाही"],
+      "en": ["not eating", "off feed", "stopped eating"]
+    },
+    "drop_in_milk": {
+      "hi": ["दूध कम", "दूध घट", "doodh kam", "dudh kam"],
+      "mr": ["दूध कमी", "दूध घटले"],
+      "en": ["less milk", "milk dropped", "milk reduced", "low milk"]
+    },
+    "skin_nodules": {
+      "hi": ["गांठ", "गाँठ", "गांठें", "गाँठें", "दाने", "गठान", "gaanth", "ganth", "gathan"],
+      "mr": ["गाठी", "गाठ", "अंगावर गाठी"],
+      "en": ["lumps", "lump on skin", "skin lumps", "nodules"]
+    },
+    "enlarged_lymph_nodes": {
+      "hi": ["कंधे के पास सूजन", "कंधे के पास गांठ", "जांघ के पास गांठ", "गिल्टी", "gilti"],
+      "mr": ["खांद्याजवळ सूज", "खांद्याजवळ गाठ", "मांडीजवळ गाठ"],
+      "en": ["swollen glands", "swollen lymph nodes", "gland swelling"]
+    },
+    "limb_oedema": {
+      "hi": ["पैरों में सूजन", "पैर सूजे", "टांग में सूजन"],
+      "mr": ["पायांना सूज", "पाय सुजले"],
+      "en": ["swollen legs", "leg swelling"]
+    },
+    "ocular_discharge": {
+      "hi": ["आंखों से पानी", "आँखों से पानी", "आंख से पानी", "aankh se pani"],
+      "mr": ["डोळ्यांतून पाणी", "डोळ्यातून पाणी"],
+      "en": ["watery eyes", "eye discharge", "tears"]
+    },
+    "nasal_discharge": {
+      "hi": ["नाक बहना", "नाक बह", "नाक से पानी", "naak beh"],
+      "mr": ["नाक गळणे", "नाक गळते", "नाकातून पाणी"],
+      "en": ["runny nose", "nasal discharge", "nose running"]
+    },
+    "excessive_salivation": {
+      "hi": ["लार", "लार टपक", "मुंह से लार", "laar"],
+      "mr": ["लाळ", "लाळ गळते"],
+      "en": ["drooling", "saliva", "salivation"]
+    },
+    "mouth_sores": {
+      "hi": ["मुंह में छाले", "मुँह में छाले", "मुंह में घाव", "छाले", "chhale"],
+      "mr": ["तोंडात फोड", "तोंडात जखम", "तोंड आले"],
+      "en": ["mouth sores", "mouth blisters", "ulcers in mouth"]
+    },
+    "foot_lesions": {
+      "hi": ["खुर में घाव", "खुर सड़", "खुर के बीच घाव", "khur"],
+      "mr": ["खुरात जखम", "खुरांमध्ये जखम", "खुरांच्या मध्ये जखम"],
+      "en": ["hoof wounds", "foot lesions", "wounds between hooves", "hoof sores"]
+    },
+    "lameness": {
+      "hi": ["लंगड़ा", "लंगड़ाना", "लंगड़ा रहा", "langda"],
+      "mr": ["लंगडत", "लंगडणे", "लंगडते"],
+      "en": ["limping", "lame", "lameness"]
+    },
+    "teat_lesions": {
+      "hi": ["थनों पर छाले", "थन पर छाले", "थन में घाव"],
+      "mr": ["सडांवर फोड", "सडावर जखम"],
+      "en": ["teat blisters", "teat sores"]
+    },
+    "throat_swelling": {
+      "hi": ["गले में सूजन", "गला सूजा", "gala suja"],
+      "mr": ["गळ्याला सूज", "गळ्याखाली सूज"],
+      "en": ["throat swelling", "swollen throat", "swelling under jaw"]
+    },
+    "difficulty_breathing": {
+      "hi": ["सांस", "हांफ", "हांफना", "सांस लेने में तकलीफ", "saans"],
+      "mr": ["श्वास घेण्यास त्रास", "धाप", "धाप लागते"],
+      "en": ["breathing problem", "hard breathing", "difficulty breathing", "panting"]
+    },
+    "coughing": {
+      "hi": ["खांसी", "खाँसी", "khansi"],
+      "mr": ["खोकला", "खोकते"],
+      "en": ["cough", "coughing"]
+    },
+    "diarrhoea": {
+      "hi": ["दस्त", "पतला गोबर", "dast", "patla gobar"],
+      "mr": ["जुलाब", "पातळ शेण", "हगवण"],
+      "en": ["diarrhoea", "diarrhea", "loose dung", "loose motion"]
+    },
+    "sudden_death": {
+      "hi": ["अचानक मर", "अचानक मौत", "achanak mar"],
+      "mr": ["अचानक मेली", "अचानक मेला", "अचानक मृत्यू"],
+      "en": ["died suddenly", "sudden death", "dropped dead"]
+    },
+    "bleeding_from_orifices": {
+      "hi": ["खून", "नाक से खून", "मुंह से खून", "khoon"],
+      "mr": ["रक्त", "नाकातून रक्त", "तोंडातून रक्त"],
+      "en": ["bleeding", "blood from nose", "blood from mouth"]
+    },
+    "absence_of_rigor_mortis": {
+      "hi": ["शरीर अकड़ा नहीं", "अकड़ा नहीं", "शरीर ढीला"],
+      "mr": ["शरीर ताठ झाले नाही", "ताठ झाले नाही"],
+      "en": ["body did not stiffen", "not stiff"]
+    },
+    "rapid_bloating_carcass": {
+      "hi": ["शरीर फूल गया", "जल्दी फूल गया"],
+      "mr": ["शरीर फुगले", "लवकर फुगले"],
+      "en": ["body swelled", "carcass bloated", "bloated quickly"]
+    },
+    "trembling_staggering": {
+      "hi": ["कांपना", "कांप रहा", "लड़खड़ा", "kaanp"],
+      "mr": ["थरथर", "थरथरते", "झोकांड्या"],
+      "en": ["shaking", "trembling", "staggering"]
+    },
+    "sudden_high_mortality": {
+      "hi": ["मुर्गियां मर", "मुर्गियाँ मर", "कई मुर्गी मरी", "murgiyan mar"],
+      "mr": ["कोंबड्या मेल्या", "अनेक कोंबड्या मेल्या"],
+      "en": ["many birds died", "birds dying", "chickens died"]
+    },
+    "swollen_head_comb_wattles": {
+      "hi": ["कलगी सूजी", "कलगी में सूजन", "सिर सूजा"],
+      "mr": ["तुरा सुजला", "डोके सुजले"],
+      "en": ["swollen head", "swollen comb", "swollen wattles"]
+    },
+    "cyanosis_comb_wattles": {
+      "hi": ["कलगी नीली", "कलगी बैंगनी", "कलगी काली"],
+      "mr": ["तुरा निळा", "तुरा जांभळा", "तुरा काळा"],
+      "en": ["blue comb", "purple comb", "comb turned blue"]
+    },
+    "drop_in_egg_production": {
+      "hi": ["अंडे कम", "अंडा कम", "ande kam"],
+      "mr": ["अंडी कमी"],
+      "en": ["fewer eggs", "less eggs", "egg drop"]
+    },
+    "neurological_signs": {
+      "hi": ["गर्दन मुड़", "चक्कर", "गोल घूम", "दौरे"],
+      "mr": ["मान वाकडी", "गोल फिरते", "झटके"],
+      "en": ["twisted neck", "circling", "fits", "seizures"]
+    },
+    "shank_haemorrhages": {
+      "hi": ["पैरों पर लाल धब्बे", "टांगों पर लाल"],
+      "mr": ["पायांवर लाल ठिपके"],
+      "en": ["red spots on legs", "red legs"]
+    }
+  },
+  "species": {
+    "cattle": {
+      "hi": ["गाय", "गायें", "गायों", "बैल", "बछड़ा", "बछिया", "gaay", "gai"],
+      "mr": ["गाय", "गायी", "गाई", "बैल", "वासरू"],
+      "en": ["cow", "cows", "cattle", "bull", "calf", "ox"]
+    },
+    "buffalo": {
+      "hi": ["भैंस", "भैंसें", "भैंसों", "पड़वा", "bhains"],
+      "mr": ["म्हैस", "म्हशी", "रेडा", "रेडकू"],
+      "en": ["buffalo", "buffaloes"]
+    },
+    "goat": {
+      "hi": ["बकरी", "बकरियां", "बकरियाँ", "बकरा", "bakri"],
+      "mr": ["शेळी", "शेळ्या", "बोकड", "करडू"],
+      "en": ["goat", "goats", "kid"]
+    },
+    "sheep": {
+      "hi": ["भेड़", "भेड़ें", "bhed"],
+      "mr": ["मेंढी", "मेंढ्या", "मेंढरू"],
+      "en": ["sheep", "lamb"]
+    },
+    "pig": {
+      "hi": ["सूअर", "सुअर", "suar"],
+      "mr": ["डुक्कर", "डुकरे"],
+      "en": ["pig", "pigs", "swine"]
+    },
+    "poultry": {
+      "hi": ["मुर्गी", "मुर्गियां", "मुर्गियाँ", "मुर्गा", "पक्षी", "murgi"],
+      "mr": ["कोंबडी", "कोंबड्या", "कोंबडा", "पक्षी"],
+      "en": ["hen", "hens", "chicken", "chickens", "poultry", "birds"]
+    }
+  },
+  "numbers": {
+    "hi": {"एक": 1, "दो": 2, "तीन": 3, "चार": 4, "पांच": 5, "पाँच": 5, "छह": 6, "छः": 6, "सात": 7, "आठ": 8,
+           "नौ": 9, "दस": 10, "ग्यारह": 11, "बारह": 12, "पंद्रह": 15, "बीस": 20, "पच्चीस": 25, "तीस": 30,
+           "चालीस": 40, "पचास": 50, "सौ": 100,
+           "ek": 1, "do": 2, "teen": 3, "char": 4, "paanch": 5, "panch": 5, "chhah": 6, "saat": 7, "aath": 8,
+           "nau": 9, "das": 10},
+    "mr": {"एक": 1, "दोन": 2, "तीन": 3, "चार": 4, "पाच": 5, "सहा": 6, "सात": 7, "आठ": 8, "नऊ": 9, "दहा": 10,
+           "अकरा": 11, "बारा": 12, "पंधरा": 15, "वीस": 20, "पंचवीस": 25, "तीस": 30, "चाळीस": 40,
+           "पन्नास": 50, "शंभर": 100},
+    "en": {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+           "ten": 10, "twelve": 12, "fifteen": 15, "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50,
+           "hundred": 100}
+  }
+}

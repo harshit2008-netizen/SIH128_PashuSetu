@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "note": "Golden cases from spec Section 7.8. The Python and Dart engines must both pass every case. 'expect' holds the spec's checks; 'golden' holds the exact engine output (scores to 3 decimals) so the two engines are proven identical. Add a case whenever a bug is fixed. Never change a case silently to make it pass.",
+  "vectors": [
+    {
+      "id": 1,
+      "name": "Cattle with skin lumps in LSD season",
+      "input": {"species": "cattle", "symptoms": ["skin_nodules", "fever", "enlarged_lymph_nodes"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 8},
+      "expect": {"top": "lsd", "top_confidence": "high", "severity": "urgent"},
+      "golden": {"candidates": [["lsd", 0.719], ["hs", 0.066], ["fmd", 0.029]], "primary_syndrome": "dermatological", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "vector_control", "call_vet"], "has_safety_note": false}
+    },
+    {
+      "id": 2,
+      "name": "Cattle with mouth sores and drooling",
+      "input": {"species": "cattle", "symptoms": ["mouth_sores", "excessive_salivation", "lameness", "fever"], "sick_count": 2, "dead_count": 0, "total_at_risk": null, "report_month": 3},
+      "expect": {"top": "fmd", "severity": "urgent"},
+      "golden": {"candidates": [["fmd", 0.571], ["hs", 0.071], ["lsd", 0.038]], "primary_syndrome": "vesicular", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "stop_animal_movement", "disinfect_shed", "soft_feed", "call_vet"], "has_safety_note": false}
+    },
+    {
+      "id": 3,
+      "name": "Buffalo with throat swelling in the monsoon",
+      "input": {"species": "buffalo", "symptoms": ["throat_swelling", "fever", "difficulty_breathing"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 7},
+      "expect": {"top": "hs", "severity": "urgent"},
+      "golden": {"candidates": [["hs", 0.809], ["lsd", 0.043], ["anthrax", 0.033]], "primary_syndrome": "respiratory", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet_urgently", "vaccinate_herd"], "has_safety_note": false}
+    },
+    {
+      "id": 4,
+      "name": "Cattle sudden death with bleeding",
+      "input": {"species": "cattle", "symptoms": ["sudden_death", "bleeding_from_orifices"], "sick_count": 0, "dead_count": 1, "total_at_risk": null, "report_month": 5},
+      "expect": {"top": "anthrax", "severity": "emergency", "zoonotic_flag": true},
+      "golden": {"candidates": [["anthrax", 0.65], ["hs", 0.326], ["fmd", 0.05]], "primary_syndrome": "haemorrhagic_sudden_death", "severity": "emergency", "zoonotic_flag": true, "unknown_syndrome": false, "actions": ["do_not_open_carcass", "cordon_area", "call_vet_urgently", "inform_health_department"], "has_safety_note": true}
+    },
+    {
+      "id": 5,
+      "name": "Goats with mouth sores and diarrhoea",
+      "input": {"species": "goat", "symptoms": ["mouth_sores", "diarrhoea", "nasal_discharge", "fever"], "sick_count": 4, "dead_count": 0, "total_at_risk": null, "report_month": 2},
+      "expect": {"top": "ppr", "severity": "urgent", "in_top3": ["fmd"]},
+      "golden": {"candidates": [["ppr", 0.647], ["fmd", 0.333], ["anthrax", 0.017]], "primary_syndrome": "vesicular", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "stop_animal_movement", "call_vet", "vaccinate_flock"], "has_safety_note": false}
+    },
+    {
+      "id": 6,
+      "name": "Poultry flock with mass deaths and swollen heads",
+      "input": {"species": "poultry", "symptoms": ["sudden_high_mortality", "swollen_head_comb_wattles"], "sick_count": 5, "dead_count": 40, "total_at_risk": null, "report_month": 1},
+      "expect": {"top": "hpai", "severity": "emergency", "zoonotic_flag": true},
+      "golden": {"candidates": [["hpai", 0.835]], "primary_syndrome": "avian_mortality", "severity": "emergency", "zoonotic_flag": true, "unknown_syndrome": false, "actions": ["do_not_touch_dead_birds", "isolate_flock", "call_vet_urgently", "inform_health_department"], "has_safety_note": true}
+    },
+    {
+      "id": 7,
+      "name": "Cattle with only fever and not eating",
+      "input": {"species": "cattle", "symptoms": ["fever", "anorexia"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 4},
+      "expect": {"top_confidence": "low", "severity": "routine", "unknown_syndrome": false},
+      "golden": {"candidates": [["hs", 0.071], ["lsd", 0.056], ["fmd", 0.043]], "primary_syndrome": "general", "severity": "routine", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet"], "has_safety_note": false}
+    },
+    {
+      "id": 8,
+      "name": "Several sick cattle and a death, no matching disease",
+      "input": {"species": "cattle", "symptoms": ["anorexia", "diarrhoea"], "sick_count": 5, "dead_count": 1, "total_at_risk": null, "report_month": 4},
+      "expect": {"top_confidence": "low", "severity": "urgent", "unknown_syndrome": true},
+      "golden": {"candidates": [["hs", 0.061], ["anthrax", 0.043], ["fmd", 0.029]], "primary_syndrome": "gastrointestinal", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": true, "actions": ["isolate_animal", "call_vet_urgently"], "has_safety_note": false}
+    },
+    {
+      "id": 9,
+      "name": "Goat with skin lumps (LSD does not affect goats)",
+      "input": {"species": "goat", "symptoms": ["skin_nodules"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 8},
+      "expect": {"not_in_candidates": ["lsd"], "severity": "routine"},
+      "golden": {"candidates": [], "primary_syndrome": "dermatological", "severity": "routine", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet"], "has_safety_note": false}
+    },
+    {
+      "id": 10,
+      "name": "Buffalo sudden death only, in the monsoon",
+      "input": {"species": "buffalo", "symptoms": ["sudden_death"], "sick_count": 0, "dead_count": 1, "total_at_risk": null, "report_month": 7},
+      "expect": {"ranked_above": [["hs", "anthrax"]], "severity": "urgent", "gated": ["anthrax"]},
+      "golden": {"candidates": [["hs", 0.371], ["anthrax", 0.217], ["fmd", 0.05]], "primary_syndrome": "haemorrhagic_sudden_death", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet"], "has_safety_note": false}
+    }
+  ]
+}

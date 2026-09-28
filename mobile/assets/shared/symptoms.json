@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "Labels use farmer wording. All Hindi and Marathi text needs a native speaker's check before the demo.",
+  "species": [
+    {"id": "cattle", "name": {"en": "Cow", "hi": "गाय", "mr": "गाय"}, "pictogram": "species_cattle.svg", "group": "mammal"},
+    {"id": "buffalo", "name": {"en": "Buffalo", "hi": "भैंस", "mr": "म्हैस"}, "pictogram": "species_buffalo.svg", "group": "mammal"},
+    {"id": "goat", "name": {"en": "Goat", "hi": "बकरी", "mr": "शेळी"}, "pictogram": "species_goat.svg", "group": "mammal"},
+    {"id": "sheep", "name": {"en": "Sheep", "hi": "भेड़", "mr": "मेंढी"}, "pictogram": "species_sheep.svg", "group": "mammal"},
+    {"id": "pig", "name": {"en": "Pig", "hi": "सूअर", "mr": "डुक्कर"}, "pictogram": "species_pig.svg", "group": "mammal"},
+    {"id": "poultry", "name": {"en": "Poultry", "hi": "मुर्गी", "mr": "कोंबडी"}, "pictogram": "species_poultry.svg", "group": "bird"}
+  ],
+  "symptoms": [
+    {
+      "id": "fever",
+      "label": {"en": "Fever, body feels hot", "hi": "बुखार, शरीर गरम", "mr": "ताप, अंग गरम"},
+      "short_help": {"en": "The body, ears or mouth feel hotter than usual.", "hi": "शरीर, कान या मुंह सामान्य से ज़्यादा गरम लगते हैं।", "mr": "अंग, कान किंवा तोंड नेहमीपेक्षा जास्त गरम लागते."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig", "poultry"],
+      "syndrome": "general",
+      "pictogram": "fever.svg"
+    },
+    {
+      "id": "anorexia",
+      "label": {"en": "Not eating", "hi": "चारा नहीं खा रहा", "mr": "चारा खात नाही"},
+      "short_help": {"en": "The animal leaves its feed or water.", "hi": "पशु चारा या पानी छोड़ रहा है।", "mr": "जनावर चारा किंवा पाणी सोडत आहे."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig", "poultry"],
+      "syndrome": "general",
+      "pictogram": "anorexia.svg"
+    },
+    {
+      "id": "drop_in_milk",
+      "label": {"en": "Less milk", "hi": "दूध कम हो गया", "mr": "दूध कमी झाले"},
+      "short_help": {"en": "Gives clearly less milk than usual.", "hi": "सामान्य से साफ़ तौर पर कम दूध दे रहा है।", "mr": "नेहमीपेक्षा स्पष्टपणे कमी दूध देत आहे."},
+      "species": ["cattle", "buffalo", "goat"],
+      "syndrome": "general",
+      "pictogram": "drop_in_milk.svg"
+    },
+    {
+      "id": "skin_nodules",
+      "label": {"en": "Lumps on the skin", "hi": "त्वचा पर गांठें", "mr": "त्वचेवर गाठी"},
+      "short_help": {"en": "Round, firm lumps on the body, often many at once.", "hi": "शरीर पर गोल, सख़्त गांठें, अक्सर कई एक साथ।", "mr": "अंगावर गोल, टणक गाठी, बहुतेक वेळा अनेक एकदम."},
+      "species": ["cattle", "buffalo"],
+      "syndrome": "dermatological",
+      "pictogram": "skin_nodules.svg"
+    },
+    {
+      "id": "enlarged_lymph_nodes",
+      "label": {"en": "Swollen glands near shoulder or thigh", "hi": "कंधे या जांघ के पास सूजी गांठ", "mr": "खांदा किंवा मांडीजवळ सुजलेल्या गाठी"},
+      "short_help": {"en": "A soft swelling in front of the shoulder or above the knee.", "hi": "कंधे के आगे या घुटने के ऊपर नरम सूजन।", "mr": "खांद्याच्या पुढे किंवा गुडघ्याच्या वर मऊ सूज."},
+      "species": ["cattle", "buffalo"],
+      "syndrome": "dermatological",
+      "pictogram": "enlarged_lymph_nodes.svg"
+    },
+    {
+      "id": "limb_oedema",
+      "label": {"en": "Swollen legs", "hi": "पैरों में सूजन", "mr": "पायांना सूज"},
+      "short_help": {"en": "The legs look puffy, and pressing leaves a dent.", "hi": "पैर फूले दिखते हैं, दबाने पर गड्ढा रह जाता है।", "mr": "पाय फुगलेले दिसतात, दाबल्यावर खड्डा राहतो."},
+      "species": ["cattle", "buffalo"],
+      "syndrome": "dermatological",
+      "pictogram": "limb_oedema.svg"
+    },
+    {
+      "id": "ocular_discharge",
+      "label": {"en": "Watery eyes", "hi": "आंखों से पानी", "mr": "डोळ्यांतून पाणी"},
+      "short_help": {"en": "Tears or sticky fluid running from the eyes.", "hi": "आंखों से आंसू या चिपचिपा पानी बहना।", "mr": "डोळ्यांतून अश्रू किंवा चिकट पाणी वाहणे."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "respiratory",
+      "pictogram": "ocular_discharge.svg"
+    },
+    {
+      "id": "nasal_discharge",
+      "label": {"en": "Runny nose", "hi": "नाक बहना", "mr": "नाक गळणे"},
+      "short_help": {"en": "Water, mucus or pus coming from the nose.", "hi": "नाक से पानी, बलगम या मवाद आना।", "mr": "नाकातून पाणी, शेंबूड किंवा पू येणे."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "respiratory",
+      "pictogram": "nasal_discharge.svg"
+    },
+    {
+      "id": "excessive_salivation",
+      "label": {"en": "Drooling", "hi": "मुंह से लार टपकना", "mr": "तोंडातून लाळ गळणे"},
+      "short_help": {"en": "Strings of saliva hang from the mouth.", "hi": "मुंह से लार की लंबी धार लटकती है।", "mr": "तोंडातून लाळेच्या लांब धारा लोंबतात."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "vesicular",
+      "pictogram": "excessive_salivation.svg"
+    },
+    {
+      "id": "mouth_sores",
+      "label": {"en": "Sores or blisters in the mouth", "hi": "मुंह में छाले या घाव", "mr": "तोंडात फोड किंवा जखमा"},
+      "short_help": {"en": "Blisters or raw red patches on the tongue, gums or lips.", "hi": "जीभ, मसूड़ों या होंठों पर छाले या लाल घाव।", "mr": "जीभ, हिरड्या किंवा ओठांवर फोड किंवा लाल जखमा."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "vesicular",
+      "pictogram": "mouth_sores.svg"
+    },
+    {
+      "id": "foot_lesions",
+      "label": {"en": "Wounds between the hooves", "hi": "खुर के बीच घाव", "mr": "खुरांच्या मध्ये जखमा"},
+      "short_help": {"en": "Blisters or wounds between the hooves or at the hoof edge.", "hi": "खुरों के बीच या खुर के किनारे छाले या घाव।", "mr": "खुरांच्या मध्ये किंवा खुराच्या कडेला फोड किंवा जखमा."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "vesicular",
+      "pictogram": "foot_lesions.svg"
+    },
+    {
+      "id": "lameness",
+      "label": {"en": "Limping", "hi": "लंगड़ाना", "mr": "लंगडणे"},
+      "short_help": {"en": "Does not put weight on a leg, or walks unevenly.", "hi": "एक पैर पर वज़न नहीं डालता या ठीक से नहीं चलता।", "mr": "एका पायावर भार देत नाही किंवा नीट चालत नाही."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "vesicular",
+      "pictogram": "lameness.svg"
+    },
+    {
+      "id": "teat_lesions",
+      "label": {"en": "Blisters on teats", "hi": "थनों पर छाले", "mr": "सडांवर फोड"},
+      "short_help": {"en": "Blisters or sores on the teats; the animal may not let you milk.", "hi": "थनों पर छाले या घाव; पशु दूध निकालने नहीं देता।", "mr": "सडांवर फोड किंवा जखमा; जनावर दूध काढू देत नाही."},
+      "species": ["cattle", "buffalo", "goat"],
+      "syndrome": "vesicular",
+      "pictogram": "teat_lesions.svg"
+    },
+    {
+      "id": "throat_swelling",
+      "label": {"en": "Swelling under the throat", "hi": "गले में सूजन", "mr": "गळ्याखाली सूज"},
+      "short_help": {"en": "Hot, painful swelling under the jaw or throat.", "hi": "जबड़े या गले के नीचे गरम, दर्द वाली सूजन।", "mr": "जबड्याखाली किंवा गळ्याखाली गरम, दुखरी सूज."},
+      "species": ["cattle", "buffalo"],
+      "syndrome": "respiratory",
+      "pictogram": "throat_swelling.svg"
+    },
+    {
+      "id": "difficulty_breathing",
+      "label": {"en": "Hard or noisy breathing", "hi": "सांस लेने में तकलीफ", "mr": "श्वास घेण्यास त्रास"},
+      "short_help": {"en": "Breathes fast, with an open mouth, or with a rattling sound.", "hi": "तेज़ सांस, मुंह खोलकर सांस, या घरघराहट।", "mr": "जलद श्वास, तोंड उघडून श्वास, किंवा घरघर आवाज."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig", "poultry"],
+      "syndrome": "respiratory",
+      "pictogram": "difficulty_breathing.svg"
+    },
+    {
+      "id": "coughing",
+      "label": {"en": "Coughing", "hi": "खांसी", "mr": "खोकला"},
+      "short_help": {"en": "Coughs again and again.", "hi": "बार-बार खांसता है।", "mr": "वारंवार खोकते."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "respiratory",
+      "pictogram": "coughing.svg"
+    },
+    {
+      "id": "diarrhoea",
+      "label": {"en": "Loose dung", "hi": "दस्त", "mr": "जुलाब, पातळ शेण"},
+      "short_help": {"en": "Dung or droppings are watery or much looser than usual.", "hi": "गोबर या बीट पानी जैसी या सामान्य से बहुत पतली है।", "mr": "शेण किंवा विष्ठा पाण्यासारखी किंवा नेहमीपेक्षा खूप पातळ आहे."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig", "poultry"],
+      "syndrome": "gastrointestinal",
+      "pictogram": "diarrhoea.svg"
+    },
+    {
+      "id": "sudden_death",
+      "label": {"en": "Died suddenly", "hi": "अचानक मौत", "mr": "अचानक मृत्यू"},
+      "short_help": {"en": "Was fine a day ago and was found dead.", "hi": "एक दिन पहले ठीक था और मरा हुआ मिला।", "mr": "एक दिवसापूर्वी ठीक होते आणि मेलेले आढळले."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "haemorrhagic_sudden_death",
+      "pictogram": "sudden_death.svg"
+    },
+    {
+      "id": "bleeding_from_orifices",
+      "label": {"en": "Blood from nose, mouth or rear", "hi": "नाक, मुंह या गुदा से खून", "mr": "नाक, तोंड किंवा गुदद्वारातून रक्त"},
+      "short_help": {"en": "Dark blood coming out of the nose, mouth or rear, often after death.", "hi": "नाक, मुंह या गुदा से काला खून, अक्सर मौत के बाद।", "mr": "नाक, तोंड किंवा गुदद्वारातून काळसर रक्त, बहुतेक वेळा मृत्यूनंतर."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "haemorrhagic_sudden_death",
+      "pictogram": "bleeding_from_orifices.svg"
+    },
+    {
+      "id": "absence_of_rigor_mortis",
+      "label": {"en": "Body did not stiffen after death", "hi": "मरने के बाद शरीर अकड़ा नहीं", "mr": "मेल्यानंतर शरीर ताठ झाले नाही"},
+      "short_help": {"en": "Hours after death, the legs still bend easily.", "hi": "मौत के कई घंटे बाद भी पैर आसानी से मुड़ते हैं।", "mr": "मृत्यूनंतर काही तासांनीही पाय सहज वाकतात."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "haemorrhagic_sudden_death",
+      "pictogram": "absence_of_rigor_mortis.svg"
+    },
+    {
+      "id": "rapid_bloating_carcass",
+      "label": {"en": "Body swelled up fast after death", "hi": "मरने के बाद शरीर जल्दी फूल गया", "mr": "मेल्यानंतर शरीर लवकर फुगले"},
+      "short_help": {"en": "The dead body swelled up within a few hours.", "hi": "मरा हुआ शरीर कुछ ही घंटों में फूल गया।", "mr": "मृत शरीर काही तासांतच फुगले."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+      "syndrome": "haemorrhagic_sudden_death",
+      "pictogram": "rapid_bloating_carcass.svg"
+    },
+    {
+      "id": "trembling_staggering",
+      "label": {"en": "Shaking or staggering", "hi": "कांपना या लड़खड़ाना", "mr": "थरथरणे किंवा झोकांड्या खाणे"},
+      "short_help": {"en": "Shakes, cannot stand steady, or falls while walking.", "hi": "कांपता है, सीधा खड़ा नहीं हो पाता, या चलते-चलते गिरता है।", "mr": "थरथरते, स्थिर उभे राहू शकत नाही, किंवा चालताना पडते."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig", "poultry"],
+      "syndrome": "neurological",
+      "pictogram": "trembling_staggering.svg"
+    },
+    {
+      "id": "sudden_high_mortality",
+      "label": {"en": "Many birds died suddenly", "hi": "कई पक्षी अचानक मरे", "mr": "अनेक पक्षी अचानक मेले"},
+      "short_help": {"en": "Many birds in the flock died within a day or two.", "hi": "झुंड के कई पक्षी एक-दो दिन में मर गए।", "mr": "कळपातील अनेक पक्षी एक-दोन दिवसांत मेले."},
+      "species": ["poultry"],
+      "syndrome": "avian_mortality",
+      "pictogram": "sudden_high_mortality.svg"
+    },
+    {
+      "id": "swollen_head_comb_wattles",
+      "label": {"en": "Swollen head, comb or wattles", "hi": "सिर, कलगी या गलकंबल में सूजन", "mr": "डोके, तुरा किंवा गलकंबल सुजलेले"},
+      "short_help": {"en": "The head, comb or the skin under the beak is puffed up.", "hi": "सिर, कलगी या चोंच के नीचे की खाल फूली हुई है।", "mr": "डोके, तुरा किंवा चोचीखालची कातडी फुगलेली आहे."},
+      "species": ["poultry"],
+      "syndrome": "avian_mortality",
+      "pictogram": "swollen_head_comb_wattles.svg"
+    },
+    {
+      "id": "cyanosis_comb_wattles",
+      "label": {"en": "Comb turned blue or purple", "hi": "कलगी नीली या बैंगनी", "mr": "तुरा निळा किंवा जांभळा झाला"},
+      "short_help": {"en": "The red comb or wattles have turned dark blue or purple.", "hi": "लाल कलगी या गलकंबल गहरे नीले या बैंगनी हो गए।", "mr": "लाल तुरा किंवा गलकंबल गडद निळे किंवा जांभळे झाले."},
+      "species": ["poultry"],
+      "syndrome": "avian_mortality",
+      "pictogram": "cyanosis_comb_wattles.svg"
+    },
+    {
+      "id": "drop_in_egg_production",
+      "label": {"en": "Fewer eggs", "hi": "अंडे कम", "mr": "अंडी कमी"},
+      "short_help": {"en": "The flock lays clearly fewer eggs than usual.", "hi": "झुंड सामान्य से साफ़ तौर पर कम अंडे दे रहा है।", "mr": "कळप नेहमीपेक्षा स्पष्टपणे कमी अंडी देत आहे."},
+      "species": ["poultry"],
+      "syndrome": "avian_mortality",
+      "pictogram": "drop_in_egg_production.svg"
+    },
+    {
+      "id": "neurological_signs",
+      "label": {"en": "Twisted neck, circling", "hi": "गर्दन मुड़ना, चक्कर काटना", "mr": "मान वाकडी होणे, गोल फिरणे"},
+      "short_help": {"en": "Neck twisted to one side, walking in circles, or fits.", "hi": "गर्दन एक तरफ़ मुड़ी, गोल-गोल घूमना, या दौरे पड़ना।", "mr": "मान एका बाजूला वाकडी, गोल गोल फिरणे, किंवा झटके येणे."},
+      "species": ["cattle", "buffalo", "goat", "sheep", "pig", "poultry"],
+      "syndrome": "neurological",
+      "pictogram": "neurological_signs.svg"
+    },
+    {
+      "id": "shank_haemorrhages",
+      "label": {"en": "Red spots on legs", "hi": "पैरों पर लाल धब्बे", "mr": "पायांवर लाल ठिपके"},
+      "short_help": {"en": "Red or purple spots on the bare skin of the legs.", "hi": "पैरों की खुली खाल पर लाल या बैंगनी धब्बे।", "mr": "पायांच्या उघड्या कातडीवर लाल किंवा जांभळे ठिपके."},
+      "species": ["poultry"],
+      "syndrome": "avian_mortality",
+      "pictogram": "shank_haemorrhages.svg"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "fmd",
+  "version": 1,
+  "name": {"en": "Foot-and-mouth disease", "hi": "खुरपका-मुंहपका रोग", "mr": "लाळ्या खुरकूत"},
+  "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+  "notifiable": true,
+  "zoonotic": false,
+  "required": [["mouth_sores", "foot_lesions"]],
+  "signs": {"mouth_sores": 5, "foot_lesions": 5, "excessive_salivation": 3, "lameness": 2,
+            "fever": 2, "teat_lesions": 2, "drop_in_milk": 1, "anorexia": 1},
+  "gate_fail_multiplier": 0.3,
+  "season": {"high_risk_months": [], "boost": 1.0},
+  "mortality_weight": 0.1,
+  "severity_floor": "urgent",
+  "image_model": null,
+  "differentials": ["bluetongue", "bvd_mucosal_disease", "foot_rot"],
+  "advisory_template": "fmd_nearby",
+  "actions": ["isolate_animal", "stop_animal_movement", "disinfect_shed", "soft_feed", "call_vet"],
+  "safety_note": null,
+  "source_note": "Case definition summarised from WOAH/DAHD guidance; reviewed by: pending vet review",
+  "needs_native_review": true
+}

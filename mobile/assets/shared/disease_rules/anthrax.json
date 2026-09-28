@@ -1,0 +1,26 @@
+{
+  "id": "anthrax",
+  "version": 1,
+  "name": {"en": "Anthrax", "hi": "एंथ्रेक्स", "mr": "अँथ्रॅक्स"},
+  "species": ["cattle", "buffalo", "goat", "sheep", "pig"],
+  "notifiable": true,
+  "zoonotic": true,
+  "required": [["sudden_death"], ["bleeding_from_orifices", "absence_of_rigor_mortis", "rapid_bloating_carcass"]],
+  "signs": {"bleeding_from_orifices": 5, "sudden_death": 4, "absence_of_rigor_mortis": 3,
+            "rapid_bloating_carcass": 2, "trembling_staggering": 2, "fever": 1, "difficulty_breathing": 1},
+  "gate_fail_multiplier": 0.3,
+  "season": {"high_risk_months": [], "boost": 1.0},
+  "mortality_weight": 0.3,
+  "severity_floor": "emergency",
+  "image_model": null,
+  "differentials": ["hs", "black_quarter", "poisoning", "lightning_strike"],
+  "advisory_template": "anthrax_alert",
+  "actions": ["do_not_open_carcass", "cordon_area", "call_vet_urgently", "inform_health_department"],
+  "safety_note": {
+    "en": "Do not cut or open the body. Keep people and animals away. Report now.",
+    "hi": "शव को न काटें, न खोलें। लोगों और पशुओं को दूर रखें। तुरंत सूचना दें।",
+    "mr": "मृतदेह कापू नका किंवा उघडू नका. लोक आणि जनावरांना दूर ठेवा. लगेच कळवा."
+  },
+  "source_note": "Case definition summarised from WOAH/DAHD guidance; reviewed by: pending vet review",
+  "needs_native_review": true
+}

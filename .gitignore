@@ -41,3 +41,6 @@ mobile/android/key.properties
 *.iml
 .DS_Store
 Thumbs.db
+
+# Local caches (e.g. raw OpenStreetMap downloads)
+backend/.cache/

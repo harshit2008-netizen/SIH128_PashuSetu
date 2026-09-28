@@ -1,0 +1,22 @@
+{
+  "id": "lsd",
+  "version": 1,
+  "name": {"en": "Lumpy skin disease", "hi": "लम्पी स्किन रोग", "mr": "लम्पी स्किन आजार"},
+  "species": ["cattle", "buffalo"],
+  "notifiable": true,
+  "zoonotic": false,
+  "required": [["skin_nodules"]],
+  "signs": {"skin_nodules": 5, "enlarged_lymph_nodes": 3, "fever": 2, "limb_oedema": 2,
+            "ocular_discharge": 1, "nasal_discharge": 1, "drop_in_milk": 1, "anorexia": 1},
+  "gate_fail_multiplier": 0.3,
+  "season": {"high_risk_months": [6, 7, 8, 9, 10], "boost": 1.15},
+  "mortality_weight": 0.0,
+  "severity_floor": "urgent",
+  "image_model": "lsd_v1",
+  "differentials": ["pseudo_lumpy_skin", "insect_bite_reaction", "dermatophilosis"],
+  "advisory_template": "lsd_nearby",
+  "actions": ["isolate_animal", "vector_control", "call_vet"],
+  "safety_note": null,
+  "source_note": "Case definition summarised from WOAH/DAHD guidance; reviewed by: pending vet review",
+  "needs_native_review": true
+}

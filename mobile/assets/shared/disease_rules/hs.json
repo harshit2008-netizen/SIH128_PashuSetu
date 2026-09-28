@@ -1,0 +1,22 @@
+{
+  "id": "hs",
+  "version": 1,
+  "name": {"en": "Haemorrhagic septicaemia (HS)", "hi": "गलघोंटू", "mr": "घटसर्प"},
+  "species": ["cattle", "buffalo"],
+  "notifiable": true,
+  "zoonotic": false,
+  "required": [["throat_swelling", "sudden_death"]],
+  "signs": {"throat_swelling": 5, "fever": 3, "difficulty_breathing": 3, "sudden_death": 3,
+            "excessive_salivation": 1, "nasal_discharge": 1, "anorexia": 1},
+  "gate_fail_multiplier": 0.3,
+  "season": {"high_risk_months": [6, 7, 8, 9], "boost": 1.25},
+  "mortality_weight": 0.3,
+  "severity_floor": "urgent",
+  "image_model": null,
+  "differentials": ["anthrax", "black_quarter"],
+  "advisory_template": "hs_season",
+  "actions": ["isolate_animal", "call_vet_urgently", "vaccinate_herd"],
+  "safety_note": null,
+  "source_note": "Case definition summarised from WOAH/DAHD guidance; reviewed by: pending vet review",
+  "needs_native_review": true
+}

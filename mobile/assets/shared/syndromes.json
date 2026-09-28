@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "A report's primary syndrome is the syndrome with the highest summed weight of its present symptoms, ignoring 'general' unless it is the only one; ties go to the alphabetically first id. Weights say how strongly a sign points to its syndrome, initially set to the highest weight the sign has in any disease rule. Clustering runs per syndrome, so an unknown disease still forms clusters.",
+  "fallback_syndrome": "general",
+  "syndromes": [
+    {
+      "id": "general",
+      "label": {"en": "General signs", "hi": "सामान्य लक्षण", "mr": "सामान्य लक्षणे"},
+      "symptoms": {"fever": 3, "anorexia": 1, "drop_in_milk": 1}
+    },
+    {
+      "id": "dermatological",
+      "label": {"en": "Skin lumps and swelling", "hi": "त्वचा पर गांठें और सूजन", "mr": "त्वचेवर गाठी आणि सूज"},
+      "symptoms": {"skin_nodules": 5, "enlarged_lymph_nodes": 3, "limb_oedema": 2}
+    },
+    {
+      "id": "respiratory",
+      "label": {"en": "Breathing and throat problems", "hi": "सांस और गले की समस्या", "mr": "श्वास आणि घशाचा त्रास"},
+      "symptoms": {"throat_swelling": 5, "difficulty_breathing": 3, "ocular_discharge": 2, "nasal_discharge": 2, "coughing": 2}
+    },
+    {
+      "id": "vesicular",
+      "label": {"en": "Mouth and hoof blisters", "hi": "मुंह और खुर के छाले", "mr": "तोंड आणि खुरांचे फोड"},
+      "symptoms": {"mouth_sores": 5, "foot_lesions": 5, "excessive_salivation": 3, "lameness": 2, "teat_lesions": 2}
+    },
+    {
+      "id": "gastrointestinal",
+      "label": {"en": "Loose dung and gut problems", "hi": "दस्त और पेट की समस्या", "mr": "जुलाब आणि पोटाचा त्रास"},
+      "symptoms": {"diarrhoea": 3}
+    },
+    {
+      "id": "haemorrhagic_sudden_death",
+      "label": {"en": "Sudden death with bleeding", "hi": "खून के साथ अचानक मौत", "mr": "रक्तस्रावासह अचानक मृत्यू"},
+      "symptoms": {"bleeding_from_orifices": 5, "sudden_death": 4, "absence_of_rigor_mortis": 3, "rapid_bloating_carcass": 2}
+    },
+    {
+      "id": "neurological",
+      "label": {"en": "Shaking, circling or fits", "hi": "कांपना, चक्कर या दौरे", "mr": "थरथर, गोल फिरणे किंवा झटके"},
+      "symptoms": {"trembling_staggering": 2, "neurological_signs": 2}
+    },
+    {
+      "id": "avian_mortality",
+      "label": {"en": "Bird deaths and comb changes", "hi": "पक्षियों की मौत और कलगी में बदलाव", "mr": "पक्ष्यांचे मृत्यू आणि तुऱ्यातील बदल"},
+      "symptoms": {"sudden_high_mortality": 5, "swollen_head_comb_wattles": 3, "cyanosis_comb_wattles": 3, "drop_in_egg_production": 2, "shank_haemorrhages": 2}
+    }
+  ]
+}

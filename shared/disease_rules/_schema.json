@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pashusetu.in/schemas/disease_rule.json",
+  "title": "PashuSetu disease rule",
+  "description": "One clinical case definition used by the rule engine (spec Section 7.2). Both the Python and Dart engines validate every rule file against this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "name", "species", "notifiable", "zoonotic", "required", "signs",
+               "gate_fail_multiplier", "season", "mortality_weight", "severity_floor", "image_model",
+               "differentials", "advisory_template", "actions", "safety_note", "source_note",
+               "needs_native_review"],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "localized": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "hi", "mr"],
+      "properties": {
+        "en": {"type": "string", "minLength": 1},
+        "hi": {"type": "string", "minLength": 1},
+        "mr": {"type": "string", "minLength": 1}
+      }
+    },
+    "species": {"enum": ["cattle", "buffalo", "goat", "sheep", "pig", "poultry"]}
+  },
+  "properties": {
+    "id": {"$ref": "#/$defs/id"},
+    "version": {"type": "integer", "minimum": 1},
+    "name": {"$ref": "#/$defs/localized"},
+    "species": {"type": "array", "items": {"$ref": "#/$defs/species"}, "minItems": 1, "uniqueItems": true},
+    "notifiable": {"type": "boolean"},
+    "zoonotic": {"type": "boolean"},
+    "required": {
+      "description": "Every group needs at least one present sign, otherwise the score is multiplied by gate_fail_multiplier.",
+      "type": "array",
+      "items": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1, "uniqueItems": true}
+    },
+    "signs": {
+      "description": "Weight per symptom id: 1 = weak supporting sign, 5 = key sign.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"$ref": "#/$defs/id"},
+      "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 5}
+    },
+    "gate_fail_multiplier": {"type": "number", "minimum": 0, "maximum": 1},
+    "season": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["high_risk_months", "boost"],
+      "properties": {
+        "high_risk_months": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 12}, "uniqueItems": true},
+        "boost": {"type": "number", "minimum": 1}
+      }
+    },
+    "mortality_weight": {"type": "number", "minimum": 0, "maximum": 1},
+    "severity_floor": {"enum": ["routine", "urgent", "emergency"]},
+    "image_model": {"type": ["string", "null"]},
+    "differentials": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+    "advisory_template": {"$ref": "#/$defs/id"},
+    "actions": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1},
+    "safety_note": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/localized"}]},
+    "source_note": {"type": "string", "minLength": 1},
+    "needs_native_review": {"type": "boolean"}
+  }
+}

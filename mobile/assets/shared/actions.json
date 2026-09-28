@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "Steps shown under 'Do this now' on the triage result, in the order the rule lists them. 'call': true shows a Call helpline button next to the step.",
+  "actions": [
+    {"id": "isolate_animal", "call": false, "text": {"en": "Keep this animal away from others", "hi": "इस पशु को दूसरों से अलग रखें", "mr": "या जनावराला इतरांपासून वेगळे ठेवा"}},
+    {"id": "isolate_flock", "call": false, "text": {"en": "Keep this flock away from other birds", "hi": "इस झुंड को दूसरे पक्षियों से अलग रखें", "mr": "हा कळप इतर पक्ष्यांपासून वेगळा ठेवा"}},
+    {"id": "vector_control", "call": false, "text": {"en": "Protect from flies and mosquitoes", "hi": "मक्खी और मच्छर से बचाएं", "mr": "माश्या आणि डासांपासून वाचवा"}},
+    {"id": "stop_animal_movement", "call": false, "text": {"en": "Do not move or sell animals for now", "hi": "अभी पशुओं को बाहर न ले जाएं और न बेचें", "mr": "सध्या जनावरे बाहेर नेऊ नका आणि विकू नका"}},
+    {"id": "disinfect_shed", "call": false, "text": {"en": "Clean the shed and spray disinfectant", "hi": "बाड़े की सफ़ाई करें और कीटाणुनाशक छिड़कें", "mr": "गोठा स्वच्छ करा आणि जंतुनाशक फवारा"}},
+    {"id": "soft_feed", "call": false, "text": {"en": "Give soft feed and clean water", "hi": "नरम चारा और साफ़ पानी दें", "mr": "मऊ चारा आणि स्वच्छ पाणी द्या"}},
+    {"id": "vaccinate_herd", "call": false, "text": {"en": "Get the other animals vaccinated", "hi": "बाकी पशुओं को टीका लगवाएं", "mr": "इतर जनावरांचे लसीकरण करून घ्या"}},
+    {"id": "vaccinate_flock", "call": false, "text": {"en": "Get the rest of the flock vaccinated", "hi": "बाकी झुंड को टीका लगवाएं", "mr": "उरलेल्या कळपाचे लसीकरण करून घ्या"}},
+    {"id": "do_not_open_carcass", "call": false, "text": {"en": "Do not cut or open the body", "hi": "शव को न काटें, न खोलें", "mr": "मृतदेह कापू नका किंवा उघडू नका"}},
+    {"id": "cordon_area", "call": false, "text": {"en": "Keep people and animals away from the body", "hi": "लोगों और पशुओं को शव से दूर रखें", "mr": "लोक आणि जनावरांना मृतदेहापासून दूर ठेवा"}},
+    {"id": "do_not_touch_dead_birds", "call": false, "text": {"en": "Do not touch dead birds with bare hands", "hi": "मरे हुए पक्षियों को नंगे हाथ से न छुएं", "mr": "मेलेल्या पक्ष्यांना उघड्या हातांनी स्पर्श करू नका"}},
+    {"id": "inform_health_department", "call": false, "text": {"en": "Tell the health department, as this can spread to people", "hi": "स्वास्थ्य विभाग को बताएं, यह इंसानों में फैल सकता है", "mr": "आरोग्य विभागाला कळवा, हे माणसांमध्ये पसरू शकते"}},
+    {"id": "call_vet", "call": true, "text": {"en": "Call the vet", "hi": "पशु डॉक्टर को फ़ोन करें", "mr": "पशुवैद्यकाला फोन करा"}},
+    {"id": "call_vet_urgently", "call": true, "text": {"en": "Call the vet now", "hi": "अभी पशु डॉक्टर को फ़ोन करें", "mr": "आत्ताच पशुवैद्यकाला फोन करा"}}
+  ]
+}

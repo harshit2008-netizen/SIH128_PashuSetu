@@ -54,5 +54,14 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Hindi/Marathi strings stay flagged `needs_native_review` until a native speaker checks them.
 - Never print or commit the Kaggle token or `.env`.
 
+## Triage engine notes (Phase 1 decisions)
+- Thresholds live in `shared/triage_config.json`, action texts in `shared/actions.json`, and both engines read them.
+- Candidates with score 0 are dropped; the top 3 are returned. A candidate carries `required_signs_met`.
+- Primary syndrome = highest summed weight from `syndromes.json`. 'general' only counts when nothing else is present; ties go alphabetical.
+- Rounding is half up (`floor(x*1000+0.5)/1000`) in both engines. Tie-breaks are by id.
+- After an intentional rule change: `uv run python -m scripts.update_triage_goldens`, then review the diff. Never edit `expect`.
+- Geography: `uv run python -m scripts.geocode_villages` (uses `backend/.cache`; `--refresh` downloads again from OSM).
+
 ## Phase status
-- Phase 0 (scaffold): in review.
+- Phase 0 (scaffold): done, commit 865d1a2.
+- Phase 1 (shared contracts + engines): in review.
