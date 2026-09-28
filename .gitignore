@@ -1,0 +1,43 @@
+# Secrets and local config
+.env
+kaggle.json
+.kaggle/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Backend runtime data
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# ML: raw data and big artifacts stay out of git (model card is the exception)
+ml/data/*
+!ml/data/.gitkeep
+ml/artifacts/*
+!ml/artifacts/.gitkeep
+!ml/artifacts/**/lsd_model_card.json
+*.keras
+*.h5
+
+# Flutter / Dart / Android build output
+mobile/.dart_tool/
+mobile/build/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/android/key.properties
+*.jks
+*.keystore
+
+# Editors and OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

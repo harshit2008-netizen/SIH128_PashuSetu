@@ -1,0 +1,23 @@
+# Only the database runs in Docker. The API runs on the host (make api) so
+# the team can edit and reload it without rebuilding images.
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: pashusetu-db
+    environment:
+      POSTGRES_USER: pashu
+      POSTGRES_PASSWORD: pashu
+      POSTGRES_DB: pashusetu
+    # Host port 5433 so an existing local Postgres on 5432 does not clash.
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pashu -d pashusetu"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  pgdata:

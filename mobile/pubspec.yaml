@@ -1,0 +1,41 @@
+name: pashusetu
+description: "PashuSetu livestock health surveillance app"
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.4
+
+# Feature packages (riverpod, go_router, drift, dio, ...) are added in Phase 3.
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    # Copied from ../shared by `make sync-shared`. Never edit files here.
+    - assets/shared/
+
+  # Bundled so text renders offline and Roboto never appears (spec 9.4).
+  fonts:
+    - family: Mukta
+      fonts:
+        - asset: assets/fonts/Mukta-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Mukta-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Mukta-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Mukta-Bold.ttf
+          weight: 700
+    - family: AnekDevanagari
+      fonts:
+        # Variable font: weight and width are set with FontVariation.
+        - asset: assets/fonts/AnekDevanagari-Variable.ttf
