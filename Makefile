@@ -36,11 +36,12 @@ api: env
 migrate: env
 	cd backend && uv run alembic upgrade head
 
-seed:
-	@echo "seed is available from Phase 2 (backend/scripts/seed.py)." && exit 1
+# Wipes every app table and rebuilds the same demo world each time.
+seed: migrate
+	cd backend && uv run python -m scripts.seed
 
-reset-demo:
-	@echo "reset-demo is available from Phase 7 (simulator --reset + seed)." && exit 1
+# Seed already starts from empty tables; the simulator joins this in Phase 7.
+reset-demo: seed
 
 simulate:
 	@echo "simulate is available from Phase 7 (SCENARIO=$(SCENARIO) SPEED=$(SPEED))." && exit 1

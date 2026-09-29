@@ -175,14 +175,21 @@ def validate_input(data: SharedData, report: TriageInput) -> None:
 def evaluate(data: SharedData, report: TriageInput) -> dict:
     """Run triage for one report and return the shared response shape."""
     validate_input(data, report)
+    return build_result(data, report, score_all_rules(data, report), engine_version(data))
+
+
+def build_result(data: SharedData, report: TriageInput, all_candidates: list[dict], version: str) -> dict:
+    """Severity, flags and actions from already-scored candidates (best first).
+
+    Split out so fusion (rules + photo) can re-rank candidates and reuse it.
+    """
     config = data.triage_config
-    all_candidates = score_all_rules(data, report)
     top = all_candidates[0] if all_candidates else None
     unknown = is_unknown_syndrome(top["score"] if top else 0.0, report, config)
     zoonotic = any(data.rules[c["disease_id"]]["zoonotic"] and c["score"] >= config["zoonotic_min_score"]
                    for c in all_candidates)
     return {
-        "engine_version": engine_version(data),
+        "engine_version": version,
         "candidates": all_candidates[: config["max_candidates"]],
         "primary_syndrome": primary_syndrome(data, report.symptoms),
         "severity": severity_level(data, report, top, unknown),
