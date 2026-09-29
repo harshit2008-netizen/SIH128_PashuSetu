@@ -6,19 +6,35 @@ version: 0.1.0+1
 environment:
   sdk: ^3.13.4
 
-# Feature packages (riverpod, go_router, drift, dio, ...) are added in Phase 3.
 dependencies:
+  dio: ^5.11.1
+  drift: ^2.35.0
+  drift_flutter: ^0.3.1
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.4.3
+  flutter_svg: ^2.3.0
+  go_router: ^18.0.2
+  intl: ^0.20.3
+  lucide_icons_flutter: ^3.1.20
+  path: ^1.9.1
+  path_provider: ^2.1.6
+  uuid: ^4.6.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
   json_schema: ^5.2.2
+  drift_dev: ^2.35.0
+  build_runner: ^2.16.1
 
 flutter:
   uses-material-design: true
+  # Builds lib/l10n/app_localizations*.dart from the ARB files.
+  generate: true
 
   assets:
     # Copied from ../shared by `make sync-shared`. Never edit files here.
@@ -27,6 +43,8 @@ flutter:
     - assets/shared/disease_rules/
     - assets/shared/advisories/
     - assets/shared/geo/
+    # Custom symptom and species pictograms, made by tool/pictograms.py.
+    - assets/pictograms/
 
   # Bundled so text renders offline and Roboto never appears (spec 9.4).
   fonts:

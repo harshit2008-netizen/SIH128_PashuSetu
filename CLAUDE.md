@@ -34,7 +34,8 @@ cd mobile && flutter analyze && flutter test && flutter run
 - The Android SDK path has a space, so Flutter points at the 8.3 short path: `flutter config --android-sdk C:\Users\[user]\AppData\Local\Android\Sdk`.
 - Gradle fails with "Unable to establish loopback connection" unless `JAVA_TOOL_OPTIONS=-Djdk.net.unixdomain.tmpdir=E:\dev\tmp` is set.
 - The home network can't reach GitHub CDN IP 185.199.109.133, and Java doesn't fall back. If a Gradle/SDK download times out, fetch it with curl or `android sdk install <pkg>`.
-- Team phone for testing: Vivo V2443 (Android 16), adb id `[phone-id]`.
+- Team phone for testing: Vivo V2443 (Android 16), adb id `[phone-id]`. Reach the laptop via `adb reverse tcp:8000 tcp:8000`
+  (app default API URL is http://127.0.0.1:8000).
 
 ## Folder map
 ```
@@ -51,6 +52,8 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Mobile: colours, spacing and radii from `core/theme/tokens.dart`, text styles from `Theme.of(context).textTheme`.
   No `ColorScheme.fromSeed`, no Roboto, no emoji, no all-caps, no gradients (banned list: spec 9.10).
 - `tagYellow` is only for ear tags, the app mark and the one Report action.
+- UI strings live in `mobile/lib/l10n/*.arb` (en/hi/mr); `flutter gen-l10n` regenerates. Pictograms: `python tool/pictograms.py`.
+- Goldens: `flutter test --update-goldens test/goldens` after an intended visual change; review the PNGs.
 - Hindi/Marathi strings stay flagged `needs_native_review` until a native speaker checks them.
 - Never print or commit the Kaggle token or `.env`.
 
@@ -65,4 +68,5 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 ## Phase status
 - Phase 0 (scaffold): done, commit 865d1a2.
 - Phase 1 (shared contracts + engines): done, commit ebb504f.
-- Phase 2 (backend core): in review.
+- Phase 2 (backend core): done, commit 51a9bc9.
+- Phase 3 (mobile foundation + design system): in review.

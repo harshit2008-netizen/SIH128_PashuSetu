@@ -110,6 +110,7 @@ def test_sync_pull_returns_my_cases_and_due_vaccinations(client, as_role):
     body = client.get("/api/v1/sync/pull", headers=as_role("farmer")).json()
     assert body["cases"], "the farmer's own case should come back"
     assert any(v["animal_name"] == "Gauri" and v["vaccine"] == "FMD" for v in body["vaccinations_due"])
+    assert any(a["name"] == "Gauri" and len(a["ear_tag"]) == 12 for a in body["animals"])
 
 
 def test_stateless_triage_endpoint(client, as_role):

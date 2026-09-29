@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  DEMO ONLY: allows plain HTTP so the phone can reach the laptop backend on a
+  local hotspot (e.g. http://192.168.43.10:8000) or via adb reverse.
+  A production build must use HTTPS and remove this cleartext permission.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+</network-security-config>

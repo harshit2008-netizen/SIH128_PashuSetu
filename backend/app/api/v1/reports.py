@@ -24,6 +24,8 @@ router = APIRouter(tags=["reports"])
 MAX_PHOTO_BYTES = 8 * 1024 * 1024
 PHOTO_TYPES = {"image/jpeg": ".jpg", "image/png": ".png"}
 VACCINATION_DUE_DAYS = 30
+# Enough for a sevak's block; the full animal register is a P1 feature.
+MAX_ANIMALS = 300
 
 
 @router.post("/reports", response_model=ReportResult)
@@ -82,12 +84,28 @@ def sync_push(body: SyncPushIn, user: User = Depends(require_roles(*REPORTERS)),
     return {"results": results}
 
 
-def my_vaccinations_due(db: Session, user: User) -> list[dict]:
+def my_herds_filter(user: User):
+    """Farmers see their own herds, pashu sevaks every herd in their block."""
     if user.role == "farmer":
-        herd_filter = Herd.owner_user_id == user.id
-    elif user.role == "pashu_sevak":
-        herd_filter = Herd.village_id.in_(select(Village.id).where(Village.block_id == user.block_id))
-    else:
+        return Herd.owner_user_id == user.id
+    if user.role == "pashu_sevak":
+        return Herd.village_id.in_(select(Village.id).where(Village.block_id == user.block_id))
+    return None
+
+
+def my_animals(db: Session, user: User) -> list[dict]:
+    herd_filter = my_herds_filter(user)
+    if herd_filter is None:
+        return []
+    rows = db.execute(select(Animal, Herd).join(Herd, Animal.herd_id == Herd.id).where(herd_filter)
+                      .order_by(Herd.name, Animal.name).limit(MAX_ANIMALS)).all()
+    return [{"id": a.id, "ear_tag": a.ear_tag, "name": a.name, "species": a.species, "breed": a.breed,
+             "sex": a.sex, "age_months": a.age_months, "herd_id": h.id, "herd_name": h.name} for a, h in rows]
+
+
+def my_vaccinations_due(db: Session, user: User) -> list[dict]:
+    herd_filter = my_herds_filter(user)
+    if herd_filter is None:
         return []
     today = utcnow().date()
     rows = db.execute(
@@ -102,7 +120,11 @@ def my_vaccinations_due(db: Session, user: User) -> list[dict]:
 
 @router.get("/sync/pull")
 def sync_pull(since: datetime | None = None, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    """Everything that changed for me since `since`: my cases, my advisories, vaccinations due."""
+    """Everything the phone caches: my cases, advisories, animals and vaccinations due.
+
+    `since` limits cases and advisories to changes after that time; animals and
+    vaccinations due always come in full (they are small).
+    """
     server_time = utcnow()
     cases_query = visible_cases(user)
     if since is not None:
@@ -121,5 +143,6 @@ def sync_pull(since: datetime | None = None, user: User = Depends(get_current_us
         "advisories": [{"id": a.id, "template_id": a.template_id, "disease": a.disease,
                         "text": a.rendered_text.get(user.language) or a.rendered_text.get("en"),
                         "sent_at": a.sent_at, "read_at": r.read_at} for a, r in advisories],
+        "animals": my_animals(db, user),
         "vaccinations_due": my_vaccinations_due(db, user),
     }
