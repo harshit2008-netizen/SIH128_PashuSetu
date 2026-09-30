@@ -29,6 +29,7 @@ dependencies:
   path: ^1.9.1
   path_provider: ^2.1.6
   qr_flutter: ^4.1.0
+  tflite_flutter: ^0.12.1
   url_launcher: ^6.3.2
   uuid: ^4.6.0
 
@@ -39,6 +40,9 @@ dev_dependencies:
   json_schema: ^5.2.2
   drift_dev: ^2.35.0
   build_runner: ^2.16.1
+  integration_test:
+    sdk: flutter
+  image: ^4.10.1
 
 flutter:
   uses-material-design: true
@@ -54,6 +58,8 @@ flutter:
     - assets/shared/geo/
     # Custom symptom and species pictograms, made by tool/pictograms.py.
     - assets/pictograms/
+    # LSD photo model, its labels and model card (ml/README.md says how they are made).
+    - assets/models/
 
   # Bundled so text renders offline and Roboto never appears (spec 9.4).
   fonts:

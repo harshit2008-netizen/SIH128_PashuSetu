@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:drift/drift.dart' show Value;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:uuid/uuid.dart';
@@ -10,7 +13,31 @@ import '../../core/db/app_database.dart';
 import '../../core/settings/app_settings.dart';
 import '../../core/shared_data/shared_data_provider.dart';
 import '../../core/sync/sync_service.dart';
+import '../triage/engine/fusion.dart';
+import '../triage/engine/image_classifier.dart';
 import '../triage/engine/rule_engine.dart';
+
+/// Loaded once, the first time a photo needs checking (spec 10.6).
+final lsdClassifierProvider = FutureProvider<LsdImageClassifier>((ref) => LsdImageClassifier.load(rootBundle));
+
+enum PhotoCheckStatus { checking, done, failed }
+
+/// What the on-phone photo model said about the current photo.
+class PhotoCheck {
+  const PhotoCheck({required this.path, required this.status, this.pLsd, this.modelVersion, this.lumpsAnswered = false});
+
+  /// The photo this check belongs to; a result for an older photo is ignored.
+  final String path;
+  final PhotoCheckStatus status;
+  final double? pLsd;
+  final String? modelVersion;
+
+  /// The reporter already answered "Did you see lumps on the skin?".
+  final bool lumpsAnswered;
+
+  PhotoCheck answered() =>
+      PhotoCheck(path: path, status: status, pLsd: pLsd, modelVersion: modelVersion, lumpsAnswered: true);
+}
 
 /// "When did it start?" choices and how many days back each one means.
 enum Onset {
@@ -43,6 +70,7 @@ class ReportDraft {
     this.herdId,
     this.symptoms = const {},
     this.photoPath,
+    this.photoCheck,
     this.sick = 1,
     this.dead = 0,
     this.total,
@@ -57,6 +85,9 @@ class ReportDraft {
   final String? herdId;
   final Set<String> symptoms;
   final String? photoPath;
+
+  /// Null when there is no photo, or the species is one the photo model does not cover.
+  final PhotoCheck? photoCheck;
   final int sick;
   final int dead;
 
@@ -75,6 +106,7 @@ class ReportDraft {
     Value<String?>? herdId,
     Set<String>? symptoms,
     Value<String?>? photoPath,
+    Value<PhotoCheck?>? photoCheck,
     int? sick,
     int? dead,
     Value<int?>? total,
@@ -89,6 +121,7 @@ class ReportDraft {
         herdId: herdId == null ? this.herdId : herdId.value,
         symptoms: symptoms ?? this.symptoms,
         photoPath: photoPath == null ? this.photoPath : photoPath.value,
+        photoCheck: photoCheck == null ? this.photoCheck : photoCheck.value,
         sick: sick ?? this.sick,
         dead: dead ?? this.dead,
         total: total == null ? this.total : total.value,
@@ -167,8 +200,17 @@ class ReportDraftController extends Notifier<ReportDraft> {
     }
   }
 
-  void setSpecies(String species) => state = state.copyWith(
-      species: species, symptoms: species == state.species ? null : {}, animalId: const Value(null), herdId: const Value(null));
+  void setSpecies(String species) {
+    final changed = species != state.species;
+    state = state.copyWith(
+        species: species,
+        symptoms: changed ? {} : null,
+        animalId: const Value(null),
+        herdId: const Value(null),
+        photoCheck: changed ? const Value(null) : null);
+    // A photo taken before the species changed may now need (or no longer need) the check.
+    if (changed && state.photoPath != null) _photoCheck = _checkPhoto(state.photoPath!);
+  }
 
   void setAnimal(String? animalId, String? herdId) =>
       state = state.copyWith(animalId: Value(animalId), herdId: Value(herdId));
@@ -179,7 +221,39 @@ class ReportDraftController extends Notifier<ReportDraft> {
     state = state.copyWith(symptoms: next);
   }
 
-  void setPhoto(String? path) => state = state.copyWith(photoPath: Value(path));
+  /// The photo check running now, so submit can wait for it.
+  Future<void>? _photoCheck;
+
+  void setPhoto(String? path) {
+    state = state.copyWith(photoPath: Value(path), photoCheck: const Value(null));
+    _photoCheck = path == null ? null : _checkPhoto(path);
+  }
+
+  /// Runs the LSD photo model on the phone (cattle and buffalo only).
+  Future<void> _checkPhoto(String path) async {
+    final shared = await ref.read(sharedDataProvider.future);
+    if (!FusionEngine(RuleEngine(shared)).speciesUsesPhoto(state.species)) return;
+    state = state.copyWith(photoCheck: Value(PhotoCheck(path: path, status: PhotoCheckStatus.checking)));
+    PhotoCheck outcome;
+    try {
+      final classifier = await ref.read(lsdClassifierProvider.future);
+      final probabilities = await classifier.classify(await File(path).readAsBytes());
+      outcome = PhotoCheck(
+          path: path, status: PhotoCheckStatus.done, pLsd: probabilities['lsd'], modelVersion: classifier.modelVersion);
+    } catch (_) {
+      // The photo is still sent with the report; only the phone's check is skipped.
+      outcome = PhotoCheck(path: path, status: PhotoCheckStatus.failed);
+    }
+    if (state.photoPath == path) state = state.copyWith(photoCheck: Value(outcome));
+  }
+
+  /// Answer to "The photo looks like it has skin lumps. Did you see lumps on the skin?"
+  /// Yes adds the sign, so triage runs again with it (spec 7.9).
+  void answerLumps({required bool seen, required String sign}) {
+    final check = state.photoCheck;
+    if (check == null) return;
+    state = state.copyWith(photoCheck: Value(check.answered()), symptoms: seen ? {...state.symptoms, sign} : null);
+  }
   void setSick(int value) => state = state.copyWith(sick: value);
   void setDead(int value) => state = state.copyWith(dead: value);
   void setTotal(int? value) => state = state.copyWith(total: Value(value));
@@ -189,17 +263,26 @@ class ReportDraftController extends Notifier<ReportDraft> {
   /// Triage on the phone, then the outbox, then a sync attempt (spec 10.4).
   /// Returns the report's client_uuid, which the result screen uses.
   Future<String> submit() async {
+    // A photo still being checked gets a few seconds; the report never waits longer.
+    await _photoCheck?.timeout(const Duration(seconds: 5), onTimeout: () {});
     final draft = state;
     final shared = await ref.read(sharedDataProvider.future);
     final now = DateTime.now();
-    final result = RuleEngine(shared).evaluate(TriageInput(
-      species: draft.species!,
-      symptoms: draft.symptoms,
-      sickCount: draft.sick,
-      deadCount: draft.dead,
-      totalAtRisk: draft.total,
-      reportMonth: now.month,
-    ));
+    final check = draft.photoCheck;
+    final imagePLsd = check != null && check.status == PhotoCheckStatus.done && check.path == draft.photoPath
+        ? check.pLsd
+        : null;
+    final fusion = FusionEngine(RuleEngine(shared));
+    final result = fusion.evaluate(
+        TriageInput(
+          species: draft.species!,
+          symptoms: draft.symptoms,
+          sickCount: draft.sick,
+          deadCount: draft.dead,
+          totalAtRisk: draft.total,
+          reportMonth: now.month,
+        ),
+        imagePLsd: imagePLsd);
     final clientUuid = const Uuid().v4();
     final village = draft.village!;
     final location = draft.gps ?? (lat: village.lat, lng: village.lng);
@@ -215,7 +298,13 @@ class ReportDraftController extends Notifier<ReportDraft> {
       'onset_date': now.subtract(Duration(days: draft.onset.daysAgo)).toIso8601String().substring(0, 10),
       'herd_id': draft.herdId,
       'animal_id': draft.animalId,
-      'device_triage': {'engine_version': result.engineVersion, 'top': top?.diseaseId, 'score': top?.score ?? 0},
+      'device_triage': {
+        'engine_version': result.engineVersion,
+        'top': top?.diseaseId,
+        'score': top?.score ?? 0,
+        // The server re-runs the rules and fuses this same probability (spec 7.9).
+        if (result.photo != null) ...{'image_p_lsd': imagePLsd, 'image_model': check!.modelVersion},
+      },
       'created_on_device_at': isoWithOffset(now),
       'channel': 'app',
     };

@@ -14,6 +14,7 @@ import json
 
 from app.core.config import SHARED_DIR
 from app.core.shared_loader import load_shared_data
+from app.services.triage.fusion import evaluate_with_fusion
 from app.services.triage.rule_engine import TriageInput, evaluate
 
 VECTORS_PATH = SHARED_DIR / "triage_test_vectors.json"
@@ -30,8 +31,15 @@ def to_input(raw: dict) -> TriageInput:
     )
 
 
+def run_vector(data, raw: dict) -> dict:
+    """Rules only, or rules + photo fusion when the vector gives a photo probability."""
+    if "image_p_lsd" in raw:
+        return evaluate_with_fusion(data, to_input(raw), raw["image_p_lsd"])
+    return evaluate(data, to_input(raw))
+
+
 def golden_for(result: dict) -> dict:
-    return {
+    golden = {
         "candidates": [[c["disease_id"], c["score"]] for c in result["candidates"]],
         "primary_syndrome": result["primary_syndrome"],
         "severity": result["severity"],
@@ -40,6 +48,11 @@ def golden_for(result: dict) -> dict:
         "actions": result["actions"],
         "has_safety_note": result["safety_note"] is not None,
     }
+    if "photo" in result:  # only fusion runs have it
+        golden["engine_version"] = result["engine_version"]
+        golden["sources"] = [[c["disease_id"], c["sources"]] for c in result["candidates"] if "image" in c["sources"]]
+        golden["photo"] = result["photo"]
+    return golden
 
 
 def compact(value) -> str:
@@ -62,7 +75,7 @@ def main() -> None:
     data = load_shared_data()
     document = json.loads(VECTORS_PATH.read_text(encoding="utf-8"))
     for vector in document["vectors"]:
-        vector["golden"] = golden_for(evaluate(data, to_input(vector["input"])))
+        vector["golden"] = golden_for(run_vector(data, vector["input"]))
     VECTORS_PATH.write_text(render(document), encoding="utf-8", newline="\n")
     print(f"Updated golden blocks for {len(document['vectors'])} vectors in {VECTORS_PATH}")
 

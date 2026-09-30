@@ -1389,6 +1389,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} h'**
   String hoursShort(int count);
+
+  /// No description provided for @photoChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking the photo on this phone'**
+  String get photoChecking;
+
+  /// No description provided for @photoLooksLsd.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo looks like lumpy skin disease. Suspected only.'**
+  String get photoLooksLsd;
+
+  /// No description provided for @photoLooksHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo does not look like lumpy skin disease.'**
+  String get photoLooksHealthy;
+
+  /// No description provided for @photoUnclear.
+  ///
+  /// In en, this message translates to:
+  /// **'Unclear photo. Try again in daylight, closer to the skin.'**
+  String get photoUnclear;
+
+  /// No description provided for @photoCheckFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not check this photo. It is still sent with the report.'**
+  String get photoCheckFailed;
+
+  /// No description provided for @askLumps.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo looks like it has skin lumps. Did you see lumps on the skin?'**
+  String get askLumps;
+
+  /// No description provided for @askLumpsYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, add it'**
+  String get askLumpsYes;
+
+  /// No description provided for @askLumpsNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get askLumpsNo;
+
+  /// No description provided for @photoResultLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo: {percent}% like lumpy skin disease'**
+  String photoResultLine(int percent);
+
+  /// No description provided for @aboutAi.
+  ///
+  /// In en, this message translates to:
+  /// **'About the AI'**
+  String get aboutAi;
+
+  /// No description provided for @aboutAiIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'PashuSetu suggests a suspected disease. It never diagnoses. A vet or lab must confirm.'**
+  String get aboutAiIntro;
+
+  /// No description provided for @aboutRulesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Symptom rules'**
+  String get aboutRulesTitle;
+
+  /// No description provided for @aboutRulesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules for {count} diseases, written from official case definitions. The same rules run on this phone and on the server, and shared test cases prove both give the same answer.'**
+  String aboutRulesBody(int count);
+
+  /// No description provided for @aboutPhotoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Photo check for lumpy skin disease'**
+  String get aboutPhotoTitle;
+
+  /// No description provided for @aboutPhotoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A small image model runs on this phone, without internet, for cattle and buffalo only. For lumpy skin disease, the photo counts {imagePercent}% and the signs you tick count {rulesPercent}%.'**
+  String aboutPhotoBody(int imagePercent, int rulesPercent);
+
+  /// No description provided for @aboutDistrictTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'3. District watch'**
+  String get aboutDistrictTitle;
+
+  /// No description provided for @aboutDistrictBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The server checks every report again and looks for groups of similar cases in nearby villages, so officers see an outbreak early.'**
+  String get aboutDistrictBody;
+
+  /// No description provided for @aboutTestResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo model test results'**
+  String get aboutTestResults;
+
+  /// No description provided for @aboutTestedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On {count} photos the model never saw while learning.'**
+  String aboutTestedOn(int count);
+
+  /// No description provided for @aboutAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Right overall'**
+  String get aboutAccuracy;
+
+  /// No description provided for @aboutPrecision.
+  ///
+  /// In en, this message translates to:
+  /// **'Right when it says lumpy skin disease'**
+  String get aboutPrecision;
+
+  /// No description provided for @aboutRecall.
+  ///
+  /// In en, this message translates to:
+  /// **'Lumpy skin disease photos it finds'**
+  String get aboutRecall;
+
+  /// No description provided for @aboutDataset.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos: {name} ({licence}).'**
+  String aboutDataset(String name, String licence);
+
+  /// No description provided for @aboutLimits.
+  ///
+  /// In en, this message translates to:
+  /// **'Known limits'**
+  String get aboutLimits;
+
+  /// No description provided for @aboutVersions.
+  ///
+  /// In en, this message translates to:
+  /// **'Versions'**
+  String get aboutVersions;
+
+  /// No description provided for @aboutNoModel.
+  ///
+  /// In en, this message translates to:
+  /// **'This app build has no photo model.'**
+  String get aboutNoModel;
 }
 
 class _AppLocalizationsDelegate

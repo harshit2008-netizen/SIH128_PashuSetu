@@ -15,6 +15,16 @@
   },
   "zoonotic_min_score": 0.40,
   "unknown_syndrome": {"max_top_score": 0.35, "min_sick": 3, "min_dead": 1},
+  "fusion": {
+    "note": "Rules + LSD photo model (spec 7.9). The photo only changes the LSD score, and only for these species.",
+    "disease": "lsd",
+    "image_model": "lsd_v1",
+    "rules_weight": 0.6,
+    "image_weight": 0.4,
+    "ask_sign": "skin_nodules",
+    "ask_min_p": 0.80,
+    "clear_photo_min_p": 0.60
+  },
   "actions": {
     "disease_actions_min_score": 0.40,
     "safety_note_min_score": 0.40,

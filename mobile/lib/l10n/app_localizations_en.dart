@@ -736,4 +736,99 @@ class AppLocalizationsEn extends AppLocalizations {
   String hoursShort(int count) {
     return '$count h';
   }
+
+  @override
+  String get photoChecking => 'Checking the photo on this phone';
+
+  @override
+  String get photoLooksLsd =>
+      'The photo looks like lumpy skin disease. Suspected only.';
+
+  @override
+  String get photoLooksHealthy =>
+      'The photo does not look like lumpy skin disease.';
+
+  @override
+  String get photoUnclear =>
+      'Unclear photo. Try again in daylight, closer to the skin.';
+
+  @override
+  String get photoCheckFailed =>
+      'Could not check this photo. It is still sent with the report.';
+
+  @override
+  String get askLumps =>
+      'The photo looks like it has skin lumps. Did you see lumps on the skin?';
+
+  @override
+  String get askLumpsYes => 'Yes, add it';
+
+  @override
+  String get askLumpsNo => 'No';
+
+  @override
+  String photoResultLine(int percent) {
+    return 'Photo: $percent% like lumpy skin disease';
+  }
+
+  @override
+  String get aboutAi => 'About the AI';
+
+  @override
+  String get aboutAiIntro =>
+      'PashuSetu suggests a suspected disease. It never diagnoses. A vet or lab must confirm.';
+
+  @override
+  String get aboutRulesTitle => '1. Symptom rules';
+
+  @override
+  String aboutRulesBody(int count) {
+    return 'Rules for $count diseases, written from official case definitions. The same rules run on this phone and on the server, and shared test cases prove both give the same answer.';
+  }
+
+  @override
+  String get aboutPhotoTitle => '2. Photo check for lumpy skin disease';
+
+  @override
+  String aboutPhotoBody(int imagePercent, int rulesPercent) {
+    return 'A small image model runs on this phone, without internet, for cattle and buffalo only. For lumpy skin disease, the photo counts $imagePercent% and the signs you tick count $rulesPercent%.';
+  }
+
+  @override
+  String get aboutDistrictTitle => '3. District watch';
+
+  @override
+  String get aboutDistrictBody =>
+      'The server checks every report again and looks for groups of similar cases in nearby villages, so officers see an outbreak early.';
+
+  @override
+  String get aboutTestResults => 'Photo model test results';
+
+  @override
+  String aboutTestedOn(int count) {
+    return 'On $count photos the model never saw while learning.';
+  }
+
+  @override
+  String get aboutAccuracy => 'Right overall';
+
+  @override
+  String get aboutPrecision => 'Right when it says lumpy skin disease';
+
+  @override
+  String get aboutRecall => 'Lumpy skin disease photos it finds';
+
+  @override
+  String aboutDataset(String name, String licence) {
+    return 'Photos: $name ($licence).';
+  }
+
+  @override
+  String get aboutLimits => 'Known limits';
+
+  @override
+  String get aboutVersions => 'Versions';
+
+  @override
+  String get aboutNoModel => 'This app build has no photo model.';
 }

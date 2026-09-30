@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Golden cases from spec Section 7.8. The Python and Dart engines must both pass every case. 'expect' holds the spec's checks; 'golden' holds the exact engine output (scores to 3 decimals) so the two engines are proven identical. Add a case whenever a bug is fixed. Never change a case silently to make it pass.",
+  "note": "Golden cases from spec Section 7.8. The Python and Dart engines must both pass every case. 'expect' holds the spec's checks; 'golden' holds the exact engine output (scores to 3 decimals) so the two engines are proven identical. Cases with 'image_p_lsd' in the input also run the photo fusion (spec 7.9). Add a case whenever a bug is fixed. Never change a case silently to make it pass.",
   "vectors": [
     {
       "id": 1,
@@ -71,6 +71,41 @@
       "input": {"species": "buffalo", "symptoms": ["sudden_death"], "sick_count": 0, "dead_count": 1, "total_at_risk": null, "report_month": 7},
       "expect": {"ranked_above": [["hs", "anthrax"]], "severity": "urgent", "gated": ["anthrax"]},
       "golden": {"candidates": [["hs", 0.371], ["anthrax", 0.217], ["fmd", 0.05]], "primary_syndrome": "haemorrhagic_sudden_death", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet"], "has_safety_note": false}
+    },
+    {
+      "id": 11,
+      "name": "Photo agrees with skin lumps (fusion)",
+      "input": {"species": "cattle", "symptoms": ["skin_nodules", "fever"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 8, "image_p_lsd": 0.93},
+      "expect": {"top": "lsd", "severity": "urgent", "photo": {"unclear": false, "ask_about_skin_nodules": false}},
+      "golden": {"candidates": [["lsd", 0.674], ["hs", 0.066], ["fmd", 0.029]], "primary_syndrome": "dermatological", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "vector_control", "call_vet"], "has_safety_note": false, "engine_version": "rules-1+lsd_v1", "sources": [["lsd", {"rules": 0.503, "image": 0.93}]], "photo": {"p_lsd": 0.93, "unclear": false, "ask_about_skin_nodules": false}}
+    },
+    {
+      "id": 12,
+      "name": "Photo shows lumps the reporter did not tick: ask about them",
+      "input": {"species": "cattle", "symptoms": ["fever", "ocular_discharge"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 3, "image_p_lsd": 0.91},
+      "expect": {"severity": "routine", "photo": {"unclear": false, "ask_about_skin_nodules": true}},
+      "golden": {"candidates": [["lsd", 0.398], ["hs", 0.053], ["fmd", 0.029]], "primary_syndrome": "respiratory", "severity": "routine", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet"], "has_safety_note": false, "engine_version": "rules-1+lsd_v1", "sources": [["lsd", {"rules": 0.056, "image": 0.91}]], "photo": {"p_lsd": 0.91, "unclear": false, "ask_about_skin_nodules": true}}
+    },
+    {
+      "id": 13,
+      "name": "Unclear photo (model unsure either way)",
+      "input": {"species": "buffalo", "symptoms": ["skin_nodules"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 2, "image_p_lsd": 0.52},
+      "expect": {"top": "lsd", "severity": "routine", "photo": {"unclear": true, "ask_about_skin_nodules": false}},
+      "golden": {"candidates": [["lsd", 0.396]], "primary_syndrome": "dermatological", "severity": "routine", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet"], "has_safety_note": false, "engine_version": "rules-1+lsd_v1", "sources": [["lsd", {"rules": 0.313, "image": 0.52}]], "photo": {"p_lsd": 0.52, "unclear": true, "ask_about_skin_nodules": false}}
+    },
+    {
+      "id": 14,
+      "name": "Photo ignored for a species LSD does not affect",
+      "input": {"species": "goat", "symptoms": ["fever", "nasal_discharge"], "sick_count": 1, "dead_count": 0, "total_at_risk": null, "report_month": 5, "image_p_lsd": 0.9},
+      "expect": {"severity": "routine", "not_in_candidates": ["lsd"], "photo": null},
+      "golden": {"candidates": [["ppr", 0.071], ["fmd", 0.029], ["anthrax", 0.017]], "primary_syndrome": "respiratory", "severity": "routine", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "call_vet"], "has_safety_note": false, "engine_version": "rules-1", "sources": [], "photo": null}
+    },
+    {
+      "id": 15,
+      "name": "FMD signs with a healthy-looking skin photo",
+      "input": {"species": "cattle", "symptoms": ["excessive_salivation", "mouth_sores", "foot_lesions", "lameness"], "sick_count": 2, "dead_count": 0, "total_at_risk": null, "report_month": 1, "image_p_lsd": 0.05},
+      "expect": {"top": "fmd", "severity": "urgent", "ranked_above": [["fmd", "lsd"]], "photo": {"unclear": false, "ask_about_skin_nodules": false}},
+      "golden": {"candidates": [["fmd", 0.714], ["lsd", 0.02], ["hs", 0.018]], "primary_syndrome": "vesicular", "severity": "urgent", "zoonotic_flag": false, "unknown_syndrome": false, "actions": ["isolate_animal", "stop_animal_movement", "disinfect_shed", "soft_feed", "call_vet"], "has_safety_note": false, "engine_version": "rules-1+lsd_v1", "sources": [["lsd", {"rules": 0.0, "image": 0.05}]], "photo": {"p_lsd": 0.05, "unclear": false, "ask_about_skin_nodules": false}}
     }
   ]
 }

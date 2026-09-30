@@ -1,0 +1,75 @@
+{
+  "model_sha256": "bfb4ec3a7beab5dd90dd05474ffdd72acf29c3e4b1781853deb7269d8780dad1",
+  "labels": [
+    "healthy",
+    "lsd"
+  ],
+  "tolerance": 0.02,
+  "fixtures": [
+    {
+      "file": "parity/lsd_1.jpg",
+      "tensor_png": "parity/lsd_1.tensor.png",
+      "decoded_png": "parity/lsd_1.decoded.png",
+      "label": "lsd",
+      "source": "Cows datasets/Lumpycows-1/img1384.jpg",
+      "width": 244,
+      "height": 207,
+      "expected": {
+        "healthy": 0.154969,
+        "lsd": 0.845031
+      }
+    },
+    {
+      "file": "parity/healthy_2.jpg",
+      "tensor_png": "parity/healthy_2.tensor.png",
+      "decoded_png": "parity/healthy_2.decoded.png",
+      "label": "healthy",
+      "source": "Cows datasets/Healthycows 1/imgs338.jpg",
+      "width": 275,
+      "height": 183,
+      "expected": {
+        "healthy": 0.982001,
+        "lsd": 0.017999
+      }
+    },
+    {
+      "file": "parity/lsd_3.jpg",
+      "tensor_png": "parity/lsd_3.tensor.png",
+      "decoded_png": "parity/lsd_3.decoded.png",
+      "label": "lsd",
+      "source": "Cows datasets/Lumpycows-1/img1356.jpg",
+      "width": 262,
+      "height": 192,
+      "expected": {
+        "healthy": 0.005431,
+        "lsd": 0.994569
+      }
+    },
+    {
+      "file": "parity/lsd_4.jpg",
+      "tensor_png": "parity/lsd_4.tensor.png",
+      "decoded_png": "parity/lsd_4.decoded.png",
+      "label": "lsd",
+      "source": "Cows datasets/Lumpycows-1/img1239.jpg",
+      "width": 278,
+      "height": 158,
+      "expected": {
+        "healthy": 0.195283,
+        "lsd": 0.804717
+      }
+    },
+    {
+      "file": "parity/healthy_5.jpg",
+      "tensor_png": "parity/healthy_5.tensor.png",
+      "decoded_png": "parity/healthy_5.decoded.png",
+      "label": "healthy",
+      "source": "Cows datasets/Healthycows 1/Normal_Skin_566-resized.jpg",
+      "width": 256,
+      "height": 256,
+      "expected": {
+        "healthy": 0.919272,
+        "lsd": 0.080728
+      }
+    }
+  ]
+}

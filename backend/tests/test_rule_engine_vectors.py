@@ -7,7 +7,7 @@ import pytest
 from app.core.config import SHARED_DIR
 from app.core.shared_loader import load_shared_data
 from app.services.triage.rule_engine import TriageInput, evaluate, primary_syndrome, round3
-from scripts.update_triage_goldens import golden_for, to_input
+from scripts.update_triage_goldens import golden_for, run_vector, to_input
 
 DATA = load_shared_data()
 VECTORS = json.loads((SHARED_DIR / "triage_test_vectors.json").read_text(encoding="utf-8"))["vectors"]
@@ -35,16 +35,21 @@ def check_expectations(result: dict, expect: dict) -> None:
     for disease in expect.get("gated", []):
         candidate = next(c for c in result["candidates"] if c["disease_id"] == disease)
         assert candidate["required_signs_met"] is False
+    if "photo" in expect:
+        if expect["photo"] is None:
+            assert result["photo"] is None
+        else:
+            assert {k: result["photo"][k] for k in expect["photo"]} == expect["photo"]
 
 
 @pytest.mark.parametrize("vector", VECTORS, ids=[f"v{v['id']}" for v in VECTORS])
 def test_vector_meets_spec_expectations(vector):
-    check_expectations(evaluate(DATA, to_input(vector["input"])), vector["expect"])
+    check_expectations(run_vector(DATA, vector["input"]), vector["expect"])
 
 
 @pytest.mark.parametrize("vector", VECTORS, ids=[f"v{v['id']}" for v in VECTORS])
 def test_vector_matches_golden_output(vector):
-    assert golden_for(evaluate(DATA, to_input(vector["input"]))) == vector["golden"]
+    assert golden_for(run_vector(DATA, vector["input"])) == vector["golden"]
 
 
 def test_every_result_says_suspected_not_diagnosed():

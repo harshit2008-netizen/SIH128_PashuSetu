@@ -11,16 +11,20 @@ import '../../core/shared_data/shared_data_provider.dart';
 import '../../core/theme/tokens.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/widgets.dart';
+import '../about/about_ai_screen.dart';
 import '../auth/language_screen.dart';
 import '../home/home_data.dart';
 
 const appVersion = '0.1.0';
 const _tapsToUnlockDeveloperMenu = 7;
 
+/// "rules-1+lsd_v1" (spec 10.6), or just "rules-1" in a build without the photo model.
 final engineVersionProvider = FutureProvider<String>((ref) async {
   final shared = await ref.watch(sharedDataProvider.future);
+  final card = await ref.watch(modelCardProvider.future);
   final versions = shared.rules.values.map((r) => r['version'] as int);
-  return 'rules-${versions.reduce((a, b) => a > b ? a : b)}';
+  final rules = 'rules-${versions.reduce((a, b) => a > b ? a : b)}';
+  return card == null ? rules : '$rules+${card['model_version']}';
 });
 
 class _Row extends StatelessWidget {
@@ -98,6 +102,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ]),
           const SizedBox(height: AppSpacing.xl),
           ListGroup(children: [
+            _Row(
+              title: l10n.aboutAi,
+              icon: LucideIcons.brainCircuit,
+              trailing: const Icon(LucideIcons.chevronRight),
+              onTap: () => context.push('/settings/about'),
+            ),
             _Row(
               title: l10n.simulateNoSignal,
               subtitle: l10n.simulateNoSignalHelp,

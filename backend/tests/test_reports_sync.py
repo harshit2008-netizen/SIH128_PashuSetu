@@ -86,6 +86,13 @@ def test_photo_probability_is_fused_and_asks_about_lumps(client, as_role):
     assert body["triage"]["engine_version"] == "rules-1+lsd_v1"
 
 
+def test_photo_probability_must_be_a_probability(client, as_role):
+    for bad in (1.5, -0.1, "0.9", True):
+        response = post_report(client, as_role("pashu_sevak"), symptoms=["fever"],
+                               device_triage={"top": "lsd", "score": 0.5, "image_p_lsd": bad})
+        assert response.status_code == 422, bad
+
+
 def test_photo_upload_and_type_check(client, as_role):
     headers = as_role("pashu_sevak")
     report_id = post_report(client, headers).json()["report"]["id"]

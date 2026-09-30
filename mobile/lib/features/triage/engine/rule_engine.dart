@@ -81,6 +81,7 @@ class TriageResult {
     required this.unknownSyndrome,
     required this.actions,
     required this.safetyNote,
+    this.photo,
   });
 
   final String engineVersion;
@@ -98,6 +99,10 @@ class TriageResult {
   /// Localised safety note ({en, hi, mr}) or null.
   final Map<String, dynamic>? safetyNote;
 
+  /// Photo model outcome when a photo was scored (fusion.dart):
+  /// {p_lsd, unclear, ask_about_skin_nodules}. Null for rules-only results.
+  final Map<String, dynamic>? photo;
+
   Map<String, dynamic> toJson() => {
         'engine_version': engineVersion,
         'candidates': [for (final c in candidates) c.toJson()],
@@ -107,6 +112,7 @@ class TriageResult {
         'unknown_syndrome': unknownSyndrome,
         'actions': actions,
         'safety_note': safetyNote,
+        'photo': photo,
       };
 }
 
@@ -269,7 +275,7 @@ class RuleEngine {
   String get engineVersion =>
       'rules-${data.rules.values.map((r) => r['version'] as int).reduce(math.max)}';
 
-  void _validate(TriageInput report) {
+  void validate(TriageInput report) {
     if (!data.species.containsKey(report.species)) {
       throw ArgumentError('Unknown species: ${report.species}');
     }
@@ -283,8 +289,15 @@ class RuleEngine {
 
   /// Run triage for one report and return the shared response shape.
   TriageResult evaluate(TriageInput report) {
-    _validate(report);
-    final allCandidates = scoreAllRules(report);
+    validate(report);
+    return buildResult(report, scoreAllRules(report), engineVersion);
+  }
+
+  /// Severity, flags and actions from already-scored candidates (best first).
+  /// Split out so fusion (rules + photo) can re-rank candidates and reuse it,
+  /// exactly like build_result in the Python engine.
+  TriageResult buildResult(TriageInput report, List<TriageCandidate> allCandidates, String version,
+      {Map<String, dynamic>? photo}) {
     final top = allCandidates.isEmpty ? null : allCandidates.first;
     final unknown = isUnknownSyndrome(top?.score ?? 0.0, report);
     final zoonoticMin = _num(_config['zoonotic_min_score']);
@@ -292,7 +305,7 @@ class RuleEngine {
         (c) => data.rules[c.diseaseId]!['zoonotic'] == true && c.score >= zoonoticMin);
     final maxCandidates = _config['max_candidates'] as int;
     return TriageResult(
-      engineVersion: engineVersion,
+      engineVersion: version,
       candidates: allCandidates.take(maxCandidates).toList(),
       primarySyndrome: primarySyndrome(report.symptoms),
       severity: severityLevel(report, top, unknown),
@@ -300,6 +313,7 @@ class RuleEngine {
       unknownSyndrome: unknown,
       actions: pickActions(top, unknown),
       safetyNote: pickSafetyNote(allCandidates),
+      photo: photo,
     );
   }
 }

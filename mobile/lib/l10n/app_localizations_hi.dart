@@ -734,4 +734,98 @@ class AppLocalizationsHi extends AppLocalizations {
   String hoursShort(int count) {
     return '$count घंटे';
   }
+
+  @override
+  String get photoChecking => 'फ़ोटो इसी फ़ोन पर जांची जा रही है';
+
+  @override
+  String get photoLooksLsd =>
+      'फ़ोटो लम्पी स्किन रोग जैसी दिखती है। केवल आशंका है।';
+
+  @override
+  String get photoLooksHealthy => 'फ़ोटो लम्पी स्किन रोग जैसी नहीं दिखती।';
+
+  @override
+  String get photoUnclear =>
+      'फ़ोटो साफ़ नहीं है। दिन की रोशनी में, त्वचा के पास से फिर लें।';
+
+  @override
+  String get photoCheckFailed =>
+      'यह फ़ोटो जांची नहीं जा सकी। फ़ोटो रिपोर्ट के साथ फिर भी भेजी जाएगी।';
+
+  @override
+  String get askLumps =>
+      'फ़ोटो में त्वचा पर गांठें दिखती हैं। क्या आपने त्वचा पर गांठें देखीं?';
+
+  @override
+  String get askLumpsYes => 'हाँ, जोड़ें';
+
+  @override
+  String get askLumpsNo => 'नहीं';
+
+  @override
+  String photoResultLine(int percent) {
+    return 'फ़ोटो: $percent% लम्पी स्किन रोग जैसी';
+  }
+
+  @override
+  String get aboutAi => 'एआई के बारे में';
+
+  @override
+  String get aboutAiIntro =>
+      'पशुसेतु केवल संभावित रोग बताता है। यह पक्का निदान नहीं करता। पशु डॉक्टर या लैब पुष्टि करेंगे।';
+
+  @override
+  String get aboutRulesTitle => '1. लक्षणों के नियम';
+
+  @override
+  String aboutRulesBody(int count) {
+    return '$count रोगों के नियम, सरकारी केस परिभाषाओं से बने। यही नियम फ़ोन और सर्वर दोनों पर चलते हैं, और साझा जांच-मामले साबित करते हैं कि दोनों एक ही जवाब देते हैं।';
+  }
+
+  @override
+  String get aboutPhotoTitle => '2. लम्पी स्किन रोग के लिए फ़ोटो जांच';
+
+  @override
+  String aboutPhotoBody(int imagePercent, int rulesPercent) {
+    return 'एक छोटा फ़ोटो मॉडल इसी फ़ोन पर, बिना इंटरनेट, केवल गाय और भैंस के लिए चलता है। लम्पी स्किन रोग में फ़ोटो का हिस्सा $imagePercent% और आपके चुने लक्षणों का $rulesPercent% है।';
+  }
+
+  @override
+  String get aboutDistrictTitle => '3. ज़िले की निगरानी';
+
+  @override
+  String get aboutDistrictBody =>
+      'सर्वर हर रिपोर्ट को फिर जांचता है और पास के गांवों में मिलते-जुलते मामलों के समूह ढूंढता है, ताकि अधिकारी प्रकोप जल्दी देख सकें।';
+
+  @override
+  String get aboutTestResults => 'फ़ोटो मॉडल की जांच के नतीजे';
+
+  @override
+  String aboutTestedOn(int count) {
+    return '$count ऐसी फ़ोटो पर जो मॉडल ने सीखते समय नहीं देखीं।';
+  }
+
+  @override
+  String get aboutAccuracy => 'कुल मिलाकर सही';
+
+  @override
+  String get aboutPrecision => 'लम्पी स्किन रोग कहने पर सही';
+
+  @override
+  String get aboutRecall => 'लम्पी स्किन रोग की फ़ोटो जो यह पकड़ता है';
+
+  @override
+  String aboutDataset(String name, String licence) {
+    return 'फ़ोटो: $name ($licence)।';
+  }
+
+  @override
+  String get aboutLimits => 'ज्ञात सीमाएं';
+
+  @override
+  String get aboutVersions => 'संस्करण';
+
+  @override
+  String get aboutNoModel => 'इस ऐप में फ़ोटो मॉडल नहीं है।';
 }

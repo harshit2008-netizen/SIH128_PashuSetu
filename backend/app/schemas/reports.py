@@ -46,6 +46,11 @@ class ReportIn(BaseModel):
             raise ValueError("Choose at least one sign, or report a dead animal.")
         if self.total_at_risk is not None and self.total_at_risk < self.sick_count + self.dead_count:
             raise ValueError("Total animals cannot be less than sick plus dead.")
+        # The photo probability changes the server's own score, so it must be a real probability.
+        image_p = (self.device_triage or {}).get("image_p_lsd")
+        if image_p is not None and (isinstance(image_p, bool) or not isinstance(image_p, int | float)
+                                    or not 0 <= image_p <= 1):
+            raise ValueError("device_triage.image_p_lsd must be a number from 0 to 1.")
         return self
 
 

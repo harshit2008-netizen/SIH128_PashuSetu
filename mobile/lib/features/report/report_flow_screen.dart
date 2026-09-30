@@ -16,6 +16,8 @@ import '../../l10n/app_localizations.dart';
 import '../../widgets/widgets.dart';
 import '../auth/language_screen.dart' show PrimaryButton;
 import '../home/home_data.dart';
+import '../triage/engine/fusion.dart';
+import '../triage/engine/rule_engine.dart';
 import 'report_draft.dart';
 
 /// The 5-step report (spec 9.8): 1 Animal, 2 Signs, 3 Photo, 4 How many, 5 Check and send.
@@ -376,6 +378,7 @@ class _PhotoStepState extends ConsumerState<_PhotoStep> {
           borderRadius: BorderRadius.circular(AppRadius.listGroup),
           child: Image.file(File(photo), height: 280, fit: BoxFit.cover),
         ),
+      const _PhotoCheckPanel(),
       const SizedBox(height: AppSpacing.md),
       PrimaryButton(label: photo == null ? l10n.takePhoto : l10n.retakePhoto, onPressed: () => _pickPhoto(ImageSource.camera)),
       const SizedBox(height: AppSpacing.sm),
@@ -403,6 +406,113 @@ class _PhotoStepState extends ConsumerState<_PhotoStep> {
           child: Text(_error!, style: text.bodyLarge?.copyWith(color: SeverityColors.emergency.foreground)),
         ),
     ]);
+  }
+}
+
+/// What the on-phone photo model saw, right under the photo (spec 7.9, 10.6):
+/// a small inline progress line, then one plain sentence, and when the photo
+/// shows lumps the reporter did not tick, the "Did you see lumps?" question.
+class _PhotoCheckPanel extends ConsumerWidget {
+  const _PhotoCheckPanel();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final draft = ref.watch(reportDraftProvider);
+    final shared = ref.watch(sharedDataProvider).value;
+    final check = draft.photoCheck;
+    if (check == null || shared == null) return const SizedBox.shrink();
+    final fusion = FusionEngine(RuleEngine(shared));
+
+    Widget line(IconData icon, String message, SeverityColors colors) => Container(
+          margin: const EdgeInsets.only(top: AppSpacing.md),
+          padding: const EdgeInsets.all(AppSpacing.md),
+          decoration: BoxDecoration(color: colors.background, borderRadius: BorderRadius.circular(AppRadius.input)),
+          child: Row(children: [
+            Icon(icon, color: colors.foreground),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(child: Text(message, style: text.titleMedium?.copyWith(color: colors.foreground))),
+          ]),
+        );
+
+    switch (check.status) {
+      case PhotoCheckStatus.checking:
+        return Padding(
+          padding: const EdgeInsets.only(top: AppSpacing.md),
+          child: Row(children: [
+            const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2.5)),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(child: Text(l10n.photoChecking, style: text.bodyLarge)),
+          ]),
+        );
+      case PhotoCheckStatus.failed:
+        return line(LucideIcons.imageOff, l10n.photoCheckFailed, SeverityColors.routine);
+      case PhotoCheckStatus.done:
+        final flags = fusion.photoFlags(check.pLsd!, draft.symptoms);
+        // Outside the "unclear" band one label clearly wins, so the larger side decides.
+        final looksLsd = check.pLsd! >= 0.5;
+        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          if (flags['unclear'] == true)
+            line(LucideIcons.sunMedium, l10n.photoUnclear, SeverityColors.routine)
+          else if (looksLsd)
+            line(LucideIcons.scanSearch, l10n.photoLooksLsd, SeverityColors.urgent)
+          else
+            line(LucideIcons.circleCheck, l10n.photoLooksHealthy, SeverityColors.ok),
+          if (flags['ask_about_skin_nodules'] == true && !check.lumpsAnswered)
+            _AskAboutLumps(sign: fusion.askSign),
+        ]);
+    }
+  }
+}
+
+class _AskAboutLumps extends ConsumerWidget {
+  const _AskAboutLumps({required this.sign});
+
+  final String sign;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final controller = ref.read(reportDraftProvider.notifier);
+    final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.primaryAction));
+    return Container(
+      margin: const EdgeInsets.only(top: AppSpacing.md),
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        color: AppColors.paper,
+        border: Border.all(color: AppColors.line),
+        borderRadius: BorderRadius.circular(AppRadius.listGroup),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Text(l10n.askLumps, style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: AppSpacing.md),
+        Row(children: [
+          Expanded(
+            flex: 2,
+            child: FilledButton(
+              onPressed: () => controller.answerLumps(seen: true, sign: sign),
+              style: FilledButton.styleFrom(
+                  backgroundColor: AppColors.ink, minimumSize: Size.fromHeight(FarmerMode.minTarget(context)), shape: shape),
+              child: Text(l10n.askLumpsYes),
+            ),
+          ),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: OutlinedButton(
+              onPressed: () => controller.answerLumps(seen: false, sign: sign),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.ink,
+                side: const BorderSide(color: AppColors.ink),
+                minimumSize: Size.fromHeight(FarmerMode.minTarget(context)),
+                shape: shape,
+              ),
+              child: Text(l10n.askLumpsNo),
+            ),
+          ),
+        ]),
+      ]),
+    );
   }
 }
 

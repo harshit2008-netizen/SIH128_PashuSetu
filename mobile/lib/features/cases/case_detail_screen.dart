@@ -102,6 +102,11 @@ class _CaseBody extends ConsumerWidget {
             for (final id in (report['symptoms'] as List).cast<String>())
               WhyChip(label: localized(shared.symptoms[id]?['label'], language), pictogram: shared.symptoms[id]?['pictogram'] as String?),
           ]),
+          if (triage['photo'] case {'p_lsd': final num p, 'unclear': final bool unclear})
+            Padding(
+              padding: const EdgeInsets.only(top: AppSpacing.sm),
+              child: Text(unclear ? l10n.photoUnclear : l10n.photoResultLine((p * 100).round()), style: text.bodyLarge),
+            ),
           const SizedBox(height: AppSpacing.sm),
           Text(l10n.notDiagnosis, style: text.bodySmall),
         ],

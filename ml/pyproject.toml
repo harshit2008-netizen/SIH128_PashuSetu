@@ -4,3 +4,8 @@ version = "0.1.0"
 description = "Dataset checks and model verification for the PashuSetu LSD photo model"
 requires-python = "==3.11.*"
 dependencies = ["numpy", "pillow", "scipy"]
+
+[project.optional-dependencies]
+verify = [
+    "tensorflow==2.20.*",
+]

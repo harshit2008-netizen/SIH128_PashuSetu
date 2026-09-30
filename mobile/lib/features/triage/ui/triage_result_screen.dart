@@ -179,6 +179,12 @@ class _TriageResultScreenState extends ConsumerState<TriageResultScreen> with Si
         missing: [for (final id in (top['missing_key_signs'] as List).cast<String>()) signLabel(id)],
         photo: hasPhoto,
       ),
+      if (result['photo'] case {'p_lsd': final num p, 'unclear': final bool unclear})
+        Padding(
+          padding: const EdgeInsets.only(top: AppSpacing.sm),
+          child: Text(unclear ? l10n.photoUnclear : l10n.photoResultLine((p * 100).round()),
+              style: Theme.of(context).textTheme.bodyLarge),
+        ),
     ];
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/about/about_ai_screen.dart';
 import '../../features/auth/language_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/cases/case_detail_screen.dart';
@@ -62,6 +63,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen(), routes: [
         GoRoute(path: 'developer', builder: (_, _) => const DeveloperScreen()),
         GoRoute(path: 'outbox', builder: (_, _) => const OutboxScreen()),
+        GoRoute(path: 'about', builder: (_, _) => const AboutAiScreen()),
       ]),
     ],
   );

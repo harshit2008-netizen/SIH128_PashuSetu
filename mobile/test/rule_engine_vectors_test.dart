@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pashusetu/core/shared_data/shared_data.dart';
+import 'package:pashusetu/features/triage/engine/fusion.dart';
 import 'package:pashusetu/features/triage/engine/rule_engine.dart';
 
 /// Tests read the bundled copy made by `make sync-shared`.
@@ -19,7 +20,12 @@ TriageInput toInput(Map<String, dynamic> raw) => TriageInput(
       reportMonth: raw['report_month'] as int,
     );
 
-Map<String, dynamic> goldenFor(TriageResult result) => {
+/// Rules only, or rules + photo fusion when the vector gives a photo probability.
+TriageResult runVector(FusionEngine fusion, Map<String, dynamic> raw) => raw.containsKey('image_p_lsd')
+    ? fusion.evaluate(toInput(raw), imagePLsd: (raw['image_p_lsd'] as num?)?.toDouble())
+    : fusion.rules.evaluate(toInput(raw));
+
+Map<String, dynamic> goldenFor(TriageResult result, {required bool fused}) => {
       'candidates': [
         for (final c in result.candidates) [c.diseaseId, c.score]
       ],
@@ -29,6 +35,14 @@ Map<String, dynamic> goldenFor(TriageResult result) => {
       'unknown_syndrome': result.unknownSyndrome,
       'actions': result.actions,
       'has_safety_note': result.safetyNote != null,
+      if (fused) ...{
+        'engine_version': result.engineVersion,
+        'sources': [
+          for (final c in result.candidates)
+            if (c.sources.containsKey('image')) [c.diseaseId, c.sources]
+        ],
+        'photo': result.photo,
+      },
     };
 
 void checkExpectations(TriageResult result, Map<String, dynamic> expected) {
@@ -54,17 +68,27 @@ void checkExpectations(TriageResult result, Map<String, dynamic> expected) {
   for (final disease in (expected['gated'] as List? ?? [])) {
     expect(result.candidates.firstWhere((c) => c.diseaseId == disease).requiredSignsMet, isFalse);
   }
+  if (expected.containsKey('photo')) {
+    final photo = expected['photo'] as Map<String, dynamic>?;
+    if (photo == null) {
+      expect(result.photo, isNull);
+    } else {
+      expect({for (final key in photo.keys) key: result.photo![key]}, photo);
+    }
+  }
 }
 
 Future<void> main() async {
   final data = await SharedData.load(readSharedFile);
   final engine = RuleEngine(data);
+  final fusion = FusionEngine(engine);
   final vectors = (jsonDecode(await readSharedFile('triage_test_vectors.json'))['vectors'] as List)
       .cast<Map<String, dynamic>>();
 
   group('golden vectors', () {
     for (final vector in vectors) {
-      final result = engine.evaluate(toInput(vector['input'] as Map<String, dynamic>));
+      final input = vector['input'] as Map<String, dynamic>;
+      final result = runVector(fusion, input);
 
       test('v${vector['id']} meets spec expectations: ${vector['name']}', () {
         checkExpectations(result, vector['expect'] as Map<String, dynamic>);
@@ -72,7 +96,7 @@ Future<void> main() async {
 
       test('v${vector['id']} matches the Python engine exactly', () {
         // Round-trip through JSON so ints and doubles compare the same way.
-        expect(jsonDecode(jsonEncode(goldenFor(result))), vector['golden']);
+        expect(jsonDecode(jsonEncode(goldenFor(result, fused: input.containsKey('image_p_lsd')))), vector['golden']);
       });
     }
   });

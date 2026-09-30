@@ -77,6 +77,13 @@ def find_reference_problems(data: SharedData) -> list[str]:
     config = data.triage_config["actions"]
     problems += [f"triage_config: unknown action {a}"
                  for a in config["low_confidence"] + config["unknown_syndrome"] if a not in data.actions]
+    fusion = data.triage_config["fusion"]
+    if fusion["disease"] not in data.rules:
+        problems.append(f"triage_config.fusion: unknown disease {fusion['disease']}")
+    if fusion["ask_sign"] not in data.symptoms:
+        problems.append(f"triage_config.fusion: unknown sign {fusion['ask_sign']}")
+    if abs(fusion["rules_weight"] + fusion["image_weight"] - 1) > 1e-9:
+        problems.append("triage_config.fusion: rules_weight + image_weight must be 1")
     for symptom_id in data.lexicon["symptoms"]:
         if symptom_id not in data.symptoms:
             problems.append(f"lexicon: unknown symptom {symptom_id}")

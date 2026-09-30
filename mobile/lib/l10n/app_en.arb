@@ -380,5 +380,72 @@
         "type": "int"
       }
     }
-  }
+  },
+  "photoChecking": "Checking the photo on this phone",
+  "photoLooksLsd": "The photo looks like lumpy skin disease. Suspected only.",
+  "photoLooksHealthy": "The photo does not look like lumpy skin disease.",
+  "photoUnclear": "Unclear photo. Try again in daylight, closer to the skin.",
+  "photoCheckFailed": "Could not check this photo. It is still sent with the report.",
+  "askLumps": "The photo looks like it has skin lumps. Did you see lumps on the skin?",
+  "askLumpsYes": "Yes, add it",
+  "askLumpsNo": "No",
+  "photoResultLine": "Photo: {percent}% like lumpy skin disease",
+  "@photoResultLine": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutAi": "About the AI",
+  "aboutAiIntro": "PashuSetu suggests a suspected disease. It never diagnoses. A vet or lab must confirm.",
+  "aboutRulesTitle": "1. Symptom rules",
+  "aboutRulesBody": "Rules for {count} diseases, written from official case definitions. The same rules run on this phone and on the server, and shared test cases prove both give the same answer.",
+  "@aboutRulesBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutPhotoTitle": "2. Photo check for lumpy skin disease",
+  "aboutPhotoBody": "A small image model runs on this phone, without internet, for cattle and buffalo only. For lumpy skin disease, the photo counts {imagePercent}% and the signs you tick count {rulesPercent}%.",
+  "@aboutPhotoBody": {
+    "placeholders": {
+      "imagePercent": {
+        "type": "int"
+      },
+      "rulesPercent": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutDistrictTitle": "3. District watch",
+  "aboutDistrictBody": "The server checks every report again and looks for groups of similar cases in nearby villages, so officers see an outbreak early.",
+  "aboutTestResults": "Photo model test results",
+  "aboutTestedOn": "On {count} photos the model never saw while learning.",
+  "@aboutTestedOn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutAccuracy": "Right overall",
+  "aboutPrecision": "Right when it says lumpy skin disease",
+  "aboutRecall": "Lumpy skin disease photos it finds",
+  "aboutDataset": "Photos: {name} ({licence}).",
+  "@aboutDataset": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "licence": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutLimits": "Known limits",
+  "aboutVersions": "Versions",
+  "aboutNoModel": "This app build has no photo model."
 }

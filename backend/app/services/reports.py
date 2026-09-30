@@ -64,7 +64,7 @@ def triage_input_for(report: Report) -> TriageInput:
 def run_server_triage(data: SharedData, report: Report) -> dict:
     device = report.device_triage or {}
     return evaluate_with_fusion(data, triage_input_for(report), device.get("image_p_lsd"),
-                                device.get("image_model", "lsd_v1"))
+                                device.get("image_model"))
 
 
 def is_mismatch(device_triage: dict | None, server: dict) -> bool:
