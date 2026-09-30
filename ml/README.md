@@ -9,3 +9,24 @@
 
 Rule: any accuracy number shown in the app or docs must be read from `reports/*.json`. Never type one in by hand.
 The Kaggle token lives in `~/.kaggle/`. Never print it, copy it or commit it.
+
+## How to train on Kaggle (repeat a run)
+
+One-time setup:
+1. Verify your phone on Kaggle, create an API token, and save it as `~/.kaggle/kaggle.json`.
+2. Install the Kaggle tool with `uv tool install kaggle`.
+
+Then, from the repo root in Git Bash:
+```bash
+export PYTHONUTF8=1                                   # Windows: the log download fails without it
+kaggle datasets download -d drtawfikrrahman/cowhealth-6k-cow-disease-detection -p ml/data/raw/lsd --unzip
+cd ml && uv run python src/inspect_dataset.py && cd ..   # writes reports/dataset_inspection.md
+kaggle kernels push -p ml/kaggle/lsd_image_classifier --accelerator NvidiaTeslaT4
+kaggle kernels status harshitjain2008/pashusetu-lsd-classifier      # repeat until COMPLETE (about 5 min)
+kaggle kernels output harshitjain2008/pashusetu-lsd-classifier -p ml/artifacts/lsd_v1
+cp ml/artifacts/lsd_v1/metrics.json ml/reports/lsd_metrics.json
+cp ml/artifacts/lsd_v1/{lsd_model_card.json,confusion_matrix.png,misclassified.png} ml/reports/
+cp ml/artifacts/lsd_v1/{lsd_classifier.tflite,lsd_labels.txt,lsd_model_card.json} mobile/assets/models/
+```
+If the status says ERROR, the reason is at the end of `ml/artifacts/lsd_v1/pashusetu-lsd-classifier.log`.
+A new team member must change `id` in `kaggle/lsd_image_classifier/kernel-metadata.json` to their own Kaggle username.

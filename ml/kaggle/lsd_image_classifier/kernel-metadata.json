@@ -1,0 +1,13 @@
+{
+  "id": "harshitjain2008/pashusetu-lsd-classifier",
+  "title": "PashuSetu LSD classifier",
+  "code_file": "train.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["drtawfikrrahman/cowhealth-6k-cow-disease-detection"],
+  "competition_sources": [],
+  "kernel_sources": []
+}

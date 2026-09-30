@@ -1,0 +1,91 @@
+{
+  "model_version": "lsd_v1",
+  "architecture": "mobilenet_v3_small (ImageNet weights) + global average pooling + dropout 0.2 + dense softmax",
+  "input": {
+    "shape": [
+      1,
+      224,
+      224,
+      3
+    ],
+    "dtype": "float32",
+    "value_range": "0-255",
+    "preprocessing_inside_model": true,
+    "resize": "central square crop, then resize to 224x224 (bilinear)"
+  },
+  "labels": [
+    "healthy",
+    "lsd"
+  ],
+  "dataset": {
+    "name": "CowHealth-6K: Cow Disease Detection",
+    "kaggle": "drtawfikrrahman/cowhealth-6k-cow-disease-detection",
+    "url": "https://www.kaggle.com/datasets/drtawfikrrahman/cowhealth-6k-cow-disease-detection",
+    "licence": "CC0-1.0",
+    "folders_used": [
+      "datasets/drtawfikrrahman/cowhealth-6k-cow-disease-detection/Cows datasets/Healthycows 1",
+      "datasets/drtawfikrrahman/cowhealth-6k-cow-disease-detection/Cows datasets/Lumpycows-1",
+      "datasets/drtawfikrrahman/cowhealth-6k-cow-disease-detection/Cows datasets/Lumpycows-2"
+    ]
+  },
+  "counts_after_dedupe": {
+    "train": {
+      "healthy": 913,
+      "lsd": 946
+    },
+    "val": {
+      "healthy": 196,
+      "lsd": 203
+    },
+    "test": {
+      "healthy": 196,
+      "lsd": 203
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.9098,
+    "precision_lsd": 0.9154,
+    "recall_lsd": 0.9064,
+    "f1_lsd": 0.9109,
+    "roc_auc": 0.9711,
+    "confusion_matrix": [
+      [
+        179,
+        17
+      ],
+      [
+        19,
+        184
+      ]
+    ],
+    "n": 399
+  },
+  "tflite_test_metrics": {
+    "accuracy": 0.9098,
+    "precision_lsd": 0.9154,
+    "recall_lsd": 0.9064,
+    "f1_lsd": 0.9109,
+    "roc_auc": 0.9711,
+    "confusion_matrix": [
+      [
+        179,
+        17
+      ],
+      [
+        19,
+        184
+      ]
+    ],
+    "n": 399
+  },
+  "tflite_weights": "float16",
+  "decision_threshold": 0.6,
+  "date": "2026-09-30T16:15:46+00:00",
+  "known_limitations": [
+    "Photos come from the internet and public repositories, not from field use in Maharashtra.",
+    "Not validated by vets on new animals; test metrics are on held-out photos from the same sources.",
+    "Healthy and LSD photos partly come from different sources, so the model may react to photo style, not only lumps.",
+    "Only cattle/buffalo skin with or without LSD lumps. It says nothing about other diseases; a skin problem that is not LSD may be called LSD or healthy.",
+    "A suspicion aid for triage, never a diagnosis. A vet or lab must confirm."
+  ]
+}

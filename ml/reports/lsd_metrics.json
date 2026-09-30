@@ -1,0 +1,151 @@
+{
+  "model_version": "lsd_v1",
+  "architecture": "mobilenet_v3_small",
+  "created_at": "2026-09-30T16:15:46+00:00",
+  "tensorflow": "2.20.0",
+  "test": {
+    "accuracy": 0.9098,
+    "precision_lsd": 0.9154,
+    "recall_lsd": 0.9064,
+    "f1_lsd": 0.9109,
+    "roc_auc": 0.9711,
+    "confusion_matrix": [
+      [
+        179,
+        17
+      ],
+      [
+        19,
+        184
+      ]
+    ],
+    "n": 399
+  },
+  "val": {
+    "accuracy": 0.8922,
+    "precision_lsd": 0.9,
+    "recall_lsd": 0.8867,
+    "f1_lsd": 0.8933,
+    "roc_auc": 0.9669,
+    "confusion_matrix": [
+      [
+        176,
+        20
+      ],
+      [
+        23,
+        180
+      ]
+    ],
+    "n": 399
+  },
+  "tflite_test": {
+    "accuracy": 0.9098,
+    "precision_lsd": 0.9154,
+    "recall_lsd": 0.9064,
+    "f1_lsd": 0.9109,
+    "roc_auc": 0.9711,
+    "confusion_matrix": [
+      [
+        179,
+        17
+      ],
+      [
+        19,
+        184
+      ]
+    ],
+    "n": 399
+  },
+  "tflite_export": {
+    "chosen": "float16",
+    "tries": {
+      "dynamic_range_int8": {
+        "accuracy": 0.8972,
+        "gap": 0.0126,
+        "bytes": 1111048
+      },
+      "float16": {
+        "accuracy": 0.9098,
+        "gap": 0.0,
+        "bytes": 1905480
+      }
+    }
+  },
+  "candidates": {
+    "mobilenet_v3_small": {
+      "val": {
+        "accuracy": 0.8922,
+        "precision_lsd": 0.9,
+        "recall_lsd": 0.8867,
+        "f1_lsd": 0.8933,
+        "roc_auc": 0.9669,
+        "confusion_matrix": [
+          [
+            176,
+            20
+          ],
+          [
+            23,
+            180
+          ]
+        ],
+        "n": 399
+      },
+      "test": {
+        "accuracy": 0.9098,
+        "precision_lsd": 0.9154,
+        "recall_lsd": 0.9064,
+        "f1_lsd": 0.9109,
+        "roc_auc": 0.9711,
+        "confusion_matrix": [
+          [
+            179,
+            17
+          ],
+          [
+            19,
+            184
+          ]
+        ],
+        "n": 399
+      },
+      "epochs": 20
+    }
+  },
+  "test_accuracy_by_source": {
+    "datasets/drtawfikrrahman/cowhealth-6k-cow-disease-detection/Cows datasets/Healthycows 1": {
+      "n": 196,
+      "accuracy": 0.9133
+    },
+    "datasets/drtawfikrrahman/cowhealth-6k-cow-disease-detection/Cows datasets/Lumpycows-1": {
+      "n": 60,
+      "accuracy": 0.7833
+    },
+    "datasets/drtawfikrrahman/cowhealth-6k-cow-disease-detection/Cows datasets/Lumpycows-2": {
+      "n": 143,
+      "accuracy": 0.958
+    }
+  },
+  "counts": {
+    "train": {
+      "healthy": 913,
+      "lsd": 946
+    },
+    "val": {
+      "healthy": 196,
+      "lsd": 203
+    },
+    "test": {
+      "healthy": 196,
+      "lsd": 203
+    }
+  },
+  "dedupe": {
+    "duplicates_removed": 772,
+    "conflicting_label_images_dropped": 4,
+    "groups": 2511
+  },
+  "broken_files": 0,
+  "dropped_by_name": 1
+}
