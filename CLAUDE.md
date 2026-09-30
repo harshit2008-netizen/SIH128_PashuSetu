@@ -25,7 +25,7 @@ make apk           # release APK
 cd backend && uv run pytest
 cd mobile && flutter analyze && flutter test && flutter run
 ```
-`make seed` wipes and rebuilds the demo data. Not yet built: `make simulate` (Phase 7).
+`make seed` / `make reset-demo` wipe and rebuild the demo data. `make simulate SCENARIO=... SPEED=...` needs `make api` running.
 
 ## Machine notes (Harshit's Windows laptop)
 - Flutter SDK is at `E:\dev\flutter` (on the user PATH). Python 3.11 is managed by uv (`backend/.python-version`).
@@ -72,4 +72,5 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Phase 1 (shared contracts + engines): done, commit ebb504f.
 - Phase 2 (backend core): done, commit 51a9bc9.
 - Phase 3 (mobile foundation + design system): done, commit 77fba74.
-- Phase 4 (report flow + offline + on-device triage): in review.
+- Phase 4 (report flow + offline + on-device triage): done, commit ee2ef69.
+- Phase 7 (surveillance + simulator): in review. Phases 5 (voice) and 6 (LSD image model) not started.

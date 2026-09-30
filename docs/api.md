@@ -35,9 +35,26 @@ Every other block has its own vet (phones `9000000310` to `9000000321`), and 40 
 | `POST /cases/{id}/transition` | vet, officer | `under_treatment`, `resolved` or `closed_ruled_out`, with an optional `note` |
 | `GET /geo/villages?near=lat,lng` | all | Nearest villages with `distance_km`, or all villages |
 | `GET /geo/blocks` | all | Talukas with their centre points |
+| `GET /alerts?status=&type=` | vet, officer | Open and acknowledged alerts (cluster, zoonotic, mortality), emergency first, with GeoJSON `area` and a plain-language `explanation.summary` in en/hi/mr |
+| `POST /alerts/{id}/acknowledge` | vet, officer | Marks the alert acknowledged (who and when) |
 | `GET /meta/engine` | anyone | Rule versions and the image model card (after Phase 6) |
 
-Alerts arrive in Phase 7; lab samples, advisories and the dashboard in Phase 8.
+Lab samples, advisories and the dashboard arrive in Phase 8.
+
+## Outbreak demo (simulator)
+
+With `make api` running:
+
+```bash
+make simulate SCENARIO=lsd_outbreak SPEED=5    # 6 LSD-like reports in 3 Junnar villages -> 1 cluster alert
+make simulate SCENARIO=anthrax_single          # sudden death with bleeding -> emergency zoonotic alert
+make simulate SCENARIO=hs_monsoon              # scattered HS cases -> no cluster (they are too far apart)
+make simulate SCENARIO=background ARGS="--days 30"
+make simulate SCENARIO=lsd_outbreak ARGS="--reset"   # wipe reports/cases/alerts first
+make reset-demo                                # full clean demo state (re-seeds everything)
+```
+
+Clustering runs right after every new report and every 5 minutes (`CLUSTER_RADIUS_KM`, `CLUSTER_MIN_REPORTS`, `CLUSTER_WINDOW_DAYS` in `.env`).
 
 ## `POST /reports` example
 

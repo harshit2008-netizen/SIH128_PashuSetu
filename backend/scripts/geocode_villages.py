@@ -14,9 +14,9 @@ flagged for native review.
 Add --refresh to download again instead of using backend/.cache.
 
 Selection rule:
-- Junnar: the tightest real group of villages (all within a few km) so the
-  LSD outbreak demo can form a real 5 km DBSCAN cluster, plus a few villages
-  spread across the taluka.
+- Junnar: a compact group of neighbouring villages (1.5-4.5 km apart) so
+  the LSD outbreak demo forms a real 5 km DBSCAN cluster across separate
+  villages, plus a few villages spread across the taluka.
 - Other talukas: villages at least MIN_SPACING_KM apart, so background noise
   reports do not form accidental clusters at seed time.
 """
@@ -47,6 +47,7 @@ DEVANAGARI_FALLBACK: dict[str, str] = {
     "Late": "लाटे", "Nandur": "नांदूर", "Nimsakhar": "निमसाखर", "Nivi": "निवी",
     "Parwadi": "पारवडी", "Penjalwadi": "पेंजळवाडी", "Pole": "पोळे", "Rayri": "रायरी",
     "Reda": "रेडा", "Taleran": "तळेरान", "Tannu": "तन्नू", "Vasaiwadi": "वसईवाडी", "Yavat": "यवत",
+    "Uchchhil": "उच्छिल", "Tirthachiwadi": "तीर्थाचीवाडी", "Damsechiwadi": "दमसेचीवाडी",
 }
 
 # Public Overpass servers are often busy (HTTP 429/504), so try mirrors in turn.
@@ -62,7 +63,8 @@ SECONDS_BETWEEN_REQUESTS = 2.0
 VILLAGES_PER_BLOCK = 5
 MIN_SPACING_KM = 6.0
 DEMO_CLUSTER_SIZE = 4           # seed village + its nearest neighbours
-DEMO_CLUSTER_MAX_KM = 5.0       # every cluster village within this of the seed
+DEMO_CLUSTER_MAX_KM = 4.5       # every cluster village within this of the seed (DBSCAN radius is 5)
+DEMO_CLUSTER_MIN_GAP_KM = 1.5   # but far enough apart to be separate places on the map
 JUNNAR_SPREAD_VILLAGES = 4
 
 DISTRICT = {"code": "pune", "name": {"en": "Pune", "hi": "पुणे", "mr": "पुणे"}, "state": "Maharashtra"}
@@ -190,19 +192,28 @@ def nearest_neighbours(seed: dict, candidates: list[dict], count: int) -> list[d
 
 
 def pick_demo_cluster(candidates: list[dict]) -> list[dict]:
-    """The tightest real group of villages: seed + its nearest neighbours.
+    """A group of neighbouring villages for the LSD outbreak demo.
 
-    OSM maps Junnar sparsely, so instead of naming a seed village we pick the
-    one whose (DEMO_CLUSTER_SIZE - 1) nearest neighbours are closest.
+    Villages must be at least DEMO_CLUSTER_MIN_GAP_KM apart (OSM also maps
+    tiny hamlets a few hundred metres apart, which would look like one spot
+    on the map) and all within DEMO_CLUSTER_MAX_KM of the first, so DBSCAN's
+    5 km radius joins them. Among valid groups, the most compact one wins.
     """
-    def spread(seed: dict) -> float:
-        farthest = nearest_neighbours(seed, candidates, DEMO_CLUSTER_SIZE - 1)[-1]
-        return haversine_km(seed, farthest)
+    def group_from(seed: dict) -> list[dict]:
+        group = [seed]
+        for place in nearest_neighbours(seed, candidates, len(candidates)):
+            if haversine_km(seed, place) > DEMO_CLUSTER_MAX_KM:
+                break
+            if all(haversine_km(place, other) >= DEMO_CLUSTER_MIN_GAP_KM for other in group):
+                group.append(place)
+            if len(group) == DEMO_CLUSTER_SIZE:
+                return group
+        return []
 
-    seed = min(candidates, key=lambda p: (spread(p), p["osm"]))
-    if spread(seed) > DEMO_CLUSTER_MAX_KM:
-        raise SystemExit(f"No group of {DEMO_CLUSTER_SIZE} villages within {DEMO_CLUSTER_MAX_KM} km in Junnar")
-    return [seed] + nearest_neighbours(seed, candidates, DEMO_CLUSTER_SIZE - 1)
+    groups = [g for g in (group_from(seed) for seed in candidates) if g]
+    if not groups:
+        raise SystemExit(f"No {DEMO_CLUSTER_SIZE} villages {DEMO_CLUSTER_MIN_GAP_KM}-{DEMO_CLUSTER_MAX_KM} km apart in Junnar")
+    return min(groups, key=lambda g: (max(haversine_km(g[0], p) for p in g), g[0]["osm"]))
 
 
 def find_hq(nodes: list[dict], hq_name: str | None, block_code: str) -> dict | None:

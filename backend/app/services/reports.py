@@ -20,6 +20,7 @@ from app.models import Block, Case, Herd, Report, TriageResult, User, Village
 from app.schemas.reports import ReportIn
 from app.services.cases import case_for_report, latest_triage, open_case_for_report, utcnow
 from app.services.geo_utils import make_point, point_latlng
+from app.services.surveillance.alerting import on_new_report
 from app.services.triage.fusion import evaluate_with_fusion
 from app.services.triage.rule_engine import TriageInput
 
@@ -121,6 +122,8 @@ def ingest_report(db: Session, data: SharedData, reporter: User, payload: Report
     ))
     min_score = data.triage_config["actions"]["disease_actions_min_score"]
     case = open_case_for_report(db, report, triage, village.block_id, reporter, min_score, received_at)
+    db.flush()
+    on_new_report(db, data, report, triage, case)
     return "created", report, case
 
 

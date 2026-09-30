@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "Plain-language alert summaries (spec 8.4). {syndrome} is the syndrome label from syndromes.json (lower-cased in English), {period} is period_one_day or period_many_days, {disease} a rule name, {village} a village name.",
+  "summaries": {
+    "cluster_one_village": {
+      "en": "{reports} reports of {syndrome} in 1 village {period}",
+      "hi": "{period} 1 गांव से {syndrome} की {reports} सूचनाएं",
+      "mr": "{period} 1 गावातून {syndrome} च्या {reports} नोंदी"
+    },
+    "cluster_many_villages": {
+      "en": "{reports} reports of {syndrome} in {villages} villages {period}",
+      "hi": "{period} {villages} गांवों से {syndrome} की {reports} सूचनाएं",
+      "mr": "{period} {villages} गावांमधून {syndrome} च्या {reports} नोंदी"
+    },
+    "zoonotic": {
+      "en": "Suspected {disease} in {village}. It can spread to people.",
+      "hi": "{village} में {disease} की आशंका। यह इंसानों में फैल सकता है।",
+      "mr": "{village} मध्ये {disease} चा संशय. हा माणसांमध्ये पसरू शकतो."
+    },
+    "mortality": {
+      "en": "{dead} animals died in {village}",
+      "hi": "{village} में {dead} पशुओं की मौत",
+      "mr": "{village} मध्ये {dead} जनावरे मेली"
+    },
+    "period_one_day": {
+      "en": "within 1 day",
+      "hi": "1 दिन में",
+      "mr": "1 दिवसात"
+    },
+    "period_many_days": {
+      "en": "over {days} days",
+      "hi": "{days} दिनों में",
+      "mr": "{days} दिवसांत"
+    }
+  }
+}

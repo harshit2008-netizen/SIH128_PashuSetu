@@ -32,6 +32,7 @@ class SharedData:
     advisory_templates: dict[str, dict]
     lexicon: dict
     geo: dict
+    alert_texts: dict
 
     @property
     def rules_in_order(self) -> list[dict]:
@@ -119,6 +120,7 @@ def load_shared_data(shared_dir: Path = SHARED_DIR) -> SharedData:
         advisory_templates={t["id"]: t for t in read_json(shared_dir / "advisories" / "templates.json")["templates"]},
         lexicon=read_json(shared_dir / "symptom_lexicon.json"),
         geo=read_json(shared_dir / "geo" / "demo_district.json"),
+        alert_texts=read_json(shared_dir / "alerts.json")["summaries"],
     )
     problems = find_reference_problems(data)
     if problems:

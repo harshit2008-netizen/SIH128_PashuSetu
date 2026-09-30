@@ -33,6 +33,9 @@ class Settings(BaseSettings):
     cluster_radius_km: float = 5
     cluster_min_reports: int = 3
     cluster_window_days: int = 14
+    # Background jobs (APScheduler). Tests turn this off.
+    scheduler_enabled: bool = True
+    cluster_job_minutes: int = 5
 
     sla_emergency_min: int = 120
     sla_urgent_min: int = 720

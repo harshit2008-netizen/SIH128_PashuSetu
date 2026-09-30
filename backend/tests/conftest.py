@@ -16,6 +16,8 @@ _base_url = Settings().database_url
 _server_url = _base_url.rsplit("/", 1)[0]
 os.environ["DATABASE_URL"] = f"{_server_url}/{TEST_DB_NAME}"
 os.environ["UPLOAD_DIR"] = tempfile.mkdtemp(prefix="pashusetu-test-uploads-")
+# Jobs run on their own timer; tests call clustering directly instead.
+os.environ["SCHEDULER_ENABLED"] = "false"
 get_settings.cache_clear()
 
 

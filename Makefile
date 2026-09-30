@@ -12,7 +12,8 @@ endif
 .SHELLFLAGS := -eu -o pipefail -c
 
 SCENARIO ?= lsd_outbreak
-SPEED ?= 20
+SPEED ?= 5
+ARGS ?=
 
 .PHONY: help env up down api migrate seed reset-demo simulate sync-shared test test-backend test-mobile apk
 
@@ -40,11 +41,12 @@ migrate: env
 seed: migrate
 	cd backend && uv run python -m scripts.seed
 
-# Seed already starts from empty tables; the simulator joins this in Phase 7.
+# Fresh demo state: seed wipes every table (reports, cases, alerts) and rebuilds the demo world.
 reset-demo: seed
 
+# Needs `make api` running. Extra options: make simulate SCENARIO=background ARGS="--days 30 --reset"
 simulate:
-	@echo "simulate is available from Phase 7 (SCENARIO=$(SCENARIO) SPEED=$(SPEED))." && exit 1
+	cd backend && uv run python -m scripts.simulator --scenario $(SCENARIO) --speed $(SPEED) $(ARGS)
 
 # shared/ is the single source of truth; the app gets a fresh copy, never edits.
 sync-shared:

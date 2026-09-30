@@ -1,5 +1,7 @@
 """PashuSetu FastAPI application entry point."""
 
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
@@ -10,6 +12,7 @@ from app.core.config import get_settings
 from app.core.db import engine
 from app.core.errors import install_error_handlers
 from app.core.shared_loader import get_shared_data
+from app.jobs.scheduler import scheduler_status, start_scheduler, stop_scheduler
 
 settings = get_settings()
 
@@ -17,7 +20,16 @@ settings = get_settings()
 # instead of failing the first report.
 get_shared_data()
 
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    start_scheduler()
+    yield
+    stop_scheduler()
+
+
 app = FastAPI(
+    lifespan=lifespan,
     title="PashuSetu API",
     version="0.1.0",
     description="Livestock disease reporting, triage, surveillance and advisories. "
@@ -52,7 +64,6 @@ def health() -> dict:
     return {
         "status": "ok" if db_status.startswith("ok") else "degraded",
         "db": db_status,
-        # Background jobs (clustering, escalation) arrive in Phase 7.
-        "scheduler": "not_started",
+        "scheduler": scheduler_status(),
         "demo_mode": settings.demo_mode,
     }

@@ -4,7 +4,7 @@
   "source": "OpenStreetMap via Overpass API: taluka boundaries (admin_level 6) and place=village nodes inside them",
   "licence": "Data (c) OpenStreetMap contributors, ODbL 1.0",
   "generated_by": "backend/scripts/geocode_villages.py",
-  "generated_on": "2026-09-29",
+  "generated_on": "2026-09-30",
   "district": {
     "code": "pune",
     "name": {
@@ -19,10 +19,10 @@
     }
   },
   "demo_cluster_villages": [
-    "junnar_vasaiwadi",
-    "junnar_garewadi",
-    "junnar_dadndavarchiwadi",
-    "junnar_taleran"
+    "junnar_uchchhil",
+    "junnar_keldare",
+    "junnar_tirthachiwadi",
+    "junnar_damsechiwadi"
   ],
   "blocks": [
     {
@@ -49,76 +49,64 @@
       },
       "villages": [
         {
-          "code": "junnar_vasaiwadi",
+          "code": "junnar_uchchhil",
           "name": {
-            "en": "Vasaiwadi",
-            "hi": "वसईवाडी",
-            "mr": "वसईवाडी"
+            "en": "Uchchhil",
+            "hi": "उच्छिल",
+            "mr": "उच्छिल"
           },
           "name_source": "transliterated",
-          "lat": 19.3122,
-          "lng": 73.7871,
-          "osm": "node/10720685425"
+          "lat": 19.22297,
+          "lng": 73.71929,
+          "osm": "node/10720685451"
         },
         {
-          "code": "junnar_garewadi",
+          "code": "junnar_keldare",
           "name": {
-            "en": "Garewadi",
-            "hi": "गारेवाडी",
-            "mr": "गारेवाडी"
-          },
-          "name_source": "transliterated",
-          "lat": 19.31254,
-          "lng": 73.78967,
-          "osm": "node/10720685424"
-        },
-        {
-          "code": "junnar_dadndavarchiwadi",
-          "name": {
-            "en": "Dadndavarchiwadi",
-            "hi": "दांडावरचीवाडी",
-            "mr": "दांडावरचीवाडी"
-          },
-          "name_source": "transliterated",
-          "lat": 19.31175,
-          "lng": 73.79105,
-          "osm": "node/10720685423"
-        },
-        {
-          "code": "junnar_taleran",
-          "name": {
-            "en": "Taleran",
-            "hi": "तळेरान",
-            "mr": "तळेरान"
-          },
-          "name_source": "transliterated",
-          "lat": 19.31061,
-          "lng": 73.7813,
-          "osm": "node/10720685428"
-        },
-        {
-          "code": "junnar_ingaloon",
-          "name": {
-            "en": "Ingaloon",
-            "hi": "इंगळून",
-            "mr": "इंगळून"
+            "en": "Keldare",
+            "hi": "केल्दरे",
+            "mr": "केल्दरे"
           },
           "name_source": "osm",
-          "lat": 19.2082,
-          "lng": 73.69904,
-          "osm": "node/10720685456"
+          "lat": 19.2146,
+          "lng": 73.73078,
+          "osm": "node/13413591212"
         },
         {
-          "code": "junnar_ralegaon",
+          "code": "junnar_tirthachiwadi",
           "name": {
-            "en": "Ralegaon",
-            "hi": "राळेगांव",
-            "mr": "राळेगांव"
+            "en": "Tirthachiwadi",
+            "hi": "तीर्थाचीवाडी",
+            "mr": "तीर्थाचीवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 19.23207,
+          "lng": 73.70373,
+          "osm": "node/10720685450"
+        },
+        {
+          "code": "junnar_damsechiwadi",
+          "name": {
+            "en": "Damsechiwadi",
+            "hi": "दमसेचीवाडी",
+            "mr": "दमसेचीवाडी"
+          },
+          "name_source": "transliterated",
+          "lat": 19.21257,
+          "lng": 73.70347,
+          "osm": "node/10720685457"
+        },
+        {
+          "code": "junnar_botarde",
+          "name": {
+            "en": "Botarde",
+            "hi": "बोतार्डे",
+            "mr": "बोतार्डे"
           },
           "name_source": "osm",
-          "lat": 19.20138,
-          "lng": 73.77175,
-          "osm": "node/13413581583"
+          "lat": 19.19545,
+          "lng": 73.79395,
+          "osm": "node/13413907261"
         },
         {
           "code": "junnar_aalephata",
@@ -143,6 +131,18 @@
           "lat": 19.11569,
           "lng": 74.17544,
           "osm": "node/2272316782"
+        },
+        {
+          "code": "junnar_bori_budruk",
+          "name": {
+            "en": "Bori Budruk",
+            "hi": "बोरी बुद्रुक",
+            "mr": "बोरी बुद्रुक"
+          },
+          "name_source": "osm",
+          "lat": 19.11873,
+          "lng": 74.09991,
+          "osm": "node/245670999"
         }
       ]
     },
