@@ -76,4 +76,6 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Phase 7 (surveillance + simulator): done, commit d61a7a7.
 - Phase 8 (officer, lab, advisories): done, commit abd47b3.
 - Phase 9 (demo hardening): demo script, `make demo-check`, README, checklist in `docs/demo_checklist.md`.
-  Open items: Phases 5 (voice) and 6 (LSD image model), backup screen recording, native-speaker review.
+  Open items: Phase 5 (voice), backup screen recording, native-speaker review.
+- Phase 6 (LSD image model): trained on Kaggle, commit a0167fb (see ml/README.md). Left: app integration,
+  About the AI screen, parity test. The phone must crop the photo to a centred square before resizing to 224x224, same as train.py.
