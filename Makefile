@@ -15,10 +15,10 @@ SCENARIO ?= lsd_outbreak
 SPEED ?= 5
 ARGS ?=
 
-.PHONY: help env up down api migrate seed reset-demo simulate sync-shared test test-backend test-mobile apk
+.PHONY: help env up down api migrate seed reset-demo demo-check simulate sync-shared test test-backend test-mobile apk
 
 help:
-	@echo "Targets: up down api migrate seed reset-demo simulate sync-shared test apk"
+	@echo "Targets: up down api migrate seed reset-demo demo-check simulate sync-shared test apk"
 
 # Create .env from the example the first time, never overwrite an edited one.
 env:
@@ -47,6 +47,10 @@ reset-demo: seed
 # Needs `make api` running. Extra options: make simulate SCENARIO=background ARGS="--days 30 --reset"
 simulate:
 	cd backend && uv run python -m scripts.simulator --scenario $(SCENARIO) --speed $(SPEED) $(ARGS)
+
+# Rehearse the whole demo through the API (needs `make api`): resets data, checks every step.
+demo-check: reset-demo
+	cd backend && uv run python -m scripts.demo_check
 
 # shared/ is the single source of truth; the app gets a fresh copy, never edits.
 sync-shared:

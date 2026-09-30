@@ -73,4 +73,7 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Phase 2 (backend core): done, commit 51a9bc9.
 - Phase 3 (mobile foundation + design system): done, commit 77fba74.
 - Phase 4 (report flow + offline + on-device triage): done, commit ee2ef69.
-- Phase 7 (surveillance + simulator): in review. Phases 5 (voice) and 6 (LSD image model) not started.
+- Phase 7 (surveillance + simulator): done, commit d61a7a7.
+- Phase 8 (officer, lab, advisories): done, commit abd47b3.
+- Phase 9 (demo hardening): demo script, `make demo-check`, README, checklist in `docs/demo_checklist.md`.
+  Open items: Phases 5 (voice) and 6 (LSD image model), backup screen recording, native-speaker review.
