@@ -44,3 +44,4 @@ Thumbs.db
 
 # Local caches (e.g. raw OpenStreetMap downloads)
 backend/.cache/
+mobile/android/build/
