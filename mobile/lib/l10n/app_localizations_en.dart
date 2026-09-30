@@ -68,9 +68,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reportActionTitle => 'Report a sick animal';
 
   @override
-  String get reportComingNext => 'The report steps arrive in the next build.';
-
-  @override
   String get reportActionSubtitle => 'Speak or tap the signs';
 
   @override
@@ -342,4 +339,177 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get outboxEmpty => 'The outbox is empty.';
+
+  @override
+  String get stepAnimal => 'Animal';
+
+  @override
+  String get stepSigns => 'Signs';
+
+  @override
+  String get stepPhoto => 'Photo';
+
+  @override
+  String get stepCount => 'How many';
+
+  @override
+  String get stepCheck => 'Check and send';
+
+  @override
+  String get whichSpecies => 'Which animal is sick?';
+
+  @override
+  String get whichAnimal => 'Which animal? (optional)';
+
+  @override
+  String get notRegistered => 'Not registered';
+
+  @override
+  String get whereIsAnimal => 'Where is the animal?';
+
+  @override
+  String get findingLocation => 'Finding location';
+
+  @override
+  String get usingPhoneLocation => 'Using the phone\'s location';
+
+  @override
+  String get usingVillageLocation => 'Using the village location';
+
+  @override
+  String get changeVillage => 'Change village';
+
+  @override
+  String get chooseVillage => 'Choose the village';
+
+  @override
+  String get signsTitle => 'What do you see?';
+
+  @override
+  String get signsHint => 'Tap every sign you see.';
+
+  @override
+  String get photoTitle => 'Take a photo of the problem area';
+
+  @override
+  String get photoHelp =>
+      'Stand close, in daylight, with the lump or sore in the middle. You can skip this.';
+
+  @override
+  String get takePhoto => 'Take photo';
+
+  @override
+  String get retakePhoto => 'Take again';
+
+  @override
+  String get removePhoto => 'Remove photo';
+
+  @override
+  String get cameraDenied =>
+      'The camera is not allowed. Allow it in the phone settings to add a photo.';
+
+  @override
+  String get howManyTitle => 'How many animals?';
+
+  @override
+  String get sickLabel => 'Sick';
+
+  @override
+  String get deadLabel => 'Dead';
+
+  @override
+  String get totalLabel => 'All animals here';
+
+  @override
+  String get onsetTitle => 'When did it start?';
+
+  @override
+  String get onsetToday => 'Today';
+
+  @override
+  String get onsetYesterday => 'Yesterday';
+
+  @override
+  String get onsetFewDays => '2 or 3 days ago';
+
+  @override
+  String get onsetLonger => 'More than 3 days';
+
+  @override
+  String get sendReport => 'Send report';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get needSignOrDeath =>
+      'Choose at least one sign, or add a dead animal.';
+
+  @override
+  String get totalTooSmall =>
+      'All animals cannot be fewer than sick plus dead.';
+
+  @override
+  String get noSignsChosen => 'No signs chosen';
+
+  @override
+  String get noPhoto => 'No photo';
+
+  @override
+  String get photoAdded => 'Photo added';
+
+  @override
+  String get savedOnPhone =>
+      'Saved on phone. It will send by itself when there is signal.';
+
+  @override
+  String get reportSent => 'Report sent';
+
+  @override
+  String get sendingReport => 'Sending report';
+
+  @override
+  String suspectedDisease(String disease) {
+    return 'Suspected: $disease';
+  }
+
+  @override
+  String get noClearMatch => 'No clear disease match';
+
+  @override
+  String get noClearMatchHelp =>
+      'Watch the animal. If it gets worse or others fall sick, call the vet.';
+
+  @override
+  String get unknownSyndrome =>
+      'Signs do not match a known disease in this app. A vet should see this animal.';
+
+  @override
+  String get mostLikely => 'Most likely';
+
+  @override
+  String get whyResult => 'Why';
+
+  @override
+  String get doThisNow => 'Do this now';
+
+  @override
+  String callNumber(String number) {
+    return 'Call $number';
+  }
+
+  @override
+  String get zoonoticWarning =>
+      'This disease can spread to people. Keep children away and wash hands after touching animals.';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String countSummary(int sick, int dead, int total) {
+    return '$sick sick, $dead dead, $total in all';
+  }
 }

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/api/api_client.dart';
 import '../../core/db/app_database.dart';
 import '../../core/settings/app_settings.dart';
+import '../../core/sync/sync_service.dart';
 import '../../widgets/widgets.dart';
 
 typedef Json = Map<String, dynamic>;
@@ -62,6 +63,10 @@ Future<PullData> _readCache(AppDatabase db) async {
 
 /// Farmer / sevak data: from the server when reachable, else from the phone.
 final pullDataProvider = FutureProvider<PullData>((ref) async {
+  // After the outbox sends something, fetch again so the new case shows up.
+  ref.listen(syncControllerProvider, (_, summary) {
+    if ((summary?.sent ?? 0) > 0) ref.invalidateSelf();
+  });
   final api = ref.watch(apiClientProvider);
   final db = ref.watch(databaseProvider);
   try {
@@ -98,6 +103,8 @@ final caseQueueProvider = FutureProvider<(List<Json>, bool)>((ref) async {
 });
 
 final unsentCountProvider = StreamProvider<int>((ref) => ref.watch(databaseProvider).watchUnsentCount());
+
+final outboxProvider = StreamProvider<List<OutboxReport>>((ref) => ref.watch(databaseProvider).watchOutbox());
 
 /// The sync pill: offline beats everything, then "waiting", then "all sent".
 final syncStatusProvider = Provider<(SyncState, int)>((ref) {

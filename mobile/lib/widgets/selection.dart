@@ -117,17 +117,23 @@ class SymptomTile extends StatelessWidget {
       label: label, pictogram: pictogram, selected: selected, onTap: onTap, onHelp: onHelp);
 }
 
-/// Grid of symptom tiles: 2 columns in farmer mode, 3 for a pashu sevak.
+/// Grid of symptom tiles: 2 columns in farmer mode, 3 for a pashu sevak when
+/// there is room. Below [minTileWidth] a label like "Drooling" would break
+/// mid-word, so small phones get 2 columns for everyone.
 class SymptomGrid extends StatelessWidget {
   const SymptomGrid({super.key, required this.children});
 
   final List<Widget> children;
 
+  static const minTileWidth = 150.0;
+
   @override
   Widget build(BuildContext context) {
-    final columns = FarmerMode.of(context) ? 2 : 3;
     return LayoutBuilder(builder: (context, constraints) {
-      final width = (constraints.maxWidth - AppSpacing.sm * (columns - 1)) / columns;
+      double widthFor(int columns) => (constraints.maxWidth - AppSpacing.sm * (columns - 1)) / columns;
+      final wanted = FarmerMode.of(context) ? 2 : 3;
+      final columns = widthFor(wanted) >= minTileWidth ? wanted : 2;
+      final width = widthFor(columns);
       return Wrap(
         spacing: AppSpacing.sm,
         runSpacing: AppSpacing.sm,

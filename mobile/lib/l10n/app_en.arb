@@ -2,16 +2,13 @@
   "@@locale": "en",
   "appName": "PashuSetu",
   "notDiagnosis": "This is not a diagnosis. A vet or lab must confirm.",
-
   "roleFarmer": "Farmer",
   "rolePashuSevak": "Pashu sevak",
   "roleVet": "Vet",
   "roleLab": "Lab",
   "roleDistrictOfficer": "District officer",
-
   "chooseLanguage": "Choose your language",
   "continueButton": "Continue",
-
   "loginTitle": "Who are you?",
   "loginPhoneLabel": "Phone number",
   "loginOtpLabel": "OTP",
@@ -19,18 +16,31 @@
   "demoOtpNote": "Demo login. OTP is 123456.",
   "loginWorking": "Logging in",
   "serverUnreachable": "Could not reach the server. Check that the laptop is on the same Wi-Fi, then try again.",
-
   "greeting": "Namaste, {name}",
-  "@greeting": {"placeholders": {"name": {"type": "String"}}},
+  "@greeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "reportActionTitle": "Report a sick animal",
-  "reportComingNext": "The report steps arrive in the next build.",
   "reportActionSubtitle": "Speak or tap the signs",
   "alertsNearYou": "Alerts near you",
   "noAlertsNearYou": "No alerts near you. When a vet sends an advisory, it appears here.",
   "myAnimals": "My animals",
   "noAnimals": "No animals registered yet. Your pashu sevak can register them with ear tags.",
   "vaccineDueOn": "{vaccine} vaccine due on {date}",
-  "@vaccineDueOn": {"placeholders": {"vaccine": {"type": "String"}, "date": {"type": "String"}}},
+  "@vaccineDueOn": {
+    "placeholders": {
+      "vaccine": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "myReports": "My reports",
   "noReports": "No reports yet. When you report a sick animal, it appears here.",
   "vaccinationsDue": "Vaccinations due",
@@ -43,15 +53,25 @@
   "notMatched": "Not matched to a disease",
   "waitingForVet": "Waiting for a vet",
   "assignedTo": "Vet: {name}",
-  "@assignedTo": {"placeholders": {"name": {"type": "String"}}},
+  "@assignedTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "showingSavedData": "Showing data saved on this phone.",
   "tryAgain": "Try again",
-
   "syncAllSent": "All sent",
   "syncWaiting": "{count, plural, =1{1 waiting to send} other{{count} waiting to send}}",
-  "@syncWaiting": {"placeholders": {"count": {"type": "int"}}},
+  "@syncWaiting": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "syncOffline": "Offline, saved on phone",
-
   "severityEmergency": "Emergency",
   "severityUrgent": "Urgent",
   "severityRoutine": "Routine",
@@ -59,14 +79,19 @@
   "confidenceModerate": "Moderate",
   "confidenceLow": "Low",
   "notReported": "Not reported: {sign}",
-  "@notReported": {"placeholders": {"sign": {"type": "String"}}},
+  "@notReported": {
+    "placeholders": {
+      "sign": {
+        "type": "String"
+      }
+    }
+  },
   "photoChip": "Photo",
   "whatDoesThisMean": "What does this mean?",
   "listen": "Listen",
   "decrease": "Decrease",
   "increase": "Increase",
   "selected": "Selected",
-
   "statusReported": "Reported",
   "statusTriaged": "Checked by the app",
   "statusVetAssigned": "Vet assigned",
@@ -77,31 +102,64 @@
   "statusUnderTreatment": "Under treatment",
   "statusResolved": "Resolved",
   "statusClosedRuledOut": "Ruled out",
-
   "kpiOpenCases": "Open cases",
   "kpiEmergency": "Emergency",
   "kpiUrgent": "Urgent",
   "kpiWaitingForVet": "Waiting for vet",
-
   "justNow": "just now",
   "minutesAgo": "{count} min ago",
-  "@minutesAgo": {"placeholders": {"count": {"type": "int"}}},
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "hoursAgo": "{count, plural, =1{1 hour ago} other{{count} hours ago}}",
-  "@hoursAgo": {"placeholders": {"count": {"type": "int"}}},
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "daysAgo": "{count, plural, =1{1 day ago} other{{count} days ago}}",
-  "@daysAgo": {"placeholders": {"count": {"type": "int"}}},
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "kmAway": "{distance} km away",
-  "@kmAway": {"placeholders": {"distance": {"type": "String"}}},
-
+  "@kmAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
   "settings": "Settings",
   "language": "Language",
   "changeRole": "Change role (demo)",
   "simulateNoSignal": "Simulate no signal (demo)",
   "simulateNoSignalHelp": "The app acts as if there is no network, so the offline path can be shown.",
   "appVersion": "App version {version}",
-  "@appVersion": {"placeholders": {"version": {"type": "String"}}},
+  "@appVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "engineVersion": "Triage engine {version}",
-  "@engineVersion": {"placeholders": {"version": {"type": "String"}}},
+  "@engineVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "logOut": "Log out",
   "developerOptions": "Developer options",
   "developerOptionsOn": "Developer options are on",
@@ -115,5 +173,85 @@
   "clearLocalData": "Clear local data",
   "clearLocalDataDone": "Local data cleared",
   "showOutbox": "Show outbox",
-  "outboxEmpty": "The outbox is empty."
+  "outboxEmpty": "The outbox is empty.",
+  "stepAnimal": "Animal",
+  "stepSigns": "Signs",
+  "stepPhoto": "Photo",
+  "stepCount": "How many",
+  "stepCheck": "Check and send",
+  "whichSpecies": "Which animal is sick?",
+  "whichAnimal": "Which animal? (optional)",
+  "notRegistered": "Not registered",
+  "whereIsAnimal": "Where is the animal?",
+  "findingLocation": "Finding location",
+  "usingPhoneLocation": "Using the phone's location",
+  "usingVillageLocation": "Using the village location",
+  "changeVillage": "Change village",
+  "chooseVillage": "Choose the village",
+  "signsTitle": "What do you see?",
+  "signsHint": "Tap every sign you see.",
+  "photoTitle": "Take a photo of the problem area",
+  "photoHelp": "Stand close, in daylight, with the lump or sore in the middle. You can skip this.",
+  "takePhoto": "Take photo",
+  "retakePhoto": "Take again",
+  "removePhoto": "Remove photo",
+  "cameraDenied": "The camera is not allowed. Allow it in the phone settings to add a photo.",
+  "howManyTitle": "How many animals?",
+  "sickLabel": "Sick",
+  "deadLabel": "Dead",
+  "totalLabel": "All animals here",
+  "onsetTitle": "When did it start?",
+  "onsetToday": "Today",
+  "onsetYesterday": "Yesterday",
+  "onsetFewDays": "2 or 3 days ago",
+  "onsetLonger": "More than 3 days",
+  "sendReport": "Send report",
+  "back": "Back",
+  "next": "Next",
+  "needSignOrDeath": "Choose at least one sign, or add a dead animal.",
+  "totalTooSmall": "All animals cannot be fewer than sick plus dead.",
+  "noSignsChosen": "No signs chosen",
+  "noPhoto": "No photo",
+  "photoAdded": "Photo added",
+  "savedOnPhone": "Saved on phone. It will send by itself when there is signal.",
+  "reportSent": "Report sent",
+  "sendingReport": "Sending report",
+  "suspectedDisease": "Suspected: {disease}",
+  "@suspectedDisease": {
+    "placeholders": {
+      "disease": {
+        "type": "String"
+      }
+    }
+  },
+  "noClearMatch": "No clear disease match",
+  "noClearMatchHelp": "Watch the animal. If it gets worse or others fall sick, call the vet.",
+  "unknownSyndrome": "Signs do not match a known disease in this app. A vet should see this animal.",
+  "mostLikely": "Most likely",
+  "whyResult": "Why",
+  "doThisNow": "Do this now",
+  "callNumber": "Call {number}",
+  "@callNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "zoonoticWarning": "This disease can spread to people. Keep children away and wash hands after touching animals.",
+  "done": "Done",
+  "countSummary": "{sick} sick, {dead} dead, {total} in all",
+  "@countSummary": {
+    "placeholders": {
+      "sick": {
+        "type": "int"
+      },
+      "dead": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

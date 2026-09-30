@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router/app_router.dart';
 import 'core/settings/app_settings.dart';
+import 'core/sync/sync_service.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 
@@ -12,6 +13,8 @@ class PashuSetuApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(settingsProvider).languageOrDefault;
+    // Keeps the outbox sync running (start, network change, every 60 s).
+    ref.watch(syncControllerProvider);
     return MaterialApp.router(
       title: 'PashuSetu',
       debugShowCheckedModeBanner: false,

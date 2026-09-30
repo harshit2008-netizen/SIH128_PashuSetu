@@ -34,6 +34,8 @@ cd mobile && flutter analyze && flutter test && flutter run
 - The Android SDK path has a space, so Flutter points at the 8.3 short path: `flutter config --android-sdk C:\Users\[user]\AppData\Local\Android\Sdk`.
 - Gradle fails with "Unable to establish loopback connection" unless `JAVA_TOOL_OPTIONS=-Djdk.net.unixdomain.tmpdir=E:\dev\tmp` is set.
 - The home network can't reach GitHub CDN IP 185.199.109.133, and Java doesn't fall back. If a Gradle/SDK download times out, fetch it with curl or `android sdk install <pkg>`.
+- Android build: `kotlin.incremental=false` (E: project vs C: pub cache breaks incremental Kotlin). No
+  permission_handler (needs compileSdk 37); photos use the camera app, so no CAMERA permission yet.
 - Team phone for testing: Vivo V2443 (Android 16), adb id `[phone-id]`. Reach the laptop via `adb reverse tcp:8000 tcp:8000`
   (app default API URL is http://127.0.0.1:8000).
 
@@ -69,4 +71,5 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Phase 0 (scaffold): done, commit 865d1a2.
 - Phase 1 (shared contracts + engines): done, commit ebb504f.
 - Phase 2 (backend core): done, commit 51a9bc9.
-- Phase 3 (mobile foundation + design system): in review.
+- Phase 3 (mobile foundation + design system): done, commit 77fba74.
+- Phase 4 (report flow + offline + on-device triage): in review.

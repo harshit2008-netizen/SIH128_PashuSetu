@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
+import '../../core/db/app_database.dart';
 import '../../core/settings/app_settings.dart';
+import '../../core/shared_data/shared_data.dart';
+import '../../core/sync/sync_service.dart';
 import '../../core/shared_data/shared_data_provider.dart';
 import '../../core/theme/tokens.dart';
 import '../../l10n/app_localizations.dart';
@@ -25,7 +30,8 @@ class HomeShell extends ConsumerWidget {
     final (syncState, waiting) = ref.watch(syncStatusProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const AppMark(),
+        // With the sync pill there is no room for the name next to the mark.
+        title: AppMark(showName: !showSyncPill),
         titleSpacing: AppSpacing.lg,
         actions: [
           if (showSyncPill)
@@ -66,6 +72,7 @@ class FarmerHome extends ConsumerWidget {
     final language = ref.watch(languageProvider);
     final pull = ref.watch(pullDataProvider);
     final shared = ref.watch(sharedDataProvider).value;
+    final unsent = (ref.watch(outboxProvider).value ?? const []).where((r) => r.status != 'sent').toList();
 
     String diseaseName(String? id) =>
         id == null ? l10n.notMatched : localized(shared?.rules[id]?['name'], language);
@@ -75,15 +82,18 @@ class FarmerHome extends ConsumerWidget {
       enabled: !sevak,
       child: HomeShell(
         showSyncPill: true,
-        onRefresh: () => ref.refresh(pullDataProvider.future),
+        onRefresh: () async {
+          await ref.read(syncControllerProvider.notifier).syncNow(force: true);
+          ref.invalidate(pullDataProvider);
+          await ref.read(pullDataProvider.future);
+        },
         body: ListView(
           padding: EdgeInsets.fromLTRB(padding, AppSpacing.sm, padding, AppSpacing.xxxl),
           children: [
             Text(l10n.greeting(_firstName(settings.user)), style: text.headlineMedium),
             if (_place(settings.user, language).isNotEmpty) Text(_place(settings.user, language), style: text.bodyLarge),
             const SizedBox(height: AppSpacing.lg),
-            ReportActionButton(onPressed: () => ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(l10n.reportComingNext)))),
+            ReportActionButton(onPressed: () => context.push('/report')),
             ...pull.when(
               loading: () => [const Padding(padding: EdgeInsets.all(AppSpacing.xl), child: Center(child: CircularProgressIndicator()))],
               error: (error, _) => [EmptyState(message: '$error', actionLabel: l10n.tryAgain, onAction: () => ref.invalidate(pullDataProvider))],
@@ -111,7 +121,15 @@ class FarmerHome extends ConsumerWidget {
                 ],
                 SectionHeader(l10n.myReports),
                 ListGroup(children: [
-                  if (data.cases.isEmpty) EmptyState(message: l10n.noReports),
+                  // Reports still on the phone come first; tap to see their result again.
+                  for (final row in unsent)
+                    AlertRow(
+                      severity: SeverityStyle.parse((jsonDecode(row.deviceTriage ?? '{}') as Map)['severity'] as String?),
+                      summary: _outboxTitle(row, shared, language, l10n),
+                      meta: '${timeAgo(l10n, row.createdAt)}. ${l10n.syncWaiting(1)}',
+                      onTap: () => context.push('/triage/${row.clientUuid}'),
+                    ),
+                  if (data.cases.isEmpty && unsent.isEmpty) EmptyState(message: l10n.noReports),
                   for (final c in data.cases.take(10))
                     AlertRow(
                       severity: SeverityStyle.parse(c['severity'] as String?),
@@ -128,6 +146,12 @@ class FarmerHome extends ConsumerWidget {
       ),
     );
   }
+}
+
+String _outboxTitle(OutboxReport row, SharedData? shared, String language, AppLocalizations l10n) {
+  final candidates = ((jsonDecode(row.deviceTriage ?? '{}') as Map)['candidates'] as List? ?? const []);
+  if (candidates.isEmpty || ((candidates.first as Map)['score'] as num) < 0.4) return l10n.notMatched;
+  return localized(shared?.rules[(candidates.first as Map)['disease_id']]?['name'], language);
 }
 
 class _AnimalList extends StatelessWidget {

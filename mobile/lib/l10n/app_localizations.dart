@@ -208,12 +208,6 @@ abstract class AppLocalizations {
   /// **'Report a sick animal'**
   String get reportActionTitle;
 
-  /// No description provided for @reportComingNext.
-  ///
-  /// In en, this message translates to:
-  /// **'The report steps arrive in the next build.'**
-  String get reportComingNext;
-
   /// No description provided for @reportActionSubtitle.
   ///
   /// In en, this message translates to:
@@ -669,6 +663,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The outbox is empty.'**
   String get outboxEmpty;
+
+  /// No description provided for @stepAnimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Animal'**
+  String get stepAnimal;
+
+  /// No description provided for @stepSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs'**
+  String get stepSigns;
+
+  /// No description provided for @stepPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get stepPhoto;
+
+  /// No description provided for @stepCount.
+  ///
+  /// In en, this message translates to:
+  /// **'How many'**
+  String get stepCount;
+
+  /// No description provided for @stepCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Check and send'**
+  String get stepCheck;
+
+  /// No description provided for @whichSpecies.
+  ///
+  /// In en, this message translates to:
+  /// **'Which animal is sick?'**
+  String get whichSpecies;
+
+  /// No description provided for @whichAnimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Which animal? (optional)'**
+  String get whichAnimal;
+
+  /// No description provided for @notRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Not registered'**
+  String get notRegistered;
+
+  /// No description provided for @whereIsAnimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Where is the animal?'**
+  String get whereIsAnimal;
+
+  /// No description provided for @findingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding location'**
+  String get findingLocation;
+
+  /// No description provided for @usingPhoneLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Using the phone\'s location'**
+  String get usingPhoneLocation;
+
+  /// No description provided for @usingVillageLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Using the village location'**
+  String get usingVillageLocation;
+
+  /// No description provided for @changeVillage.
+  ///
+  /// In en, this message translates to:
+  /// **'Change village'**
+  String get changeVillage;
+
+  /// No description provided for @chooseVillage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the village'**
+  String get chooseVillage;
+
+  /// No description provided for @signsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you see?'**
+  String get signsTitle;
+
+  /// No description provided for @signsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap every sign you see.'**
+  String get signsHint;
+
+  /// No description provided for @photoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo of the problem area'**
+  String get photoTitle;
+
+  /// No description provided for @photoHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Stand close, in daylight, with the lump or sore in the middle. You can skip this.'**
+  String get photoHelp;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get takePhoto;
+
+  /// No description provided for @retakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take again'**
+  String get retakePhoto;
+
+  /// No description provided for @removePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get removePhoto;
+
+  /// No description provided for @cameraDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'The camera is not allowed. Allow it in the phone settings to add a photo.'**
+  String get cameraDenied;
+
+  /// No description provided for @howManyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How many animals?'**
+  String get howManyTitle;
+
+  /// No description provided for @sickLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sick'**
+  String get sickLabel;
+
+  /// No description provided for @deadLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dead'**
+  String get deadLabel;
+
+  /// No description provided for @totalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'All animals here'**
+  String get totalLabel;
+
+  /// No description provided for @onsetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When did it start?'**
+  String get onsetTitle;
+
+  /// No description provided for @onsetToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get onsetToday;
+
+  /// No description provided for @onsetYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get onsetYesterday;
+
+  /// No description provided for @onsetFewDays.
+  ///
+  /// In en, this message translates to:
+  /// **'2 or 3 days ago'**
+  String get onsetFewDays;
+
+  /// No description provided for @onsetLonger.
+  ///
+  /// In en, this message translates to:
+  /// **'More than 3 days'**
+  String get onsetLonger;
+
+  /// No description provided for @sendReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Send report'**
+  String get sendReport;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @needSignOrDeath.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose at least one sign, or add a dead animal.'**
+  String get needSignOrDeath;
+
+  /// No description provided for @totalTooSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'All animals cannot be fewer than sick plus dead.'**
+  String get totalTooSmall;
+
+  /// No description provided for @noSignsChosen.
+  ///
+  /// In en, this message translates to:
+  /// **'No signs chosen'**
+  String get noSignsChosen;
+
+  /// No description provided for @noPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'No photo'**
+  String get noPhoto;
+
+  /// No description provided for @photoAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo added'**
+  String get photoAdded;
+
+  /// No description provided for @savedOnPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved on phone. It will send by itself when there is signal.'**
+  String get savedOnPhone;
+
+  /// No description provided for @reportSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Report sent'**
+  String get reportSent;
+
+  /// No description provided for @sendingReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending report'**
+  String get sendingReport;
+
+  /// No description provided for @suspectedDisease.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspected: {disease}'**
+  String suspectedDisease(String disease);
+
+  /// No description provided for @noClearMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No clear disease match'**
+  String get noClearMatch;
+
+  /// No description provided for @noClearMatchHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch the animal. If it gets worse or others fall sick, call the vet.'**
+  String get noClearMatchHelp;
+
+  /// No description provided for @unknownSyndrome.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs do not match a known disease in this app. A vet should see this animal.'**
+  String get unknownSyndrome;
+
+  /// No description provided for @mostLikely.
+  ///
+  /// In en, this message translates to:
+  /// **'Most likely'**
+  String get mostLikely;
+
+  /// No description provided for @whyResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Why'**
+  String get whyResult;
+
+  /// No description provided for @doThisNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Do this now'**
+  String get doThisNow;
+
+  /// No description provided for @callNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Call {number}'**
+  String callNumber(String number);
+
+  /// No description provided for @zoonoticWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This disease can spread to people. Keep children away and wash hands after touching animals.'**
+  String get zoonoticWarning;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @countSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{sick} sick, {dead} dead, {total} in all'**
+  String countSummary(int sick, int dead, int total);
 }
 
 class _AppLocalizationsDelegate

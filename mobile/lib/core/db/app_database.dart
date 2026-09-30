@@ -16,6 +16,13 @@ class OutboxReports extends Table {
   TextColumn get deviceTriage => text().nullable()(); // JSON triage result shown to the user
   DateTimeColumn get createdAt => dateTime()();
 
+  // Added in schema 2 (sync worker):
+  /// Not before this time: exponential backoff after a failed send.
+  DateTimeColumn get nextAttemptAt => dateTime().nullable()();
+  TextColumn get serverReportId => text().nullable()();
+  TextColumn get serverCaseId => text().nullable()();
+  BoolColumn get photoUploaded => boolean().withDefault(const Constant(false))();
+
   @override
   Set<Column> get primaryKey => {clientUuid};
 }
@@ -79,7 +86,20 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.onDevice() : super(driftDatabase(name: 'pashusetu'));
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onUpgrade: (m, from, to) async {
+          // Phones installed with Phase 3 have schema 1: add the sync columns.
+          if (from < 2) {
+            await m.addColumn(outboxReports, outboxReports.nextAttemptAt);
+            await m.addColumn(outboxReports, outboxReports.serverReportId);
+            await m.addColumn(outboxReports, outboxReports.serverCaseId);
+            await m.addColumn(outboxReports, outboxReports.photoUploaded);
+          }
+        },
+      );
 
   // ---------- settings ----------
 
@@ -111,6 +131,12 @@ class AppDatabase extends _$AppDatabase {
 
   Future<List<OutboxReport>> allOutbox() =>
       (select(outboxReports)..orderBy([(t) => OrderingTerm.asc(t.createdAt)])).get();
+
+  Stream<OutboxReport?> watchOutboxItem(String clientUuid) =>
+      (select(outboxReports)..where((t) => t.clientUuid.equals(clientUuid))).watchSingleOrNull();
+
+  Stream<List<OutboxReport>> watchOutbox() =>
+      (select(outboxReports)..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).watch();
 
   // ---------- caches ----------
 

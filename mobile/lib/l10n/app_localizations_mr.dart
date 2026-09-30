@@ -68,10 +68,6 @@ class AppLocalizationsMr extends AppLocalizations {
   String get reportActionTitle => 'आजारी जनावराची माहिती द्या';
 
   @override
-  String get reportComingNext =>
-      'माहिती देण्याच्या पायऱ्या पुढील आवृत्तीत येतील.';
-
-  @override
   String get reportActionSubtitle => 'बोला किंवा लक्षणे निवडा';
 
   @override
@@ -343,4 +339,177 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get outboxEmpty => 'आउटबॉक्स रिकामा आहे.';
+
+  @override
+  String get stepAnimal => 'जनावर';
+
+  @override
+  String get stepSigns => 'लक्षणे';
+
+  @override
+  String get stepPhoto => 'फोटो';
+
+  @override
+  String get stepCount => 'किती';
+
+  @override
+  String get stepCheck => 'तपासा आणि पाठवा';
+
+  @override
+  String get whichSpecies => 'कोणते जनावर आजारी आहे?';
+
+  @override
+  String get whichAnimal => 'कोणते जनावर? (ऐच्छिक)';
+
+  @override
+  String get notRegistered => 'नोंद नाही';
+
+  @override
+  String get whereIsAnimal => 'जनावर कुठे आहे?';
+
+  @override
+  String get findingLocation => 'जागा शोधत आहे';
+
+  @override
+  String get usingPhoneLocation => 'फोनची जागा वापरली';
+
+  @override
+  String get usingVillageLocation => 'गावाची जागा वापरली';
+
+  @override
+  String get changeVillage => 'गाव बदला';
+
+  @override
+  String get chooseVillage => 'गाव निवडा';
+
+  @override
+  String get signsTitle => 'तुम्हाला काय दिसते?';
+
+  @override
+  String get signsHint => 'दिसणाऱ्या प्रत्येक लक्षणावर टॅप करा.';
+
+  @override
+  String get photoTitle => 'आजारी भागाचा फोटो घ्या';
+
+  @override
+  String get photoHelp =>
+      'दिवसाच्या प्रकाशात, जवळून फोटो घ्या, गाठ किंवा जखम मध्ये ठेवा. हे वगळू शकता.';
+
+  @override
+  String get takePhoto => 'फोटो घ्या';
+
+  @override
+  String get retakePhoto => 'पुन्हा घ्या';
+
+  @override
+  String get removePhoto => 'फोटो काढा';
+
+  @override
+  String get cameraDenied =>
+      'कॅमेऱ्याला परवानगी नाही. फोटो जोडण्यासाठी फोनच्या सेटिंगमध्ये परवानगी द्या.';
+
+  @override
+  String get howManyTitle => 'किती जनावरे?';
+
+  @override
+  String get sickLabel => 'आजारी';
+
+  @override
+  String get deadLabel => 'मेलेली';
+
+  @override
+  String get totalLabel => 'इथे एकूण जनावरे';
+
+  @override
+  String get onsetTitle => 'कधी सुरू झाले?';
+
+  @override
+  String get onsetToday => 'आज';
+
+  @override
+  String get onsetYesterday => 'काल';
+
+  @override
+  String get onsetFewDays => '2-3 दिवसांपूर्वी';
+
+  @override
+  String get onsetLonger => '3 दिवसांपेक्षा जास्त';
+
+  @override
+  String get sendReport => 'माहिती पाठवा';
+
+  @override
+  String get back => 'मागे';
+
+  @override
+  String get next => 'पुढे';
+
+  @override
+  String get needSignOrDeath =>
+      'किमान एक लक्षण निवडा, किंवा मेलेले जनावर जोडा.';
+
+  @override
+  String get totalTooSmall =>
+      'एकूण जनावरे आजारी आणि मेलेल्यांपेक्षा कमी असू शकत नाहीत.';
+
+  @override
+  String get noSignsChosen => 'कोणतेही लक्षण निवडले नाही';
+
+  @override
+  String get noPhoto => 'फोटो नाही';
+
+  @override
+  String get photoAdded => 'फोटो जोडला';
+
+  @override
+  String get savedOnPhone =>
+      'फोनमध्ये जतन केले. नेटवर्क आल्यावर आपोआप पाठवले जाईल.';
+
+  @override
+  String get reportSent => 'माहिती पाठवली';
+
+  @override
+  String get sendingReport => 'माहिती पाठवत आहे';
+
+  @override
+  String suspectedDisease(String disease) {
+    return 'संशय: $disease';
+  }
+
+  @override
+  String get noClearMatch => 'कोणत्याही आजाराशी स्पष्ट जुळत नाही';
+
+  @override
+  String get noClearMatchHelp =>
+      'जनावरावर लक्ष ठेवा. प्रकृती बिघडली किंवा इतर जनावरे आजारी पडली तर पशुवैद्यकाला फोन करा.';
+
+  @override
+  String get unknownSyndrome =>
+      'ही लक्षणे या अॅपमधील कोणत्याही माहीत आजाराशी जुळत नाहीत. पशुवैद्यकाला हे जनावर दाखवा.';
+
+  @override
+  String get mostLikely => 'सर्वात शक्य';
+
+  @override
+  String get whyResult => 'का';
+
+  @override
+  String get doThisNow => 'आत्ता हे करा';
+
+  @override
+  String callNumber(String number) {
+    return '$number वर फोन करा';
+  }
+
+  @override
+  String get zoonoticWarning =>
+      'हा आजार माणसांमध्ये पसरू शकतो. मुलांना दूर ठेवा आणि जनावराला स्पर्श केल्यावर हात धुवा.';
+
+  @override
+  String get done => 'ठीक आहे';
+
+  @override
+  String countSummary(int sick, int dead, int total) {
+    return '$sick आजारी, $dead मेलेली, एकूण $total';
+  }
 }

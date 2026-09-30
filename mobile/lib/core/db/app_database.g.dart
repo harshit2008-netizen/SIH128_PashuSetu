@@ -97,6 +97,55 @@ class $OutboxReportsTable extends OutboxReports
     type: DriftSqlType.dateTime,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _nextAttemptAtMeta = const VerificationMeta(
+    'nextAttemptAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> nextAttemptAt =
+      GeneratedColumn<DateTime>(
+        'next_attempt_at',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _serverReportIdMeta = const VerificationMeta(
+    'serverReportId',
+  );
+  @override
+  late final GeneratedColumn<String> serverReportId = GeneratedColumn<String>(
+    'server_report_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _serverCaseIdMeta = const VerificationMeta(
+    'serverCaseId',
+  );
+  @override
+  late final GeneratedColumn<String> serverCaseId = GeneratedColumn<String>(
+    'server_case_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _photoUploadedMeta = const VerificationMeta(
+    'photoUploaded',
+  );
+  @override
+  late final GeneratedColumn<bool> photoUploaded = GeneratedColumn<bool>(
+    'photo_uploaded',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("photo_uploaded" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     clientUuid,
@@ -107,6 +156,10 @@ class $OutboxReportsTable extends OutboxReports
     lastError,
     deviceTriage,
     createdAt,
+    nextAttemptAt,
+    serverReportId,
+    serverCaseId,
+    photoUploaded,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -177,6 +230,42 @@ class $OutboxReportsTable extends OutboxReports
     } else if (isInserting) {
       context.missing(_createdAtMeta);
     }
+    if (data.containsKey('next_attempt_at')) {
+      context.handle(
+        _nextAttemptAtMeta,
+        nextAttemptAt.isAcceptableOrUnknown(
+          data['next_attempt_at']!,
+          _nextAttemptAtMeta,
+        ),
+      );
+    }
+    if (data.containsKey('server_report_id')) {
+      context.handle(
+        _serverReportIdMeta,
+        serverReportId.isAcceptableOrUnknown(
+          data['server_report_id']!,
+          _serverReportIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('server_case_id')) {
+      context.handle(
+        _serverCaseIdMeta,
+        serverCaseId.isAcceptableOrUnknown(
+          data['server_case_id']!,
+          _serverCaseIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('photo_uploaded')) {
+      context.handle(
+        _photoUploadedMeta,
+        photoUploaded.isAcceptableOrUnknown(
+          data['photo_uploaded']!,
+          _photoUploadedMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -218,6 +307,22 @@ class $OutboxReportsTable extends OutboxReports
         DriftSqlType.dateTime,
         data['${effectivePrefix}created_at'],
       )!,
+      nextAttemptAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}next_attempt_at'],
+      ),
+      serverReportId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}server_report_id'],
+      ),
+      serverCaseId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}server_case_id'],
+      ),
+      photoUploaded: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}photo_uploaded'],
+      )!,
     );
   }
 
@@ -236,6 +341,12 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
   final String? lastError;
   final String? deviceTriage;
   final DateTime createdAt;
+
+  /// Not before this time: exponential backoff after a failed send.
+  final DateTime? nextAttemptAt;
+  final String? serverReportId;
+  final String? serverCaseId;
+  final bool photoUploaded;
   const OutboxReport({
     required this.clientUuid,
     required this.payload,
@@ -245,6 +356,10 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
     this.lastError,
     this.deviceTriage,
     required this.createdAt,
+    this.nextAttemptAt,
+    this.serverReportId,
+    this.serverCaseId,
+    required this.photoUploaded,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -263,6 +378,16 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
       map['device_triage'] = Variable<String>(deviceTriage);
     }
     map['created_at'] = Variable<DateTime>(createdAt);
+    if (!nullToAbsent || nextAttemptAt != null) {
+      map['next_attempt_at'] = Variable<DateTime>(nextAttemptAt);
+    }
+    if (!nullToAbsent || serverReportId != null) {
+      map['server_report_id'] = Variable<String>(serverReportId);
+    }
+    if (!nullToAbsent || serverCaseId != null) {
+      map['server_case_id'] = Variable<String>(serverCaseId);
+    }
+    map['photo_uploaded'] = Variable<bool>(photoUploaded);
     return map;
   }
 
@@ -282,6 +407,16 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
           ? const Value.absent()
           : Value(deviceTriage),
       createdAt: Value(createdAt),
+      nextAttemptAt: nextAttemptAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(nextAttemptAt),
+      serverReportId: serverReportId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(serverReportId),
+      serverCaseId: serverCaseId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(serverCaseId),
+      photoUploaded: Value(photoUploaded),
     );
   }
 
@@ -299,6 +434,10 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
       lastError: serializer.fromJson<String?>(json['lastError']),
       deviceTriage: serializer.fromJson<String?>(json['deviceTriage']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      nextAttemptAt: serializer.fromJson<DateTime?>(json['nextAttemptAt']),
+      serverReportId: serializer.fromJson<String?>(json['serverReportId']),
+      serverCaseId: serializer.fromJson<String?>(json['serverCaseId']),
+      photoUploaded: serializer.fromJson<bool>(json['photoUploaded']),
     );
   }
   @override
@@ -313,6 +452,10 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
       'lastError': serializer.toJson<String?>(lastError),
       'deviceTriage': serializer.toJson<String?>(deviceTriage),
       'createdAt': serializer.toJson<DateTime>(createdAt),
+      'nextAttemptAt': serializer.toJson<DateTime?>(nextAttemptAt),
+      'serverReportId': serializer.toJson<String?>(serverReportId),
+      'serverCaseId': serializer.toJson<String?>(serverCaseId),
+      'photoUploaded': serializer.toJson<bool>(photoUploaded),
     };
   }
 
@@ -325,6 +468,10 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
     Value<String?> lastError = const Value.absent(),
     Value<String?> deviceTriage = const Value.absent(),
     DateTime? createdAt,
+    Value<DateTime?> nextAttemptAt = const Value.absent(),
+    Value<String?> serverReportId = const Value.absent(),
+    Value<String?> serverCaseId = const Value.absent(),
+    bool? photoUploaded,
   }) => OutboxReport(
     clientUuid: clientUuid ?? this.clientUuid,
     payload: payload ?? this.payload,
@@ -334,6 +481,14 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
     lastError: lastError.present ? lastError.value : this.lastError,
     deviceTriage: deviceTriage.present ? deviceTriage.value : this.deviceTriage,
     createdAt: createdAt ?? this.createdAt,
+    nextAttemptAt: nextAttemptAt.present
+        ? nextAttemptAt.value
+        : this.nextAttemptAt,
+    serverReportId: serverReportId.present
+        ? serverReportId.value
+        : this.serverReportId,
+    serverCaseId: serverCaseId.present ? serverCaseId.value : this.serverCaseId,
+    photoUploaded: photoUploaded ?? this.photoUploaded,
   );
   OutboxReport copyWithCompanion(OutboxReportsCompanion data) {
     return OutboxReport(
@@ -349,6 +504,18 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
           ? data.deviceTriage.value
           : this.deviceTriage,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      nextAttemptAt: data.nextAttemptAt.present
+          ? data.nextAttemptAt.value
+          : this.nextAttemptAt,
+      serverReportId: data.serverReportId.present
+          ? data.serverReportId.value
+          : this.serverReportId,
+      serverCaseId: data.serverCaseId.present
+          ? data.serverCaseId.value
+          : this.serverCaseId,
+      photoUploaded: data.photoUploaded.present
+          ? data.photoUploaded.value
+          : this.photoUploaded,
     );
   }
 
@@ -362,7 +529,11 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
           ..write('attempts: $attempts, ')
           ..write('lastError: $lastError, ')
           ..write('deviceTriage: $deviceTriage, ')
-          ..write('createdAt: $createdAt')
+          ..write('createdAt: $createdAt, ')
+          ..write('nextAttemptAt: $nextAttemptAt, ')
+          ..write('serverReportId: $serverReportId, ')
+          ..write('serverCaseId: $serverCaseId, ')
+          ..write('photoUploaded: $photoUploaded')
           ..write(')'))
         .toString();
   }
@@ -377,6 +548,10 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
     lastError,
     deviceTriage,
     createdAt,
+    nextAttemptAt,
+    serverReportId,
+    serverCaseId,
+    photoUploaded,
   );
   @override
   bool operator ==(Object other) =>
@@ -389,7 +564,11 @@ class OutboxReport extends DataClass implements Insertable<OutboxReport> {
           other.attempts == this.attempts &&
           other.lastError == this.lastError &&
           other.deviceTriage == this.deviceTriage &&
-          other.createdAt == this.createdAt);
+          other.createdAt == this.createdAt &&
+          other.nextAttemptAt == this.nextAttemptAt &&
+          other.serverReportId == this.serverReportId &&
+          other.serverCaseId == this.serverCaseId &&
+          other.photoUploaded == this.photoUploaded);
 }
 
 class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
@@ -401,6 +580,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
   final Value<String?> lastError;
   final Value<String?> deviceTriage;
   final Value<DateTime> createdAt;
+  final Value<DateTime?> nextAttemptAt;
+  final Value<String?> serverReportId;
+  final Value<String?> serverCaseId;
+  final Value<bool> photoUploaded;
   final Value<int> rowid;
   const OutboxReportsCompanion({
     this.clientUuid = const Value.absent(),
@@ -411,6 +594,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
     this.lastError = const Value.absent(),
     this.deviceTriage = const Value.absent(),
     this.createdAt = const Value.absent(),
+    this.nextAttemptAt = const Value.absent(),
+    this.serverReportId = const Value.absent(),
+    this.serverCaseId = const Value.absent(),
+    this.photoUploaded = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   OutboxReportsCompanion.insert({
@@ -422,6 +609,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
     this.lastError = const Value.absent(),
     this.deviceTriage = const Value.absent(),
     required DateTime createdAt,
+    this.nextAttemptAt = const Value.absent(),
+    this.serverReportId = const Value.absent(),
+    this.serverCaseId = const Value.absent(),
+    this.photoUploaded = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : clientUuid = Value(clientUuid),
        payload = Value(payload),
@@ -435,6 +626,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
     Expression<String>? lastError,
     Expression<String>? deviceTriage,
     Expression<DateTime>? createdAt,
+    Expression<DateTime>? nextAttemptAt,
+    Expression<String>? serverReportId,
+    Expression<String>? serverCaseId,
+    Expression<bool>? photoUploaded,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -446,6 +641,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
       if (lastError != null) 'last_error': lastError,
       if (deviceTriage != null) 'device_triage': deviceTriage,
       if (createdAt != null) 'created_at': createdAt,
+      if (nextAttemptAt != null) 'next_attempt_at': nextAttemptAt,
+      if (serverReportId != null) 'server_report_id': serverReportId,
+      if (serverCaseId != null) 'server_case_id': serverCaseId,
+      if (photoUploaded != null) 'photo_uploaded': photoUploaded,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -459,6 +658,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
     Value<String?>? lastError,
     Value<String?>? deviceTriage,
     Value<DateTime>? createdAt,
+    Value<DateTime?>? nextAttemptAt,
+    Value<String?>? serverReportId,
+    Value<String?>? serverCaseId,
+    Value<bool>? photoUploaded,
     Value<int>? rowid,
   }) {
     return OutboxReportsCompanion(
@@ -470,6 +673,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
       lastError: lastError ?? this.lastError,
       deviceTriage: deviceTriage ?? this.deviceTriage,
       createdAt: createdAt ?? this.createdAt,
+      nextAttemptAt: nextAttemptAt ?? this.nextAttemptAt,
+      serverReportId: serverReportId ?? this.serverReportId,
+      serverCaseId: serverCaseId ?? this.serverCaseId,
+      photoUploaded: photoUploaded ?? this.photoUploaded,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -501,6 +708,18 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
+    if (nextAttemptAt.present) {
+      map['next_attempt_at'] = Variable<DateTime>(nextAttemptAt.value);
+    }
+    if (serverReportId.present) {
+      map['server_report_id'] = Variable<String>(serverReportId.value);
+    }
+    if (serverCaseId.present) {
+      map['server_case_id'] = Variable<String>(serverCaseId.value);
+    }
+    if (photoUploaded.present) {
+      map['photo_uploaded'] = Variable<bool>(photoUploaded.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -518,6 +737,10 @@ class OutboxReportsCompanion extends UpdateCompanion<OutboxReport> {
           ..write('lastError: $lastError, ')
           ..write('deviceTriage: $deviceTriage, ')
           ..write('createdAt: $createdAt, ')
+          ..write('nextAttemptAt: $nextAttemptAt, ')
+          ..write('serverReportId: $serverReportId, ')
+          ..write('serverCaseId: $serverCaseId, ')
+          ..write('photoUploaded: $photoUploaded, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -1699,6 +1922,10 @@ typedef $$OutboxReportsTableCreateCompanionBuilder =
       Value<String?> lastError,
       Value<String?> deviceTriage,
       required DateTime createdAt,
+      Value<DateTime?> nextAttemptAt,
+      Value<String?> serverReportId,
+      Value<String?> serverCaseId,
+      Value<bool> photoUploaded,
       Value<int> rowid,
     });
 typedef $$OutboxReportsTableUpdateCompanionBuilder =
@@ -1711,6 +1938,10 @@ typedef $$OutboxReportsTableUpdateCompanionBuilder =
       Value<String?> lastError,
       Value<String?> deviceTriage,
       Value<DateTime> createdAt,
+      Value<DateTime?> nextAttemptAt,
+      Value<String?> serverReportId,
+      Value<String?> serverCaseId,
+      Value<bool> photoUploaded,
       Value<int> rowid,
     });
 
@@ -1760,6 +1991,26 @@ class $$OutboxReportsTableFilterComposer
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get nextAttemptAt => $composableBuilder(
+    column: $table.nextAttemptAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get serverReportId => $composableBuilder(
+    column: $table.serverReportId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get serverCaseId => $composableBuilder(
+    column: $table.serverCaseId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get photoUploaded => $composableBuilder(
+    column: $table.photoUploaded,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -1812,6 +2063,26 @@ class $$OutboxReportsTableOrderingComposer
     column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<DateTime> get nextAttemptAt => $composableBuilder(
+    column: $table.nextAttemptAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get serverReportId => $composableBuilder(
+    column: $table.serverReportId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get serverCaseId => $composableBuilder(
+    column: $table.serverCaseId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get photoUploaded => $composableBuilder(
+    column: $table.photoUploaded,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$OutboxReportsTableAnnotationComposer
@@ -1850,6 +2121,26 @@ class $$OutboxReportsTableAnnotationComposer
 
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get nextAttemptAt => $composableBuilder(
+    column: $table.nextAttemptAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get serverReportId => $composableBuilder(
+    column: $table.serverReportId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get serverCaseId => $composableBuilder(
+    column: $table.serverCaseId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get photoUploaded => $composableBuilder(
+    column: $table.photoUploaded,
+    builder: (column) => column,
+  );
 }
 
 class $$OutboxReportsTableTableManager
@@ -1891,6 +2182,10 @@ class $$OutboxReportsTableTableManager
                 Value<String?> lastError = const Value.absent(),
                 Value<String?> deviceTriage = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime?> nextAttemptAt = const Value.absent(),
+                Value<String?> serverReportId = const Value.absent(),
+                Value<String?> serverCaseId = const Value.absent(),
+                Value<bool> photoUploaded = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => OutboxReportsCompanion(
                 clientUuid: clientUuid,
@@ -1901,6 +2196,10 @@ class $$OutboxReportsTableTableManager
                 lastError: lastError,
                 deviceTriage: deviceTriage,
                 createdAt: createdAt,
+                nextAttemptAt: nextAttemptAt,
+                serverReportId: serverReportId,
+                serverCaseId: serverCaseId,
+                photoUploaded: photoUploaded,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -1913,6 +2212,10 @@ class $$OutboxReportsTableTableManager
                 Value<String?> lastError = const Value.absent(),
                 Value<String?> deviceTriage = const Value.absent(),
                 required DateTime createdAt,
+                Value<DateTime?> nextAttemptAt = const Value.absent(),
+                Value<String?> serverReportId = const Value.absent(),
+                Value<String?> serverCaseId = const Value.absent(),
+                Value<bool> photoUploaded = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => OutboxReportsCompanion.insert(
                 clientUuid: clientUuid,
@@ -1923,6 +2226,10 @@ class $$OutboxReportsTableTableManager
                 lastError: lastError,
                 deviceTriage: deviceTriage,
                 createdAt: createdAt,
+                nextAttemptAt: nextAttemptAt,
+                serverReportId: serverReportId,
+                serverCaseId: serverCaseId,
+                photoUploaded: photoUploaded,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

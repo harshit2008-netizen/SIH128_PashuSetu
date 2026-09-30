@@ -16,6 +16,9 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-09-29 | Primary buttons (Log in, Continue) are ink; only Report uses tag yellow | Keeps yellow for ear tags, the app mark and the one Report action (spec 9.2) |
 | 2026-09-29 | Vet/officer KPIs in Phase 3 are counts from the live case queue (open, emergency, urgent, waiting for vet) | Alerts, median response time and lab KPIs need the Phase 8 dashboard; no invented numbers |
 
+| 2026-09-30 | Triage result: bars fill top to bottom in ~600 ms, then "Do this now" fades in; skipped when the phone asks to reduce motion | The one orchestrated motion moment (spec 9.9) |
+| 2026-09-30 | Report location: phone GPS only when it is within 15 km of a demo village, otherwise the chosen village's point | The demo laptop and phone may be far from Pune; a pin in another state would break the district map and clustering |
+
 ## Visual QA log
 
 | Date | Screen | Issue found | Change |
@@ -25,3 +28,7 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-09-29 | Component goldens, Hindi 360 px at text scale 1.3 | KPI label "आपातकाल" broke mid-word ("आपातका / ल") in 4 narrow columns | KpiStrip switches to a 2 x 2 grid when a column is narrower than 84 px x text scale |
 | 2026-09-29 | Component goldens, Hindi 360 px at text scale 1.3 | Alert row summary squeezed next to the severity word ("लम्पी स्किन रोग की / आशंका") | AlertRow uses a Wrap: badge and summary share a line when they fit, otherwise the summary moves below |
 | 2026-09-29 | Real phone, login + sevak home in English and Hindi, vet home in Hindi (`screenshots/phase3_*.png`) | None blocking. Hindi village names, dates and sync pill render correctly; touch targets ≥ 48 dp (64 dp in farmer mode) | Language picker rows: Devanagari sits slightly high in its row (Anek metrics); acceptable, revisit in Phase 9 |
+| 2026-09-30 | Real phone, report step 2 (sevak, 360 dp wide) | 3 columns cut labels mid-word ("Droolin / g", "Lumps on the...") | SymptomGrid uses 3 columns only when each tile is at least 150 dp wide |
+| 2026-09-30 | Real phone, report step 4 | Selected "Today" chip had ink text on ink background (invisible) | The chip label colour now follows the selection |
+| 2026-09-30 | Real phone, home with the "Offline, saved on phone" pill | App bar overflowed: the app name plus a long pill did not fit | With the sync pill, the app bar shows only the ear-tag mark |
+| 2026-09-30 | Real phone, triage result offline (`screenshots/phase4_*.png`) | None. Headline, severity, bars, why chips, numbered steps with Call 1962, the not-a-diagnosis line and the saved-on-phone line all fit | No change |

@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/language_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/home/home_screens.dart';
+import '../../features/report/report_flow_screen.dart';
 import '../../features/settings/settings_screens.dart';
+import '../../features/triage/ui/triage_result_screen.dart';
 import '../settings/app_settings.dart';
 
 const _roleHomes = {'/farmer', '/sevak', '/vet', '/lab', '/officer'};
@@ -42,6 +44,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/vet', builder: (_, _) => const ResponderHome()),
       GoRoute(path: '/officer', builder: (_, _) => const ResponderHome()),
       GoRoute(path: '/lab', builder: (_, _) => const LabHome()),
+      GoRoute(path: '/report', builder: (_, _) => const ReportFlowScreen()),
+      GoRoute(
+          path: '/triage/:clientUuid',
+          builder: (_, state) => TriageResultScreen(clientUuid: state.pathParameters['clientUuid']!)),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen(), routes: [
         GoRoute(path: 'developer', builder: (_, _) => const DeveloperScreen()),
         GoRoute(path: 'outbox', builder: (_, _) => const OutboxScreen()),
