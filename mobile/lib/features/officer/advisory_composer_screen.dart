@@ -130,6 +130,8 @@ class _AdvisoryComposerScreenState extends ConsumerState<AdvisoryComposerScreen>
         padding: const EdgeInsets.fromLTRB(AppSpacing.screenPadding, AppSpacing.sm, AppSpacing.screenPadding, AppSpacing.xxxl),
         children: [
           DropdownButtonFormField<String>(
+            // Long names must shrink instead of overflowing the field.
+            isExpanded: true,
             initialValue: _template,
             decoration: InputDecoration(labelText: l10n.messageLabel, border: const OutlineInputBorder()),
             items: [

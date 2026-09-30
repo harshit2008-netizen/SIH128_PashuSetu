@@ -731,4 +731,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get uploadPhoto => 'Upload from gallery';
+
+  @override
+  String hoursShort(int count) {
+    return '$count h';
+  }
 }

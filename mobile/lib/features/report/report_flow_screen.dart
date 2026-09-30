@@ -268,6 +268,8 @@ class _AnimalStep extends ConsumerWidget {
     final chosen = await showModalBottomSheet<Village>(
       context: context,
       isScrollControlled: true,
+      // Keep tall sheets below the status bar.
+      useSafeArea: true,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.sheetTop))),
       builder: (context) => DraggableScrollableSheet(
         expand: false,

@@ -729,4 +729,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get uploadPhoto => 'गैलरी से फ़ोटो चुनें';
+
+  @override
+  String hoursShort(int count) {
+    return '$count घंटे';
+  }
 }

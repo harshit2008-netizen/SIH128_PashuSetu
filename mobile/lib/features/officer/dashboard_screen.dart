@@ -163,7 +163,7 @@ class _Kpis extends ConsumerWidget {
       KpiStrip(items: [
         KpiItem(value: '${summary?['open_cases'] ?? '–'}', label: l10n.kpiOpenCases),
         KpiItem(value: '${summary?['active_alerts'] ?? '–'}', label: l10n.kpiActiveAlerts),
-        KpiItem(value: median == null ? '–' : l10n.minutesShort(median), label: l10n.kpiMedianResponse),
+        KpiItem(value: median == null ? '–' : _duration(l10n, median), label: l10n.kpiMedianResponse),
         KpiItem(value: '${summary?['samples_pending'] ?? '–'}', label: l10n.kpiSamplesPending),
       ]),
       Align(
@@ -178,6 +178,10 @@ class _Kpis extends ConsumerWidget {
     ]);
   }
 }
+
+/// "45 min" under 1.5 hours, otherwise "22 h", so the KPI stays one short word.
+String _duration(AppLocalizations l10n, int minutes) =>
+    minutes < 90 ? l10n.minutesShort(minutes) : l10n.hoursShort((minutes / 60).round());
 
 class _AlertList extends ConsumerWidget {
   const _AlertList();

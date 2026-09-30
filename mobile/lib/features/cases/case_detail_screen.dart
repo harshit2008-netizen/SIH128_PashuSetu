@@ -258,6 +258,8 @@ class _ActionsState extends ConsumerState<_Actions> {
     final vetId = await showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
+      // Keep tall sheets below the status bar.
+      useSafeArea: true,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.sheetTop))),
       builder: (context) => DraggableScrollableSheet(
         expand: false,

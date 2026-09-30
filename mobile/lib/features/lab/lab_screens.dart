@@ -185,6 +185,8 @@ class _ResultFormState extends ConsumerState<_ResultForm> {
         if (_result == 'positive') ...[
           const SizedBox(height: AppSpacing.md),
           DropdownButtonFormField<String>(
+            // Long names must shrink instead of overflowing the field.
+            isExpanded: true,
             initialValue: _disease,
             decoration: InputDecoration(labelText: l10n.whichDisease, border: const OutlineInputBorder()),
             items: [

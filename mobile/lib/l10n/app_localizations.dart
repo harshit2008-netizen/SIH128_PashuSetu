@@ -1383,6 +1383,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Upload from gallery'**
   String get uploadPhoto;
+
+  /// No description provided for @hoursShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} h'**
+  String hoursShort(int count);
 }
 
 class _AppLocalizationsDelegate

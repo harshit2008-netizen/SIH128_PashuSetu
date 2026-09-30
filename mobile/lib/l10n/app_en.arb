@@ -372,5 +372,13 @@
   "tapMapToMove": "Tap the map to move the centre.",
   "villageInMessage": "Village named in the message",
   "inAppOnly": "Sent to the in-app inbox. SMS is not set up.",
-  "uploadPhoto": "Upload from gallery"
+  "uploadPhoto": "Upload from gallery",
+  "hoursShort": "{count} h",
+  "@hoursShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

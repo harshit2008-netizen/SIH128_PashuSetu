@@ -32,3 +32,8 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-09-30 | Real phone, report step 4 | Selected "Today" chip had ink text on ink background (invisible) | The chip label colour now follows the selection |
 | 2026-09-30 | Real phone, home with the "Offline, saved on phone" pill | App bar overflowed: the app name plus a long pill did not fit | With the sync pill, the app bar shows only the ear-tag mark |
 | 2026-09-30 | Real phone, triage result offline (`screenshots/phase4_*.png`) | None. Headline, severity, bars, why chips, numbered steps with Call 1962, the not-a-diagnosis line and the saved-on-phone line all fit | No change |
+| 2026-09-30 | Real phone, officer dashboard (`screenshots/phase8_officer_dashboard.png`) | Median response KPI showed "1305 min", which wrapped and was hard to read | Shows minutes under 90, hours above ("22 h") |
+| 2026-09-30 | Real phone, advisory composer and lab result form | Long Hindi template and disease names overflowed the dropdowns | Dropdowns use `isExpanded`, so text ellipsizes inside the field |
+| 2026-09-30 | Real phone, tall bottom sheets (assign vet, lab result) | Sheet top slid under the status bar | Sheets open with `useSafeArea: true` |
+| 2026-09-30 | Real phone, case timeline | Events with the same timestamp were listed alphabetically ("lab_received" before "sample_collected") | Server sorts by time, then lifecycle order |
+| 2026-09-30 | Real phone, lab scan by typed code + result (`screenshots/phase8_lab_result.png`) | None. Prefilled PS-S- prefix, received state, Positive/LSD form, "Result saved" snackbar, list empties | No change |
