@@ -4,6 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models import Block, Case, CaseEvent, CaseReport, LabSample, Report, User, Village
+from app.models.reports import CASE_STATUSES
 from app.services.cases import latest_triage
 from app.services.geo_utils import point_latlng
 from app.services.reports import report_out
@@ -45,8 +46,10 @@ def case_reports(db: Session, case: Case) -> list[Report]:
 
 
 def timeline(db: Session, case: Case) -> list[dict]:
-    events = db.scalars(select(CaseEvent).where(CaseEvent.case_id == case.id)
-                        .order_by(CaseEvent.created_at, CaseEvent.to_status)).all()
+    events = db.scalars(select(CaseEvent).where(CaseEvent.case_id == case.id)).all()
+    # Steps taken in one action share a timestamp (e.g. a vet requesting a
+    # sample on an unassigned case is assigned first): break ties by lifecycle order.
+    events = sorted(events, key=lambda e: (e.created_at, CASE_STATUSES.index(e.to_status)))
     return [{"from_status": e.from_status, "to_status": e.to_status, "note": e.note,
              "actor": person(db, e.actor_user_id), "at": e.created_at} for e in events]
 

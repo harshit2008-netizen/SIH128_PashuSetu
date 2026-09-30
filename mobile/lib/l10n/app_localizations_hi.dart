@@ -511,4 +511,222 @@ class AppLocalizationsHi extends AppLocalizations {
   String countSummary(int sick, int dead, int total) {
     return '$sick बीमार, $dead मरे, कुल $total';
   }
+
+  @override
+  String get tabAlerts => 'चेतावनियां';
+
+  @override
+  String get tabCases => 'मामले';
+
+  @override
+  String get kpiActiveAlerts => 'सक्रिय चेतावनियां';
+
+  @override
+  String get kpiMedianResponse => 'पहली कार्रवाई (मध्य)';
+
+  @override
+  String get kpiSamplesPending => 'बाकी नमूने';
+
+  @override
+  String minutesShort(int count) {
+    return '$count मिनट';
+  }
+
+  @override
+  String get noAlerts =>
+      'कोई सक्रिय चेतावनी नहीं। पास-पास कई सूचनाएं आएंगी तो यहां चेतावनी दिखेगी।';
+
+  @override
+  String updatedAt(String time) {
+    return 'अपडेट: $time';
+  }
+
+  @override
+  String get alertCluster => 'बीमारी का समूह';
+
+  @override
+  String get alertZoonotic => 'इंसानों में फैल सकता है';
+
+  @override
+  String get alertMortality => 'कई मौतें';
+
+  @override
+  String get acknowledge => 'स्वीकार करें';
+
+  @override
+  String get acknowledged => 'स्वीकार किया';
+
+  @override
+  String get sendAdvisory => 'सलाह भेजें';
+
+  @override
+  String get casesInAlert => 'इस चेतावनी के मामले';
+
+  @override
+  String reportedBy(String name) {
+    return 'सूचना देने वाले: $name';
+  }
+
+  @override
+  String get assignToMe => 'मुझे सौंपें';
+
+  @override
+  String get assignVet => 'पशु डॉक्टर सौंपें';
+
+  @override
+  String get chooseVet => 'पशु डॉक्टर चुनें';
+
+  @override
+  String get requestSample => 'नमूना मांगें';
+
+  @override
+  String get chooseSampleType => 'कौन सा नमूना?';
+
+  @override
+  String get sampleSkinScab => 'त्वचा की पपड़ी';
+
+  @override
+  String get sampleBlood => 'खून';
+
+  @override
+  String get sampleNasalSwab => 'नाक का स्वाब';
+
+  @override
+  String get sampleOralSwab => 'मुंह का स्वाब';
+
+  @override
+  String get sampleTissue => 'ऊतक';
+
+  @override
+  String get sampleCarcassSwab => 'शव का स्वाब';
+
+  @override
+  String get sampleOther => 'अन्य';
+
+  @override
+  String get markUnderTreatment => 'इलाज शुरू';
+
+  @override
+  String get resolveCase => 'ठीक हुआ';
+
+  @override
+  String get ruleOut => 'बीमारी नहीं';
+
+  @override
+  String labConfirmed(String disease) {
+    return 'लैब ने पुष्टि की: $disease';
+  }
+
+  @override
+  String get whyAppSuspected => 'ऐप ने यह क्यों माना';
+
+  @override
+  String get timelineTitle => 'समय-रेखा';
+
+  @override
+  String get samplesTitle => 'नमूने';
+
+  @override
+  String get showQrHint =>
+      'यह कोड पशु सेवक को दिखाएं, या नमूने की ट्यूब पर लिखें।';
+
+  @override
+  String get reportPhoto => 'फ़ोटो';
+
+  @override
+  String get scanSample => 'नमूना स्कैन करें';
+
+  @override
+  String get typeCodeInstead => 'या कोड लिखें';
+
+  @override
+  String get continueButton2 => 'आगे';
+
+  @override
+  String get sampleCollected => 'नमूना लिया गया';
+
+  @override
+  String get sampleReceived => 'लैब को नमूना मिला';
+
+  @override
+  String get enterResult => 'नतीजा लिखें';
+
+  @override
+  String get resultPositive => 'पॉज़िटिव';
+
+  @override
+  String get resultNegative => 'नेगेटिव';
+
+  @override
+  String get resultInconclusive => 'साफ़ नहीं';
+
+  @override
+  String get whichDisease => 'कौन सी बीमारी?';
+
+  @override
+  String get noteOptional => 'टिप्पणी (ज़रूरी नहीं)';
+
+  @override
+  String get saveResult => 'नतीजा सहेजें';
+
+  @override
+  String get resultSaved => 'नतीजा सहेजा गया';
+
+  @override
+  String get samplesToCollect => 'लेने वाले नमूने';
+
+  @override
+  String get samplesAtLab => 'लैब के नमूने';
+
+  @override
+  String get noSamplesToCollect =>
+      'कोई नमूना लेना बाकी नहीं। पशु डॉक्टर मांगेंगे तो यहां दिखेगा।';
+
+  @override
+  String get cameraNotAllowed => 'कैमरे की अनुमति नहीं है। कोड लिखें।';
+
+  @override
+  String get sampleStatusRequested => 'लेना है';
+
+  @override
+  String get sampleStatusCollected => 'लैब जा रहा है';
+
+  @override
+  String get sampleStatusReceived => 'नतीजे का इंतज़ार';
+
+  @override
+  String get sampleStatusResulted => 'नतीजा तैयार';
+
+  @override
+  String get messageLabel => 'संदेश';
+
+  @override
+  String radiusKm(String km) {
+    return 'दायरा: $km किमी';
+  }
+
+  @override
+  String willReach(int farmers, int villages) {
+    return '$villages गांवों के $farmers किसानों तक पहुंचेगा';
+  }
+
+  @override
+  String get advisoryPreview => 'झलक';
+
+  @override
+  String advisorySentTo(int count) {
+    return 'सलाह $count किसानों को भेजी गई';
+  }
+
+  @override
+  String get tapMapToMove => 'केंद्र बदलने के लिए नक्शे पर टैप करें।';
+
+  @override
+  String get villageInMessage => 'संदेश में गांव';
+
+  @override
+  String get inAppOnly => 'ऐप के इनबॉक्स में भेजा। एसएमएस चालू नहीं है।';
+
+  @override
+  String get uploadPhoto => 'गैलरी से फ़ोटो चुनें';
 }

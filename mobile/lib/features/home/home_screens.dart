@@ -13,6 +13,8 @@ import '../../core/shared_data/shared_data_provider.dart';
 import '../../core/theme/tokens.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/widgets.dart';
+import '../lab/lab_screens.dart' show SampleList, ScanButton;
+import '../triage/ui/triage_result_screen.dart' show speak;
 import 'formatting.dart';
 import 'home_data.dart';
 
@@ -107,12 +109,19 @@ class FarmerHome extends ConsumerWidget {
                   if (data.advisories.isEmpty) EmptyState(message: l10n.noAlertsNearYou),
                   for (final advisory in data.advisories)
                     AlertRow(
-                      severity: Severity.urgent,
+                      severity: shared?.rules[advisory['disease']]?['severity_floor'] == 'emergency'
+                          ? Severity.emergency
+                          : Severity.urgent,
                       summary: advisory['text'] as String,
                       meta: timeAgo(l10n, DateTime.parse(advisory['sent_at'] as String)),
+                      onListen: () => speak(advisory['text'] as String, language),
                     ),
                 ]),
                 if (sevak) ...[
+                  SectionHeader(l10n.samplesToCollect),
+                  const ScanButton(),
+                  const SizedBox(height: AppSpacing.sm),
+                  SampleList(emptyMessage: l10n.noSamplesToCollect),
                   SectionHeader(l10n.vaccinationsDue),
                   _VaccinationsDue(data.vaccinationsDue, language),
                 ] else ...[
@@ -220,93 +229,6 @@ class _VaccinationsDue extends StatelessWidget {
           ]),
         ),
     ]);
-  }
-}
-
-/// Vet and district officer: the case queue with a compact KPI strip.
-class ResponderHome extends ConsumerWidget {
-  const ResponderHome({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final text = Theme.of(context).textTheme;
-    final language = ref.watch(languageProvider);
-    final settings = ref.watch(settingsProvider);
-    final queue = ref.watch(caseQueueProvider);
-    final shared = ref.watch(sharedDataProvider).value;
-
-    return HomeShell(
-      onRefresh: () => ref.refresh(caseQueueProvider.future),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(AppSpacing.screenPadding, AppSpacing.sm, AppSpacing.screenPadding, AppSpacing.xxxl),
-        children: [
-          Text(l10n.greeting(settings.user?['name'] as String? ?? ''), style: text.headlineMedium),
-          Text(_place(settings.user, language).isEmpty
-                  ? localized(settings.user?['district']?['name'], language)
-                  : _place(settings.user, language),
-              style: text.bodyLarge),
-          ...queue.when(
-            loading: () => [const Padding(padding: EdgeInsets.all(AppSpacing.xl), child: Center(child: CircularProgressIndicator()))],
-            error: (error, _) => [EmptyState(message: '$error', actionLabel: l10n.tryAgain, onAction: () => ref.invalidate(caseQueueProvider))],
-            data: (result) {
-              final (cases, fromCache) = result;
-              int count(bool Function(Json) test) => cases.where(test).length;
-              return [
-                const SizedBox(height: AppSpacing.lg),
-                KpiStrip(items: [
-                  KpiItem(value: '${cases.length}', label: l10n.kpiOpenCases),
-                  KpiItem(value: '${count((c) => c['severity'] == 'emergency')}', label: l10n.kpiEmergency),
-                  KpiItem(value: '${count((c) => c['severity'] == 'urgent')}', label: l10n.kpiUrgent),
-                  KpiItem(value: '${count((c) => c['assigned_vet'] == null)}', label: l10n.kpiWaitingForVet),
-                ]),
-                if (fromCache) Padding(
-                  padding: const EdgeInsets.only(top: AppSpacing.md),
-                  child: Text(l10n.showingSavedData, style: text.bodySmall),
-                ),
-                SectionHeader(l10n.caseQueue),
-                ListGroup(children: [
-                  if (cases.isEmpty) EmptyState(message: l10n.noCases),
-                  for (final c in cases)
-                    AlertRow(
-                      severity: SeverityStyle.parse(c['severity'] as String?),
-                      summary: c['suspected_disease'] == null
-                          ? l10n.notMatched
-                          : localized(shared?.rules[c['suspected_disease']]?['name'], language),
-                      meta: '${localized(c['village']?['name'], language)}, '
-                          '${localized(c['block']?['name'], language)}. '
-                          '${timeAgo(l10n, DateTime.parse(c['created_at'] as String))}. '
-                          '${c['assigned_vet'] == null ? l10n.waitingForVet : l10n.assignedTo(c['assigned_vet']['name'] as String)}',
-                    ),
-                ]),
-              ];
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Lab staff: samples arrive here once vets request them (lab QR flow).
-class LabHome extends ConsumerWidget {
-  const LabHome({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final settings = ref.watch(settingsProvider);
-    return HomeShell(
-      onRefresh: () async {},
-      body: ListView(
-        padding: const EdgeInsets.all(AppSpacing.screenPadding),
-        children: [
-          Text(l10n.greeting(settings.user?['name'] as String? ?? ''), style: Theme.of(context).textTheme.headlineMedium),
-          SectionHeader(l10n.labSamples),
-          ListGroup(children: [EmptyState(message: l10n.noSamples)]),
-        ],
-      ),
-    );
   }
 }
 

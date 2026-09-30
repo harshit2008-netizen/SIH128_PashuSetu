@@ -4,7 +4,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/language_screen.dart';
 import '../../features/auth/login_screen.dart';
+import '../../features/cases/case_detail_screen.dart';
 import '../../features/home/home_screens.dart';
+import '../../features/lab/lab_screens.dart';
+import '../../features/officer/advisory_composer_screen.dart';
+import '../../features/officer/alert_detail_screen.dart';
+import '../../features/officer/dashboard_screen.dart';
 import '../../features/report/report_flow_screen.dart';
 import '../../features/settings/settings_screens.dart';
 import '../../features/triage/ui/triage_result_screen.dart';
@@ -41,8 +46,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
       GoRoute(path: '/farmer', builder: (_, _) => const FarmerHome()),
       GoRoute(path: '/sevak', builder: (_, _) => const FarmerHome(sevak: true)),
-      GoRoute(path: '/vet', builder: (_, _) => const ResponderHome()),
-      GoRoute(path: '/officer', builder: (_, _) => const ResponderHome()),
+      GoRoute(path: '/vet', builder: (_, _) => const DashboardScreen()),
+      GoRoute(path: '/officer', builder: (_, _) => const DashboardScreen()),
+      GoRoute(path: '/cases/:id', builder: (_, state) => CaseDetailScreen(caseId: state.pathParameters['id']!)),
+      GoRoute(path: '/alerts/:id', builder: (_, state) => AlertDetailScreen(alertId: state.pathParameters['id']!)),
+      GoRoute(
+          path: '/advisories/new',
+          builder: (_, state) => AdvisoryComposerScreen(draft: state.extra as AdvisoryDraft? ?? const AdvisoryDraft())),
+      GoRoute(path: '/scan', builder: (_, _) => const ScanSampleScreen()),
       GoRoute(path: '/lab', builder: (_, _) => const LabHome()),
       GoRoute(path: '/report', builder: (_, _) => const ReportFlowScreen()),
       GoRoute(

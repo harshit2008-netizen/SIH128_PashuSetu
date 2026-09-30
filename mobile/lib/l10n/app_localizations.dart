@@ -981,6 +981,408 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{sick} sick, {dead} dead, {total} in all'**
   String countSummary(int sick, int dead, int total);
+
+  /// No description provided for @tabAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts'**
+  String get tabAlerts;
+
+  /// No description provided for @tabCases.
+  ///
+  /// In en, this message translates to:
+  /// **'Cases'**
+  String get tabCases;
+
+  /// No description provided for @kpiActiveAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Active alerts'**
+  String get kpiActiveAlerts;
+
+  /// No description provided for @kpiMedianResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'Median first response'**
+  String get kpiMedianResponse;
+
+  /// No description provided for @kpiSamplesPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Samples pending'**
+  String get kpiSamplesPending;
+
+  /// No description provided for @minutesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} min'**
+  String minutesShort(int count);
+
+  /// No description provided for @noAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'No active alerts. When reports cluster together, an alert appears here.'**
+  String get noAlerts;
+
+  /// No description provided for @updatedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {time}'**
+  String updatedAt(String time);
+
+  /// No description provided for @alertCluster.
+  ///
+  /// In en, this message translates to:
+  /// **'Outbreak cluster'**
+  String get alertCluster;
+
+  /// No description provided for @alertZoonotic.
+  ///
+  /// In en, this message translates to:
+  /// **'Can spread to people'**
+  String get alertZoonotic;
+
+  /// No description provided for @alertMortality.
+  ///
+  /// In en, this message translates to:
+  /// **'Many deaths'**
+  String get alertMortality;
+
+  /// No description provided for @acknowledge.
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledge'**
+  String get acknowledge;
+
+  /// No description provided for @acknowledged.
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledged'**
+  String get acknowledged;
+
+  /// No description provided for @sendAdvisory.
+  ///
+  /// In en, this message translates to:
+  /// **'Send advisory'**
+  String get sendAdvisory;
+
+  /// No description provided for @casesInAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Cases in this alert'**
+  String get casesInAlert;
+
+  /// No description provided for @reportedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported by {name}'**
+  String reportedBy(String name);
+
+  /// No description provided for @assignToMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign to me'**
+  String get assignToMe;
+
+  /// No description provided for @assignVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign vet'**
+  String get assignVet;
+
+  /// No description provided for @chooseVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a vet'**
+  String get chooseVet;
+
+  /// No description provided for @requestSample.
+  ///
+  /// In en, this message translates to:
+  /// **'Request sample'**
+  String get requestSample;
+
+  /// No description provided for @chooseSampleType.
+  ///
+  /// In en, this message translates to:
+  /// **'What sample?'**
+  String get chooseSampleType;
+
+  /// No description provided for @sampleSkinScab.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin scab'**
+  String get sampleSkinScab;
+
+  /// No description provided for @sampleBlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood'**
+  String get sampleBlood;
+
+  /// No description provided for @sampleNasalSwab.
+  ///
+  /// In en, this message translates to:
+  /// **'Nose swab'**
+  String get sampleNasalSwab;
+
+  /// No description provided for @sampleOralSwab.
+  ///
+  /// In en, this message translates to:
+  /// **'Mouth swab'**
+  String get sampleOralSwab;
+
+  /// No description provided for @sampleTissue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tissue'**
+  String get sampleTissue;
+
+  /// No description provided for @sampleCarcassSwab.
+  ///
+  /// In en, this message translates to:
+  /// **'Carcass swab'**
+  String get sampleCarcassSwab;
+
+  /// No description provided for @sampleOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get sampleOther;
+
+  /// No description provided for @markUnderTreatment.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark under treatment'**
+  String get markUnderTreatment;
+
+  /// No description provided for @resolveCase.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolve'**
+  String get resolveCase;
+
+  /// No description provided for @ruleOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Rule out'**
+  String get ruleOut;
+
+  /// No description provided for @labConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Lab confirmed: {disease}'**
+  String labConfirmed(String disease);
+
+  /// No description provided for @whyAppSuspected.
+  ///
+  /// In en, this message translates to:
+  /// **'Why the app suspected this'**
+  String get whyAppSuspected;
+
+  /// No description provided for @timelineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get timelineTitle;
+
+  /// No description provided for @samplesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Samples'**
+  String get samplesTitle;
+
+  /// No description provided for @showQrHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this code to the pashu sevak, or write it on the sample tube.'**
+  String get showQrHint;
+
+  /// No description provided for @reportPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get reportPhoto;
+
+  /// No description provided for @scanSample.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan sample'**
+  String get scanSample;
+
+  /// No description provided for @typeCodeInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Or type the code'**
+  String get typeCodeInstead;
+
+  /// No description provided for @continueButton2.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueButton2;
+
+  /// No description provided for @sampleCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample collected'**
+  String get sampleCollected;
+
+  /// No description provided for @sampleReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample received at the lab'**
+  String get sampleReceived;
+
+  /// No description provided for @enterResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter result'**
+  String get enterResult;
+
+  /// No description provided for @resultPositive.
+  ///
+  /// In en, this message translates to:
+  /// **'Positive'**
+  String get resultPositive;
+
+  /// No description provided for @resultNegative.
+  ///
+  /// In en, this message translates to:
+  /// **'Negative'**
+  String get resultNegative;
+
+  /// No description provided for @resultInconclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inconclusive'**
+  String get resultInconclusive;
+
+  /// No description provided for @whichDisease.
+  ///
+  /// In en, this message translates to:
+  /// **'Which disease?'**
+  String get whichDisease;
+
+  /// No description provided for @noteOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get noteOptional;
+
+  /// No description provided for @saveResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Save result'**
+  String get saveResult;
+
+  /// No description provided for @resultSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Result saved'**
+  String get resultSaved;
+
+  /// No description provided for @samplesToCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Samples to collect'**
+  String get samplesToCollect;
+
+  /// No description provided for @samplesAtLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Samples at the lab'**
+  String get samplesAtLab;
+
+  /// No description provided for @noSamplesToCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'No samples to collect. When a vet requests one, it appears here.'**
+  String get noSamplesToCollect;
+
+  /// No description provided for @cameraNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'The camera is not allowed. Type the code instead.'**
+  String get cameraNotAllowed;
+
+  /// No description provided for @sampleStatusRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'To collect'**
+  String get sampleStatusRequested;
+
+  /// No description provided for @sampleStatusCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way to the lab'**
+  String get sampleStatusCollected;
+
+  /// No description provided for @sampleStatusReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for result'**
+  String get sampleStatusReceived;
+
+  /// No description provided for @sampleStatusResulted.
+  ///
+  /// In en, this message translates to:
+  /// **'Result ready'**
+  String get sampleStatusResulted;
+
+  /// No description provided for @messageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get messageLabel;
+
+  /// No description provided for @radiusKm.
+  ///
+  /// In en, this message translates to:
+  /// **'Radius: {km} km'**
+  String radiusKm(String km);
+
+  /// No description provided for @willReach.
+  ///
+  /// In en, this message translates to:
+  /// **'Will reach {farmers} farmers in {villages} villages'**
+  String willReach(int farmers, int villages);
+
+  /// No description provided for @advisoryPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get advisoryPreview;
+
+  /// No description provided for @advisorySentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Advisory sent to {count} farmers'**
+  String advisorySentTo(int count);
+
+  /// No description provided for @tapMapToMove.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the map to move the centre.'**
+  String get tapMapToMove;
+
+  /// No description provided for @villageInMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Village named in the message'**
+  String get villageInMessage;
+
+  /// No description provided for @inAppOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to the in-app inbox. SMS is not set up.'**
+  String get inAppOnly;
+
+  /// No description provided for @uploadPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload from gallery'**
+  String get uploadPhoto;
 }
 
 class _AppLocalizationsDelegate

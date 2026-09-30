@@ -15,6 +15,7 @@ class SharedData {
     required this.triageConfig,
     required this.actions,
     this.geo = const {},
+    this.advisoryTemplates = const {},
   });
 
   /// species id -> entry from symptoms.json
@@ -34,6 +35,9 @@ class SharedData {
   /// Demo district, blocks and villages (geo/demo_district.json), so the
   /// village picker works with no signal.
   final Map<String, dynamic> geo;
+
+  /// template id -> advisory template (advisories/templates.json).
+  final Map<String, Map<String, dynamic>> advisoryTemplates;
 
   /// Rules sorted by id, the order both engines score them in.
   List<Map<String, dynamic>> get rulesInOrder =>
@@ -58,6 +62,7 @@ class SharedData {
       triageConfig: config,
       actions: _byId((await readJson('actions.json'))['actions']),
       geo: await readJson('geo/demo_district.json'),
+      advisoryTemplates: _byId((await readJson('advisories/templates.json'))['templates']),
     );
   }
 

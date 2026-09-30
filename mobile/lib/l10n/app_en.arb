@@ -253,5 +253,124 @@
         "type": "int"
       }
     }
-  }
+  },
+  "tabAlerts": "Alerts",
+  "tabCases": "Cases",
+  "kpiActiveAlerts": "Active alerts",
+  "kpiMedianResponse": "Median first response",
+  "kpiSamplesPending": "Samples pending",
+  "minutesShort": "{count} min",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noAlerts": "No active alerts. When reports cluster together, an alert appears here.",
+  "updatedAt": "Updated {time}",
+  "@updatedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "alertCluster": "Outbreak cluster",
+  "alertZoonotic": "Can spread to people",
+  "alertMortality": "Many deaths",
+  "acknowledge": "Acknowledge",
+  "acknowledged": "Acknowledged",
+  "sendAdvisory": "Send advisory",
+  "casesInAlert": "Cases in this alert",
+  "reportedBy": "Reported by {name}",
+  "@reportedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "assignToMe": "Assign to me",
+  "assignVet": "Assign vet",
+  "chooseVet": "Choose a vet",
+  "requestSample": "Request sample",
+  "chooseSampleType": "What sample?",
+  "sampleSkinScab": "Skin scab",
+  "sampleBlood": "Blood",
+  "sampleNasalSwab": "Nose swab",
+  "sampleOralSwab": "Mouth swab",
+  "sampleTissue": "Tissue",
+  "sampleCarcassSwab": "Carcass swab",
+  "sampleOther": "Other",
+  "markUnderTreatment": "Mark under treatment",
+  "resolveCase": "Resolve",
+  "ruleOut": "Rule out",
+  "labConfirmed": "Lab confirmed: {disease}",
+  "@labConfirmed": {
+    "placeholders": {
+      "disease": {
+        "type": "String"
+      }
+    }
+  },
+  "whyAppSuspected": "Why the app suspected this",
+  "timelineTitle": "Timeline",
+  "samplesTitle": "Samples",
+  "showQrHint": "Show this code to the pashu sevak, or write it on the sample tube.",
+  "reportPhoto": "Photo",
+  "scanSample": "Scan sample",
+  "typeCodeInstead": "Or type the code",
+  "continueButton2": "Continue",
+  "sampleCollected": "Sample collected",
+  "sampleReceived": "Sample received at the lab",
+  "enterResult": "Enter result",
+  "resultPositive": "Positive",
+  "resultNegative": "Negative",
+  "resultInconclusive": "Inconclusive",
+  "whichDisease": "Which disease?",
+  "noteOptional": "Note (optional)",
+  "saveResult": "Save result",
+  "resultSaved": "Result saved",
+  "samplesToCollect": "Samples to collect",
+  "samplesAtLab": "Samples at the lab",
+  "noSamplesToCollect": "No samples to collect. When a vet requests one, it appears here.",
+  "cameraNotAllowed": "The camera is not allowed. Type the code instead.",
+  "sampleStatusRequested": "To collect",
+  "sampleStatusCollected": "On the way to the lab",
+  "sampleStatusReceived": "Waiting for result",
+  "sampleStatusResulted": "Result ready",
+  "messageLabel": "Message",
+  "radiusKm": "Radius: {km} km",
+  "@radiusKm": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "willReach": "Will reach {farmers} farmers in {villages} villages",
+  "@willReach": {
+    "placeholders": {
+      "farmers": {
+        "type": "int"
+      },
+      "villages": {
+        "type": "int"
+      }
+    }
+  },
+  "advisoryPreview": "Preview",
+  "advisorySentTo": "Advisory sent to {count} farmers",
+  "@advisorySentTo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tapMapToMove": "Tap the map to move the centre.",
+  "villageInMessage": "Village named in the message",
+  "inAppOnly": "Sent to the in-app inbox. SMS is not set up.",
+  "uploadPhoto": "Upload from gallery"
 }

@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 
 from fastapi import APIRouter, Depends, File, UploadFile
+from fastapi.responses import FileResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -14,8 +15,8 @@ from app.core.security import REPORTERS, get_current_user, require_roles
 from app.core.shared_loader import get_shared_data
 from app.models import Advisory, AdvisoryRecipient, Animal, Case, Herd, Report, User, Vaccination, Village
 from app.schemas.reports import ReportIn, ReportResult, SyncPushIn, SyncPushOut
-from app.services.access import visible_cases
-from app.services.cases import utcnow
+from app.services.access import can_view_case, visible_cases
+from app.services.cases import case_for_report, utcnow
 from app.services.reports import ingest_report, report_result
 from app.services.views import case_summary
 
@@ -65,6 +66,16 @@ async def upload_photo(report_id: uuid.UUID, photo: UploadFile = File(...),
     report.photo_path = file_name
     db.commit()
     return {"report_id": report.id, "has_photo": True}
+
+
+@router.get("/reports/{report_id}/photo")
+def get_photo(report_id: uuid.UUID, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """The report's photo, for anyone who can see its case."""
+    report = db.get(Report, report_id)
+    case = case_for_report(db, report_id) if report else None
+    if report is None or report.photo_path is None or case is None or not can_view_case(db, user, case):
+        raise not_found("Photo")
+    return FileResponse(upload_dir() / report.photo_path)
 
 
 @router.post("/sync/push", response_model=SyncPushOut)

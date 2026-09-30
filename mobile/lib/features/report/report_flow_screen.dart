@@ -339,12 +339,14 @@ class _PhotoStep extends ConsumerStatefulWidget {
 class _PhotoStepState extends ConsumerState<_PhotoStep> {
   String? _error;
 
-  Future<void> _takePhoto() async {
+  /// Camera, or a photo already in the gallery (taken earlier, or sent by a
+  /// farmer on WhatsApp). Both are shrunk (max 1280 px, JPEG 80) so they send
+  /// on a weak signal.
+  Future<void> _pickPhoto(ImageSource source) async {
     final l10n = AppLocalizations.of(context);
-    // Shrunk on the phone (max 1280 px, JPEG 80) so it sends on a weak signal.
     final XFile? shot;
     try {
-      shot = await ImagePicker().pickImage(source: ImageSource.camera, maxWidth: 1280, maxHeight: 1280, imageQuality: 80);
+      shot = await ImagePicker().pickImage(source: source, maxWidth: 1280, maxHeight: 1280, imageQuality: 80);
     } catch (_) {
       setState(() => _error = l10n.cameraDenied);
       return;
@@ -373,7 +375,19 @@ class _PhotoStepState extends ConsumerState<_PhotoStep> {
           child: Image.file(File(photo), height: 280, fit: BoxFit.cover),
         ),
       const SizedBox(height: AppSpacing.md),
-      PrimaryButton(label: photo == null ? l10n.takePhoto : l10n.retakePhoto, onPressed: _takePhoto),
+      PrimaryButton(label: photo == null ? l10n.takePhoto : l10n.retakePhoto, onPressed: () => _pickPhoto(ImageSource.camera)),
+      const SizedBox(height: AppSpacing.sm),
+      OutlinedButton.icon(
+        onPressed: () => _pickPhoto(ImageSource.gallery),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.ink,
+          side: const BorderSide(color: AppColors.ink),
+          minimumSize: const Size.fromHeight(AppTouch.farmerMinTarget),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.primaryAction)),
+        ),
+        icon: const Icon(LucideIcons.image),
+        label: Text(l10n.uploadPhoto),
+      ),
       if (photo != null)
         TextButton.icon(
           onPressed: () => ref.read(reportDraftProvider.notifier).setPhoto(null),

@@ -512,4 +512,223 @@ class AppLocalizationsEn extends AppLocalizations {
   String countSummary(int sick, int dead, int total) {
     return '$sick sick, $dead dead, $total in all';
   }
+
+  @override
+  String get tabAlerts => 'Alerts';
+
+  @override
+  String get tabCases => 'Cases';
+
+  @override
+  String get kpiActiveAlerts => 'Active alerts';
+
+  @override
+  String get kpiMedianResponse => 'Median first response';
+
+  @override
+  String get kpiSamplesPending => 'Samples pending';
+
+  @override
+  String minutesShort(int count) {
+    return '$count min';
+  }
+
+  @override
+  String get noAlerts =>
+      'No active alerts. When reports cluster together, an alert appears here.';
+
+  @override
+  String updatedAt(String time) {
+    return 'Updated $time';
+  }
+
+  @override
+  String get alertCluster => 'Outbreak cluster';
+
+  @override
+  String get alertZoonotic => 'Can spread to people';
+
+  @override
+  String get alertMortality => 'Many deaths';
+
+  @override
+  String get acknowledge => 'Acknowledge';
+
+  @override
+  String get acknowledged => 'Acknowledged';
+
+  @override
+  String get sendAdvisory => 'Send advisory';
+
+  @override
+  String get casesInAlert => 'Cases in this alert';
+
+  @override
+  String reportedBy(String name) {
+    return 'Reported by $name';
+  }
+
+  @override
+  String get assignToMe => 'Assign to me';
+
+  @override
+  String get assignVet => 'Assign vet';
+
+  @override
+  String get chooseVet => 'Choose a vet';
+
+  @override
+  String get requestSample => 'Request sample';
+
+  @override
+  String get chooseSampleType => 'What sample?';
+
+  @override
+  String get sampleSkinScab => 'Skin scab';
+
+  @override
+  String get sampleBlood => 'Blood';
+
+  @override
+  String get sampleNasalSwab => 'Nose swab';
+
+  @override
+  String get sampleOralSwab => 'Mouth swab';
+
+  @override
+  String get sampleTissue => 'Tissue';
+
+  @override
+  String get sampleCarcassSwab => 'Carcass swab';
+
+  @override
+  String get sampleOther => 'Other';
+
+  @override
+  String get markUnderTreatment => 'Mark under treatment';
+
+  @override
+  String get resolveCase => 'Resolve';
+
+  @override
+  String get ruleOut => 'Rule out';
+
+  @override
+  String labConfirmed(String disease) {
+    return 'Lab confirmed: $disease';
+  }
+
+  @override
+  String get whyAppSuspected => 'Why the app suspected this';
+
+  @override
+  String get timelineTitle => 'Timeline';
+
+  @override
+  String get samplesTitle => 'Samples';
+
+  @override
+  String get showQrHint =>
+      'Show this code to the pashu sevak, or write it on the sample tube.';
+
+  @override
+  String get reportPhoto => 'Photo';
+
+  @override
+  String get scanSample => 'Scan sample';
+
+  @override
+  String get typeCodeInstead => 'Or type the code';
+
+  @override
+  String get continueButton2 => 'Continue';
+
+  @override
+  String get sampleCollected => 'Sample collected';
+
+  @override
+  String get sampleReceived => 'Sample received at the lab';
+
+  @override
+  String get enterResult => 'Enter result';
+
+  @override
+  String get resultPositive => 'Positive';
+
+  @override
+  String get resultNegative => 'Negative';
+
+  @override
+  String get resultInconclusive => 'Inconclusive';
+
+  @override
+  String get whichDisease => 'Which disease?';
+
+  @override
+  String get noteOptional => 'Note (optional)';
+
+  @override
+  String get saveResult => 'Save result';
+
+  @override
+  String get resultSaved => 'Result saved';
+
+  @override
+  String get samplesToCollect => 'Samples to collect';
+
+  @override
+  String get samplesAtLab => 'Samples at the lab';
+
+  @override
+  String get noSamplesToCollect =>
+      'No samples to collect. When a vet requests one, it appears here.';
+
+  @override
+  String get cameraNotAllowed =>
+      'The camera is not allowed. Type the code instead.';
+
+  @override
+  String get sampleStatusRequested => 'To collect';
+
+  @override
+  String get sampleStatusCollected => 'On the way to the lab';
+
+  @override
+  String get sampleStatusReceived => 'Waiting for result';
+
+  @override
+  String get sampleStatusResulted => 'Result ready';
+
+  @override
+  String get messageLabel => 'Message';
+
+  @override
+  String radiusKm(String km) {
+    return 'Radius: $km km';
+  }
+
+  @override
+  String willReach(int farmers, int villages) {
+    return 'Will reach $farmers farmers in $villages villages';
+  }
+
+  @override
+  String get advisoryPreview => 'Preview';
+
+  @override
+  String advisorySentTo(int count) {
+    return 'Advisory sent to $count farmers';
+  }
+
+  @override
+  String get tapMapToMove => 'Tap the map to move the centre.';
+
+  @override
+  String get villageInMessage => 'Village named in the message';
+
+  @override
+  String get inAppOnly => 'Sent to the in-app inbox. SMS is not set up.';
+
+  @override
+  String get uploadPhoto => 'Upload from gallery';
 }
