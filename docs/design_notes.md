@@ -18,6 +18,9 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 
 | 2026-09-30 | Triage result: bars fill top to bottom in ~600 ms, then "Do this now" fades in; skipped when the phone asks to reduce motion | The one orchestrated motion moment (spec 9.9) |
 | 2026-09-30 | Report location: phone GPS only when it is within 15 km of a demo village, otherwise the chosen village's point | The demo laptop and phone may be far from Pune; a pin in another state would break the district map and clustering |
+| 2026-10-01 | Photo check shows inline under the photo (small spinner, then one sentence), never a full-screen spinner | Spec 10.6; the model answers in 30-50 ms after a 250-400 ms first load |
+| 2026-10-01 | Photo percentages shown to users stay within 1-99% | The model said 0.999 on a real photo; "100%" reads as a diagnosis |
+| 2026-10-01 | Photos are decoded with the engine's image decoder, not the pure-Dart one | Matches TensorFlow's libjpeg-turbo decoding (the Dart decoder was 3 grey levels off on progressive JPEGs), faster, and the model sees exactly what the preview shows |
 
 ## Visual QA log
 
@@ -37,3 +40,6 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-09-30 | Real phone, tall bottom sheets (assign vet, lab result) | Sheet top slid under the status bar | Sheets open with `useSafeArea: true` |
 | 2026-09-30 | Real phone, case timeline | Events with the same timestamp were listed alphabetically ("lab_received" before "sample_collected") | Server sorts by time, then lifecycle order |
 | 2026-09-30 | Real phone, lab scan by typed code + result (`screenshots/phase8_lab_result.png`) | None. Prefilled PS-S- prefix, received state, Positive/LSD form, "Result saved" snackbar, list empties | No change |
+| 2026-10-01 | Real phone, photo step with a real LSD photo from the gallery (screenshots not committed: the gallery photo's licence is unknown) | None. Amber "looks like lumpy skin disease. Suspected only." line, then the lumps question with 64 dp Yes (ink) / No (outlined); Yes ticks "Lumps on the skin" | No change |
+| 2026-10-01 | Real phone, triage result with photo (`screenshots/phase6_result_with_photo.png`) | "Photo: 100% like lumpy skin disease" overstated certainty | Shown percent capped at 99% (`photoPercent`) |
+| 2026-10-01 | Real phone, About the AI in English and Hindi (`screenshots/phase6_about_ai_top.png`, `phase6_about_ai_hi.png`) | None. Metrics, dataset, limits and versions all read from the bundled model card; Devanagari not clipped | Limits stay in English (they come from the model card) |

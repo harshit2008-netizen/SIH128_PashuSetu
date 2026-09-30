@@ -105,7 +105,7 @@ class _CaseBody extends ConsumerWidget {
           if (triage['photo'] case {'p_lsd': final num p, 'unclear': final bool unclear})
             Padding(
               padding: const EdgeInsets.only(top: AppSpacing.sm),
-              child: Text(unclear ? l10n.photoUnclear : l10n.photoResultLine((p * 100).round()), style: text.bodyLarge),
+              child: Text(unclear ? l10n.photoUnclear : l10n.photoResultLine(photoPercent(p)), style: text.bodyLarge),
             ),
           const SizedBox(height: AppSpacing.sm),
           Text(l10n.notDiagnosis, style: text.bodySmall),

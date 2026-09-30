@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../home/formatting.dart';
 import '../../../core/db/app_database.dart';
 import '../../../core/settings/app_settings.dart';
 import '../../../core/shared_data/shared_data.dart';
@@ -182,7 +183,7 @@ class _TriageResultScreenState extends ConsumerState<TriageResultScreen> with Si
       if (result['photo'] case {'p_lsd': final num p, 'unclear': final bool unclear})
         Padding(
           padding: const EdgeInsets.only(top: AppSpacing.sm),
-          child: Text(unclear ? l10n.photoUnclear : l10n.photoResultLine((p * 100).round()),
+          child: Text(unclear ? l10n.photoUnclear : l10n.photoResultLine(photoPercent(p)),
               style: Theme.of(context).textTheme.bodyLarge),
         ),
     ];

@@ -30,3 +30,13 @@ cp ml/artifacts/lsd_v1/{lsd_classifier.tflite,lsd_labels.txt,lsd_model_card.json
 ```
 If the status says ERROR, the reason is at the end of `ml/artifacts/lsd_v1/pashusetu-lsd-classifier.log`.
 A new team member must change `id` in `kaggle/lsd_image_classifier/kernel-metadata.json` to their own Kaggle username.
+
+## After a new model: prove the phone gives the same answers
+```bash
+cd ml && uv sync --extra verify                          # TensorFlow for Windows, about 400 MB, once
+uv run --extra verify python src/verify_tflite.py --n 5  # writes fixtures to mobile/test and mobile/integration_test
+cd ../mobile && flutter test test/image_preprocess_test.dart
+flutter test integration_test/parity_test.dart -d <phone id>   # each probability within 0.02
+```
+Note: the integration test installs a debug build, which replaces the release app on the phone
+(different signature). Reinstall the release APK afterwards with `adb install -r`.

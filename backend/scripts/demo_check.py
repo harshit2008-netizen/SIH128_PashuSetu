@@ -120,8 +120,8 @@ def run() -> int:
 
     # 8. Honesty screen data.
     meta = demo.call(None, "GET", "/meta/engine")
-    demo.check("8 about the AI", len(meta["rules"]) == 6,
-               f"{meta['engine_version']}, 6 rules, image model: {'present' if meta['image_model'] else 'not trained yet'}")
+    demo.check("8 about the AI", len(meta["rules"]) == 6 and meta["image_model"] is not None,
+               f"{meta['engine_version']}, 6 rules, image model: {meta['image_model']['model_version'] if meta['image_model'] else 'not trained yet'}")
     return demo.failures
 
 

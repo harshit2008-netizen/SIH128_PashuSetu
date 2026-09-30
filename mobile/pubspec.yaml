@@ -43,7 +43,6 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   image: ^4.10.1
-
 flutter:
   uses-material-design: true
   # Builds lib/l10n/app_localizations*.dart from the ARB files.

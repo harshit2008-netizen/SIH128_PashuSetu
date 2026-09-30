@@ -12,9 +12,9 @@ Status on 2026-09-30, after Phase 9. Ticked only where it was checked; the reaso
   no all-caps text. Screenshots are in `docs/screenshots/`, and the QA log is in `docs/design_notes.md`.
 - [x] **Hindi/Marathi strings reviewed by a native speaker, or still flagged `needs_native_review`.** They are still flagged.
 - [x] **Every triage result says "suspected" and shows the not-a-diagnosis line.**
-- [ ] **Model metrics come from `ml/reports/lsd_metrics.json`, and the model card lists limitations.** No model is trained yet
-  (Phase 6), so `ml/reports/` is empty and the app shows no model metrics at all.
-- [ ] **`ml/DATA_SOURCES.md` lists every dataset with its licence.** The file exists; the LSD dataset entry is completed in Phase 6.
+- [x] **Model metrics come from `ml/reports/lsd_metrics.json`, and the model card lists limitations.** Kaggle run v2; the
+  About the AI screen reads the bundled model card, and nothing is typed in by hand.
+- [x] **`ml/DATA_SOURCES.md` lists every dataset with its licence.** CowHealth-6K (CC0) plus the datasets considered and rejected.
 - [x] **README explains setup from a fresh laptop in under 15 steps.** It takes 12 steps.
 - [ ] **Release APK built and a backup screen recording saved.** The APK is built (`app-release.apk`, 83 MB) and installed on the phone.
   The screen recording has to be made by the team (see `docs/demo_script.md`).

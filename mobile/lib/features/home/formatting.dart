@@ -1,5 +1,9 @@
 import '../../l10n/app_localizations.dart';
 
+/// Photo model probability as a whole percent, kept within 1-99: a model is
+/// never certain, and "100%" would read as a diagnosis.
+int photoPercent(num probability) => (probability * 100).round().clamp(1, 99);
+
 /// "just now", "5 min ago", "2 hours ago", "3 days ago".
 String timeAgo(AppLocalizations l10n, DateTime when, {DateTime? now}) {
   final diff = (now ?? DateTime.now()).difference(when.toLocal());

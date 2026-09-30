@@ -10,7 +10,7 @@ from app.services.triage.rule_engine import engine_version
 
 router = APIRouter(tags=["meta"])
 
-# Written by the real training run in Phase 6; until then there is no model to describe.
+# Written by the Kaggle training run (ml/README.md) and bundled in the app.
 MODEL_CARD_PATH = REPO_ROOT / "mobile" / "assets" / "models" / "lsd_model_card.json"
 
 
@@ -18,8 +18,10 @@ MODEL_CARD_PATH = REPO_ROOT / "mobile" / "assets" / "models" / "lsd_model_card.j
 def engine():
     data = get_shared_data()
     model_card = json.loads(MODEL_CARD_PATH.read_text(encoding="utf-8")) if MODEL_CARD_PATH.exists() else None
+    version = engine_version(data)
     return {
-        "engine_version": engine_version(data),
+        # Same string the phone shows: "rules-1+lsd_v1" when the photo model is bundled (spec 10.6).
+        "engine_version": f"{version}+{model_card['model_version']}" if model_card else version,
         "rules": [{"id": r["id"], "version": r["version"], "name": r["name"], "species": r["species"],
                    "notifiable": r["notifiable"], "zoonotic": r["zoonotic"], "source_note": r["source_note"]}
                   for r in data.rules_in_order],
