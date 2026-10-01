@@ -57,13 +57,13 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Geography: `uv run python -m scripts.geocode_villages` (uses `backend/.cache`; `--refresh` downloads again from OSM).
 
 ## Phase status
-- Phase 0 (scaffold): done, commit 865d1a2.
-- Phase 1 (shared contracts + engines): done, commit ebb504f.
-- Phase 2 (backend core): done, commit 51a9bc9.
-- Phase 3 (mobile foundation + design system): done, commit 77fba74.
-- Phase 4 (report flow + offline + on-device triage): done, commit ee2ef69.
-- Phase 7 (surveillance + simulator): done, commit d61a7a7.
-- Phase 8 (officer, lab, advisories): done, commit abd47b3.
+- Phase 0 (scaffold): done, commit 3718cbc.
+- Phase 1 (shared contracts + engines): done, commit 20784be.
+- Phase 2 (backend core): done, commit 84c25a0.
+- Phase 3 (mobile foundation + design system): done, commit 6ea055b.
+- Phase 4 (report flow + offline + on-device triage): done, commit 66f866f.
+- Phase 7 (surveillance + simulator): done, commit 5cf9c87.
+- Phase 8 (officer, lab, advisories): done, commit cc03e87.
 - Phase 9 (demo hardening): demo script, `make demo-check`, README, checklist in `docs/demo_checklist.md`.
   Open items: backup screen recording, native-speaker review.
 - Phase 6 (LSD image model): done. Kaggle training + app integration (fusion.dart, image_classifier.dart, About the AI).
