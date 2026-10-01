@@ -293,5 +293,8 @@
   "ageMonths": "{months} महीने का",
   "markCollected": "इकट्ठा हो गया",
   "sampleStatusRequestedLab": "इकट्ठा होना बाकी",
-  "oneHealthNotified": "मानव स्वास्थ्य विभाग को सूचना दी गई {time}"
+  "oneHealthNotified": "मानव स्वास्थ्य विभाग को सूचना दी गई {time}",
+  "whichPartButton": "दिखाएं फ़ोटो का कौन सा हिस्सा अहम था",
+  "whichPartWorking": "फ़ोटो का हर हिस्सा जांचा जा रहा है",
+  "whichPartCaption": "लाल: वे हिस्से जिनसे फ़ोटो लम्पी स्किन रोग जैसी लगी। इन्हें ढकने पर अंक सबसे ज़्यादा घटा।"
 }

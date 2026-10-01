@@ -18,6 +18,7 @@ import '../auth/language_screen.dart' show PrimaryButton;
 import '../home/home_data.dart';
 import '../triage/engine/fusion.dart';
 import '../triage/engine/rule_engine.dart';
+import 'photo_heatmap.dart';
 import 'report_draft.dart';
 import 'voice/voice_sheet.dart';
 
@@ -469,8 +470,10 @@ class _PhotoCheckPanel extends ConsumerWidget {
         return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           if (flags['unclear'] == true)
             line(LucideIcons.sunMedium, l10n.photoUnclear, SeverityColors.routine)
-          else if (looksLsd)
-            line(LucideIcons.scanSearch, l10n.photoLooksLsd, SeverityColors.urgent)
+          else if (looksLsd) ...[
+            line(LucideIcons.scanSearch, l10n.photoLooksLsd, SeverityColors.urgent),
+            PhotoHeatmap(photoPath: check.path),
+          ]
           else
             line(LucideIcons.circleCheck, l10n.photoLooksHealthy, SeverityColors.ok),
           if (flags['ask_about_skin_nodules'] == true && !check.lumpsAnswered)

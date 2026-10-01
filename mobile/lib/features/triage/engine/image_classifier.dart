@@ -41,12 +41,54 @@ class LsdImageClassifier {
   }
 
   /// Label -> probability for one photo file's bytes.
-  Future<Map<String, double>> classify(Uint8List photoBytes) async {
-    final input = await preprocessForModel(photoBytes, size: inputSize);
+  Future<Map<String, double>> classify(Uint8List photoBytes) async =>
+      _run(await preprocessForModel(photoBytes, size: inputSize));
+
+  Map<String, double> _run(Float32List input) {
     final output = Float32List(labels.length);
     _interpreter.run(input.buffer.asUint8List(), output.buffer.asUint8List());
     return {for (var i = 0; i < labels.length; i++) labels[i]: output[i].toDouble()};
   }
+
+  /// Which part of the photo mattered (P2, spec 13): cover one cell of a
+  /// [grid] x [grid] grid at a time and see how much the LSD probability drops.
+  /// Returns one value per cell, row by row, 0..1 (1 = the cell that mattered most).
+  /// [grid]^2 + 1 model runs, so it is only done when the user asks.
+  Future<List<double>> occlusionMap(Uint8List photoBytes, {String label = 'lsd', int grid = 6}) async {
+    final input = await preprocessForModel(photoBytes, size: inputSize);
+    final base = _run(input)[label]!;
+    final drops = <double>[];
+    for (var row = 0; row < grid; row++) {
+      for (var col = 0; col < grid; col++) {
+        drops.add(base - _run(occlude(input, inputSize, grid, row, col))[label]!);
+        await Future<void>.delayed(Duration.zero); // let the progress indicator draw between runs
+      }
+    }
+    return normaliseDrops(drops);
+  }
+}
+
+/// A copy of the model input with one grid cell filled with mid-grey (127.5,
+/// the middle of the 0-255 range the model expects), the usual occlusion patch.
+Float32List occlude(Float32List input, int size, int grid, int row, int col) {
+  final copy = Float32List.fromList(input);
+  final y0 = row * size ~/ grid, y1 = (row + 1) * size ~/ grid;
+  final x0 = col * size ~/ grid, x1 = (col + 1) * size ~/ grid;
+  for (var y = y0; y < y1; y++) {
+    for (var x = x0; x < x1; x++) {
+      final i = (y * size + x) * 3;
+      copy[i] = copy[i + 1] = copy[i + 2] = 127.5;
+    }
+  }
+  return copy;
+}
+
+/// Probability drops -> 0..1 per cell. Cells whose covering raised the
+/// probability count as 0: they did not support the answer.
+List<double> normaliseDrops(List<double> drops) {
+  final positive = [for (final d in drops) d > 0 ? d : 0.0];
+  final top = positive.fold<double>(0, (a, b) => a > b ? a : b);
+  return [for (final d in positive) top == 0 ? 0.0 : d / top];
 }
 
 /// Photo bytes -> model input: [size * size * 3] float32, RGB, 0-255.

@@ -1036,4 +1036,14 @@ class AppLocalizationsMr extends AppLocalizations {
   String oneHealthNotified(String time) {
     return 'मानवी आरोग्य विभागाला कळवले $time';
   }
+
+  @override
+  String get whichPartButton => 'फोटोचा कोणता भाग महत्त्वाचा होता ते दाखवा';
+
+  @override
+  String get whichPartWorking => 'फोटोचा प्रत्येक भाग तपासत आहोत';
+
+  @override
+  String get whichPartCaption =>
+      'लाल: ज्या भागांमुळे फोटो लम्पी स्किन आजारासारखा दिसला. ते झाकल्यावर गुण सर्वात जास्त कमी झाले.';
 }

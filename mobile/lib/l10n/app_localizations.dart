@@ -1857,6 +1857,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Human health department notified {time}'**
   String oneHealthNotified(String time);
+
+  /// No description provided for @whichPartButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Show which part of the photo mattered'**
+  String get whichPartButton;
+
+  /// No description provided for @whichPartWorking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking each part of the photo'**
+  String get whichPartWorking;
+
+  /// No description provided for @whichPartCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Red: the parts that made the photo look like lumpy skin disease. Covering them lowered the score most.'**
+  String get whichPartCaption;
 }
 
 class _AppLocalizationsDelegate

@@ -34,4 +34,15 @@ void main() {
     }
     debugPrint('timings ms: $timings');
   });
+
+  testWidgets('which-part heatmap runs on the phone: 36 cells, 0..1', (tester) async {
+    final classifier = await LsdImageClassifier.load(rootBundle);
+    final lsd = parityFixtures.firstWhere((f) => f.lsd > 0.9);
+    final watch = Stopwatch()..start();
+    final cells = await classifier.occlusionMap(base64Decode(lsd.base64));
+    debugPrint('heatmap for ${lsd.name}: ${watch.elapsedMilliseconds} ms, cells $cells');
+    expect(cells.length, 36);
+    expect(cells.every((c) => c >= 0 && c <= 1), isTrue);
+    expect(cells.reduce((a, b) => a > b ? a : b), 1.0); // at least one cell mattered
+  });
 }

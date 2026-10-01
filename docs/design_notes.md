@@ -26,6 +26,7 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-10-01 | Block risk shown as circles at block centres, not polygons | No licensed taluka boundaries in the repo; spec 10.7 forbids invented official-looking borders |
 | 2026-10-01 | Risk levels reuse the severity palette (high red, medium amber, low blue-grey) and each row has a left edge in that colour | Same visual language as alerts; colour plus the word "High risk", never colour alone |
 | 2026-10-01 | "Vaccinated today" is two taps: the herd's button, then the vaccine (only vaccines for that herd's species are offered) | Spec 10.8; a sevak records a whole herd on one visit |
+| 2026-10-01 | Photo "which part mattered" runs only when asked, as a text button under the LSD photo line | 37 model runs (about 1 s on the team phone); the overlay is drawn on the central square the model sees |
 
 ## Visual QA log
 

@@ -84,3 +84,6 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Phase 10 (P1): spikes (EARS-C2), SLA escalation, weather + block risk (shared/risk_config.json), herds/animals/
   vaccinations (shared/vaccines.json), risk tab, escalation display. Marathi strings exist but need native review.
   Seed keeps weather_cache across re-seeds; tests seed with weather_online=False.
+- Phase 11 (P2): RF second opinion (server only), One Health webhook, reports by SMS (backend lexicon_parser.py is the
+  Python twin of the Dart parser, same shared sentences), photo "which part mattered" heatmap. Blocked on external
+  accounts: Bhashini, IVR, FCM. After any shared/ edit: `make sync-shared`.

@@ -51,6 +51,16 @@ Flutter SDK (stable) + Android Studio, GNU make (Windows: `winget install ezwinp
 | `make test` | Backend and mobile tests |
 | `make apk` | Build the release APK |
 
+## Optional integrations (P2, all off by default)
+
+| Feature | Switch on with (in `.env`) | Notes |
+|---|---|---|
+| Reports by SMS | `SMS_INBOUND_TOKEN=<secret>` | Point any SMS gateway at `POST /api/v1/sms/inbound` with header `X-Gateway-Token` and JSON `{"from", "text", "message_id"}`; send the returned `reply` back. No SMS provider is bundled. |
+| One Health webhook | `ONE_HEALTH_WEBHOOK_URL=<url>` (+ optional `ONE_HEALTH_WEBHOOK_SECRET`) | Zoonotic alerts are POSTed with an `X-PashuSetu-Signature` HMAC; retried up to 5 times. |
+| RF second opinion | on when `backend/app/ml_models/symptom_rf.joblib` exists | Server only, 20% weight; trained on rule-generated data (`ml/src/symptom_rf.py`). |
+
+Not built, because they need accounts we do not have: Bhashini speech, IVR calls, FCM push notifications.
+
 ## Demo networking
 
 Over USB, `adb reverse` is simplest. Without USB, the phone and laptop must be on the same hotspot; set the API URL in the developer options (tap App version 7 times in Settings) to the laptop's LAN IP (for example `http://192.168.43.10:8000`), and the emulator uses `http://10.0.2.2:8000`.

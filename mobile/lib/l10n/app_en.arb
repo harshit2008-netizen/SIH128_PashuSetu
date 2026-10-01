@@ -664,5 +664,8 @@
         "type": "String"
       }
     }
-  }
+  },
+  "whichPartButton": "Show which part of the photo mattered",
+  "whichPartWorking": "Checking each part of the photo",
+  "whichPartCaption": "Red: the parts that made the photo look like lumpy skin disease. Covering them lowered the score most."
 }

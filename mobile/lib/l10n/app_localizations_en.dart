@@ -1037,4 +1037,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String oneHealthNotified(String time) {
     return 'Human health department notified $time';
   }
+
+  @override
+  String get whichPartButton => 'Show which part of the photo mattered';
+
+  @override
+  String get whichPartWorking => 'Checking each part of the photo';
+
+  @override
+  String get whichPartCaption =>
+      'Red: the parts that made the photo look like lumpy skin disease. Covering them lowered the score most.';
 }
