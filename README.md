@@ -37,6 +37,7 @@ Flutter SDK (stable) + Android Studio, GNU make (Windows: `winget install ezwinp
 | Stop the API | Ctrl+C in the `make api` terminal |
 | Stop the database | `make down` (data stays in the Docker volume) |
 | Wipe and reload demo data | `make reset-demo` |
+| Code changed but the API still behaves the old way | Stop it (Ctrl+C) and run `make api` again: on Windows the auto-reload can hang half-way |
 
 ## Everyday commands
 

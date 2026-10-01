@@ -654,5 +654,7 @@
         "type": "int"
       }
     }
-  }
+  },
+  "markCollected": "Mark as collected",
+  "sampleStatusRequestedLab": "Waiting to be collected"
 }

@@ -1020,4 +1020,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String ageMonths(int months) {
     return '$months महीने का';
   }
+
+  @override
+  String get markCollected => 'इकट्ठा हो गया';
+
+  @override
+  String get sampleStatusRequestedLab => 'इकट्ठा होना बाकी';
 }

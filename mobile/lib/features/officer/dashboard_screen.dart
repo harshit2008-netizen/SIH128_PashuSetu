@@ -34,7 +34,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   Timer? _timer;
   DateTime _updatedAt = DateTime.now();
   _Tab _tab = _Tab.alerts;
-  String _riskDisease = 'lsd';
+  String? _riskDisease; // null: the server's default (first in shared/risk_config.json)
   final _map = MapController();
 
   @override

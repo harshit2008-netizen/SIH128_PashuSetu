@@ -172,14 +172,30 @@ class _Banner extends StatelessWidget {
       );
 }
 
-class _SampleCard extends StatelessWidget {
+class _SampleCard extends ConsumerWidget {
   const _SampleCard({required this.sample});
 
   final Json sample;
 
-  @override
-  Widget build(BuildContext context) {
+  /// The vet (or sevak) who took the sample marks it collected here, no scanner needed.
+  Future<void> _markCollected(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(apiClientProvider).post('/samples/${sample['qr_code']}/scan');
+      messenger.showSnackBar(SnackBar(content: Text('${sample['qr_code']}: ${l10n.sampleCollected}')));
+      ref
+        ..invalidate(caseDetailProvider(sample['case_id'] as String))
+        ..invalidate(samplesProvider);
+    } on ApiException catch (error) {
+      messenger.showSnackBar(SnackBar(content: Text(error.message)));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final role = ref.watch(settingsProvider).role;
     final text = Theme.of(context).textTheme;
     final code = sample['qr_code'] as String;
     final waiting = sample['status'] == 'requested';
@@ -203,6 +219,20 @@ class _SampleCard extends StatelessWidget {
               Center(child: QrImageView(data: code, size: 200, backgroundColor: AppColors.paper, semanticsLabel: code)),
               Center(child: Text(code, style: text.displayMedium?.copyWith(fontSize: 28))),
               Text(l10n.showQrHint, style: text.bodySmall, textAlign: TextAlign.center),
+              if (role == 'vet' || role == 'pashu_sevak') ...[
+                const SizedBox(height: AppSpacing.md),
+                OutlinedButton.icon(
+                  onPressed: () => _markCollected(context, ref),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.ink,
+                    side: const BorderSide(color: AppColors.ink),
+                    minimumSize: const Size.fromHeight(AppTouch.minTarget),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.primaryAction)),
+                  ),
+                  icon: const Icon(LucideIcons.packageCheck),
+                  label: Text(l10n.markCollected),
+                ),
+              ],
             ] else
               Text(code, style: text.bodySmall),
           ]),

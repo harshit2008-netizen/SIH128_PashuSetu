@@ -1026,4 +1026,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String ageMonths(int months) {
     return '$months months old';
   }
+
+  @override
+  String get markCollected => 'Mark as collected';
+
+  @override
+  String get sampleStatusRequestedLab => 'Waiting to be collected';
 }

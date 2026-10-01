@@ -47,8 +47,8 @@ def create_sample(case_id: uuid.UUID, body: SampleRequestIn, user: User = Depend
 
 
 @router.post("/samples/{qr_code}/scan")
-def scan(qr_code: str, user: User = Depends(require_roles("pashu_sevak", "lab")), db: Session = Depends(get_db)):
-    """Pashu sevak: marks collected. Lab: marks received."""
+def scan(qr_code: str, user: User = Depends(require_roles("pashu_sevak", "vet", "lab")), db: Session = Depends(get_db)):
+    """Pashu sevak or vet: marks collected. Lab: marks received (and collected, if nobody scanned it)."""
     sample = scan_sample(db, find_sample(db, qr_code), user)
     db.commit()
     return _with_case(db, sample)
@@ -65,12 +65,13 @@ def result(qr_code: str, body: ResultIn, user: User = Depends(require_roles("lab
 @router.get("/samples")
 def list_samples(status: str | None = None, user: User = Depends(require_roles("pashu_sevak", "lab", "vet")),
                  db: Session = Depends(get_db)):
-    """Sevak: samples to collect in their block. Lab: samples on the way or waiting for a result."""
+    """Sevak and vet: samples to collect in their block. Lab: every sample not yet resulted in the
+    district, including requested ones, so the lab knows what is coming."""
     query = select(LabSample).join(Case, Case.id == LabSample.case_id)
     if user.role == "lab":
         district_blocks = select(Block.id).where(Block.district_id == user.district_id)
         query = query.where(Case.block_id.in_(district_blocks),
-                            LabSample.status.in_((status,) if status else ("collected", "received")))
+                            LabSample.status.in_((status,) if status else ("requested", "collected", "received")))
     else:
         query = query.where(Case.block_id == user.block_id,
                             LabSample.status.in_((status,) if status else ("requested",)))

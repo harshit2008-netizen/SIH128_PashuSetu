@@ -23,7 +23,8 @@
     "image_weight": 0.4,
     "ask_sign": "skin_nodules",
     "ask_min_p": 0.80,
-    "clear_photo_min_p": 0.60
+    "clear_photo_min_p": 0.60,
+    "second_opinion_weight": 0.2
   },
   "actions": {
     "disease_actions_min_score": 0.40,

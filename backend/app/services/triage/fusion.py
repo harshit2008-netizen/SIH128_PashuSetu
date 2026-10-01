@@ -4,7 +4,8 @@ The photo model runs on the phone (TFLite). The phone sends its LSD
 probability inside `device_triage.image_p_lsd`; the server does not re-run
 the image model, it re-runs the rules and applies the same fusion formula.
 Weights and cut-offs live in shared/triage_config.json ("fusion"), and
-mobile/lib/features/triage/engine/fusion.dart mirrors this file step for step.
+mobile/lib/features/triage/engine/fusion.dart mirrors this file step for step
+(the RF second opinion is server only, see second_opinion.py).
 """
 
 from app.core.shared_loader import SharedData
@@ -18,6 +19,7 @@ from app.services.triage.rule_engine import (
     score_rule,
     validate_input,
 )
+from app.services.triage.second_opinion import apply_second_opinion, load_model
 
 
 
@@ -39,7 +41,8 @@ def fuse_lsd(data: SharedData, report: TriageInput, candidates: list[dict], imag
 
 
 def evaluate_with_fusion(data: SharedData, report: TriageInput, image_p_lsd: float | None = None,
-                         image_model: str | None = None) -> dict:
+                         image_model: str | None = None, second_opinion: bool = False) -> dict:
+    """Rules, then the photo (LSD), then on the server the RF second opinion when its model exists."""
     validate_input(data, report)
     candidates = score_all_rules(data, report)
     version = engine_version(data)
@@ -53,6 +56,10 @@ def evaluate_with_fusion(data: SharedData, report: TriageInput, image_p_lsd: flo
             "unclear": max(image_p_lsd, 1 - image_p_lsd) < cfg["clear_photo_min_p"],
             "ask_about_skin_nodules": image_p_lsd >= cfg["ask_min_p"] and cfg["ask_sign"] not in report.symptoms,
         }
+    bundle = load_model() if second_opinion else None
+    if bundle is not None:
+        candidates = apply_second_opinion(data, report, candidates, bundle)
+        version = f"{version}+{bundle['version']}"
     result = build_result(data, report, candidates, version)
     result["photo"] = photo
     return result

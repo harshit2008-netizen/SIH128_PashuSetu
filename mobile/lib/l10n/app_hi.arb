@@ -290,5 +290,7 @@
   "nextDueLine": "अगला {vaccine}: {date}",
   "overdueLine": "{vaccine} {date} से बाकी",
   "animalCount": "{count} पशु",
-  "ageMonths": "{months} महीने का"
+  "ageMonths": "{months} महीने का",
+  "markCollected": "इकट्ठा हो गया",
+  "sampleStatusRequestedLab": "इकट्ठा होना बाकी"
 }

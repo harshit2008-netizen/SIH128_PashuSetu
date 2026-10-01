@@ -1,0 +1,74 @@
+{
+  "model_version": "rf_v1",
+  "created_at": "2026-10-01T13:19:53+00:00",
+  "training_data": "synthetic, generated from shared/disease_rules (see ml/src/symptom_rf.py)",
+  "cases": 6000,
+  "classes": [
+    "anthrax",
+    "fmd",
+    "hpai",
+    "hs",
+    "lsd",
+    "ppr"
+  ],
+  "cv_5fold": {
+    "accuracy": 0.976,
+    "macro_f1": 0.976,
+    "per_class": {
+      "anthrax": {
+        "precision": 0.9621890547263682,
+        "recall": 0.967,
+        "f1-score": 0.9645885286783042,
+        "support": 1000.0
+      },
+      "fmd": {
+        "precision": 0.9667673716012085,
+        "recall": 0.96,
+        "f1-score": 0.963371801304566,
+        "support": 1000.0
+      },
+      "hpai": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1000.0
+      },
+      "hs": {
+        "precision": 0.965,
+        "recall": 0.965,
+        "f1-score": 0.965,
+        "support": 1000.0
+      },
+      "lsd": {
+        "precision": 0.986,
+        "recall": 0.986,
+        "f1-score": 0.986,
+        "support": 1000.0
+      },
+      "ppr": {
+        "precision": 0.9760479041916168,
+        "recall": 0.978,
+        "f1-score": 0.977022977022977,
+        "support": 1000.0
+      },
+      "accuracy": 0.976,
+      "macro avg": {
+        "precision": 0.976000721753199,
+        "recall": 0.976,
+        "f1-score": 0.9759972178343078,
+        "support": 6000.0
+      },
+      "weighted avg": {
+        "precision": 0.976000721753199,
+        "recall": 0.976,
+        "f1-score": 0.9759972178343079,
+        "support": 6000.0
+      }
+    }
+  },
+  "limitations": [
+    "Trained on data generated from our own rules, so it largely re-learns them.",
+    "Cross-validation scores say how well it learned the synthetic data, not how well it diagnoses real animals.",
+    "Used only on the server, with 20% weight, as a second opinion."
+  ]
+}

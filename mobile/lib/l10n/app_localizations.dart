@@ -1839,6 +1839,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{months} months old'**
   String ageMonths(int months);
+
+  /// No description provided for @markCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as collected'**
+  String get markCollected;
+
+  /// No description provided for @sampleStatusRequestedLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting to be collected'**
+  String get sampleStatusRequestedLab;
 }
 
 class _AppLocalizationsDelegate

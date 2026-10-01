@@ -52,20 +52,32 @@ def find_sample(db: Session, qr_code: str) -> LabSample:
     return sample
 
 
+COLLECTOR_ROLES = {"pashu_sevak", "vet"}
+
+
+def _collect(db: Session, case: Case, sample: LabSample, actor: User, now: datetime, note: str) -> None:
+    sample.status, sample.collected_by, sample.collected_at = "collected", actor.id, now
+    change_status(db, case, "sample_collected", actor, note, at=now)
+
+
 def scan_sample(db: Session, sample: LabSample, actor: User) -> LabSample:
-    """Pashu sevak scans at collection; lab scans on receipt."""
+    """Pashu sevak or vet: marks it collected. Lab: marks it received.
+
+    A sample can reach the lab without being scanned at collection (the vet
+    took it, or the sevak forgot). The lab then records both steps at once,
+    and the timeline says so, instead of refusing a sample that is in its hands.
+    """
     case = db.get(Case, sample.case_id)
     now = datetime.now(UTC)
-    if actor.role == "pashu_sevak":
+    if actor.role in COLLECTOR_ROLES:
         if sample.status != "requested":
             raise AppError(409, "already_collected", "This sample was already collected.")
-        sample.status, sample.collected_by, sample.collected_at = "collected", actor.id, now
-        change_status(db, case, "sample_collected", actor, f"Sample {sample.qr_code} collected", at=now)
+        _collect(db, case, sample, actor, now, f"Sample {sample.qr_code} collected")
     elif actor.role == "lab":
-        if sample.status != "collected":
-            raise AppError(409, "not_collected" if sample.status == "requested" else "already_received",
-                           "Scan it at collection first." if sample.status == "requested"
-                           else "This sample was already received.")
+        if sample.status == "requested":
+            _collect(db, case, sample, actor, now, f"Sample {sample.qr_code} arrived without a collection scan")
+        elif sample.status != "collected":
+            raise AppError(409, "already_received", "This sample was already received.")
         sample.status, sample.received_by, sample.received_at = "received", actor.id, now
         change_status(db, case, "lab_received", actor, f"Sample {sample.qr_code} received at lab", at=now)
     return sample

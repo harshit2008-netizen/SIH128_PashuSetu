@@ -19,7 +19,7 @@ SeverityColors riskColors(String level) => switch (level) {
 class RiskList extends ConsumerWidget {
   const RiskList({super.key, required this.disease, required this.onDisease});
 
-  final String disease;
+  final String? disease;
   final ValueChanged<String> onDisease;
 
   @override
@@ -30,20 +30,32 @@ class RiskList extends ConsumerWidget {
     final shared = ref.watch(sharedDataProvider).value;
     final coverage = ref.watch(dashboardSummaryProvider).value?['vaccination_coverage'] as num?;
     final risk = ref.watch(riskProvider(disease));
+    // The default reply carries the display order and the default disease, so the
+    // chips stay in place while another disease loads.
+    final defaults = ref.watch(riskProvider(null)).value;
+    final order = List<String>.from(defaults?['diseases'] as List? ?? const []);
+    final selected = disease ?? defaults?['disease'] as String?;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      Wrap(spacing: AppSpacing.sm, runSpacing: AppSpacing.sm, children: [
-        for (final rule in shared?.rulesInOrder ?? const <Map<String, dynamic>>[])
-          ChoiceChip(
-            label: Text(localized(rule['name'], language)),
-            selected: rule['id'] == disease,
-            showCheckmark: false,
-            selectedColor: AppColors.ink,
-            backgroundColor: AppColors.paper,
-            labelStyle: text.labelLarge?.copyWith(color: rule['id'] == disease ? AppColors.paper : AppColors.ink),
-            side: const BorderSide(color: AppColors.line),
-            onSelected: (_) => onDisease(rule['id'] as String),
-          ),
-      ]),
+      // One scrolling row: six disease names would otherwise fill half the sheet.
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          for (final id in order)
+            Padding(
+              padding: const EdgeInsets.only(right: AppSpacing.sm),
+              child: ChoiceChip(
+                label: Text(localized(shared?.rules[id]?['name'], language)),
+                selected: id == selected,
+                showCheckmark: false,
+                selectedColor: AppColors.ink,
+                backgroundColor: AppColors.paper,
+                labelStyle: text.labelLarge?.copyWith(color: id == selected ? AppColors.paper : AppColors.ink),
+                side: const BorderSide(color: AppColors.line),
+                onSelected: (_) => onDisease(id),
+              ),
+            ),
+        ]),
+      ),
       const SizedBox(height: AppSpacing.md),
       if (coverage != null) Text(l10n.districtCoverage((coverage * 100).round()), style: text.titleMedium),
       ...risk.when(

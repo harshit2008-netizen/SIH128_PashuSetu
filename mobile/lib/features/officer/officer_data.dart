@@ -20,9 +20,10 @@ final alertsProvider = FutureProvider<List<Json>>((ref) async => _list(await ref
 final caseDetailProvider = FutureProvider.family<Json, String>(
     (ref, id) async => await ref.watch(apiClientProvider).get('/cases/$id') as Json);
 
-/// Block risk estimate for one disease (officer only), highest first.
-final riskProvider = FutureProvider.autoDispose.family<Json, String>(
-    (ref, disease) async => await ref.watch(apiClientProvider).get('/risk', query: {'disease': disease}) as Json);
+/// Block risk estimate for one disease (officer only), highest first. null asks
+/// for the server's default; the reply also lists the diseases in display order.
+final riskProvider = FutureProvider.autoDispose.family<Json, String?>((ref, disease) async =>
+    await ref.watch(apiClientProvider).get('/risk', query: {'disease': ?disease}) as Json);
 
 final vetsProvider = FutureProvider<List<Json>>((ref) async => _list(await ref.watch(apiClientProvider).get('/vets')));
 
@@ -43,8 +44,9 @@ String sampleTypeLabel(AppLocalizations l10n, String type) => switch (type) {
       _ => l10n.sampleOther,
     };
 
-String sampleStatusLabel(AppLocalizations l10n, String status) => switch (status) {
-      'requested' => l10n.sampleStatusRequested,
+/// [forLab]: the lab is told a requested sample is still waiting to be collected.
+String sampleStatusLabel(AppLocalizations l10n, String status, {bool forLab = false}) => switch (status) {
+      'requested' => forLab ? l10n.sampleStatusRequestedLab : l10n.sampleStatusRequested,
       'collected' => l10n.sampleStatusCollected,
       'received' => l10n.sampleStatusReceived,
       _ => l10n.sampleStatusResulted,

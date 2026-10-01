@@ -86,6 +86,8 @@ def find_reference_problems(data: SharedData) -> list[str]:
         if vaccine["disease"] not in data.rules:
             problems.append(f"vaccine {vaccine['id']}: unknown disease {vaccine['disease']}")
         problems += [f"vaccine {vaccine['id']}: unknown species {s}" for s in vaccine["species"] if s not in data.species]
+    if sorted(data.risk_config["diseases"]) != sorted(data.rules):
+        problems.append("risk_config.diseases must list every disease rule once")
     if abs(sum(data.risk_config["weights"].values()) - 1) > 1e-9:
         problems.append("risk_config: weights must add up to 1")
     fusion = data.triage_config["fusion"]

@@ -1025,4 +1025,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String ageMonths(int months) {
     return '$months महिन्यांचे';
   }
+
+  @override
+  String get markCollected => 'गोळा केला';
+
+  @override
+  String get sampleStatusRequestedLab => 'गोळा करणे बाकी';
 }

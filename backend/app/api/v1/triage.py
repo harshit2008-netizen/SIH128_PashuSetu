@@ -23,4 +23,4 @@ def evaluate(body: TriageIn, _: User = Depends(get_current_user)):
     report = TriageInput(species=body.species, symptoms=frozenset(body.symptoms), sick_count=body.sick_count,
                          dead_count=body.dead_count, total_at_risk=body.total_at_risk,
                          report_month=body.report_month)
-    return evaluate_with_fusion(data, report, body.image_p_lsd)
+    return evaluate_with_fusion(data, report, body.image_p_lsd, second_opinion=True)

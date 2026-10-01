@@ -213,7 +213,12 @@ class KpiStrip extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(item.value, style: text.headlineMedium),
+            // One line always ("72 min"): shrink rather than wrap, so the strip keeps its height.
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(item.value, style: text.headlineMedium, maxLines: 1, softWrap: false),
+            ),
             Text(item.label, style: text.bodySmall, maxLines: 2),
           ],
         ),

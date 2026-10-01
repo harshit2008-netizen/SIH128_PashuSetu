@@ -35,12 +35,26 @@ def test_full_lab_loop_writes_every_step_and_confirms_the_disease(client, as_rol
     assert case["samples"][0]["result"] == "positive"
 
 
-def test_lab_cannot_skip_collection_and_positive_needs_a_disease(client, as_role):
+def test_lab_sees_a_requested_sample_and_can_receive_it_unscanned(client, as_role):
     case_id = new_case(client, as_role)
     code = client.post(f"/api/v1/cases/{case_id}/samples", json={}, headers=as_role("vet")).json()["qr_code"]
-    early = client.post(f"/api/v1/samples/{code}/scan", headers=as_role("lab"))
-    assert early.status_code == 409 and early.json()["error"]["code"] == "not_collected"
-    client.post(f"/api/v1/samples/{code}/scan", headers=as_role("pashu_sevak"))
+    waiting = {s["qr_code"]: s["status"] for s in client.get("/api/v1/samples", headers=as_role("lab")).json()}
+    assert waiting[code] == "requested"  # the lab knows it is coming
+
+    # It reaches the lab without a collection scan: both steps are recorded, and the timeline says so.
+    received = client.post(f"/api/v1/samples/{code}/scan", headers=as_role("lab")).json()
+    assert received["status"] == "received"
+    timeline = client.get(f"/api/v1/cases/{case_id}", headers=as_role("vet")).json()["timeline"]
+    assert [e["to_status"] for e in timeline][-2:] == ["sample_collected", "lab_received"]
+    assert "without a collection scan" in timeline[-2]["note"]
+    again = client.post(f"/api/v1/samples/{code}/scan", headers=as_role("lab"))
+    assert again.status_code == 409 and again.json()["error"]["code"] == "already_received"
+
+
+def test_vet_can_mark_collected_and_positive_needs_a_disease(client, as_role):
+    case_id = new_case(client, as_role)
+    code = client.post(f"/api/v1/cases/{case_id}/samples", json={}, headers=as_role("vet")).json()["qr_code"]
+    assert client.post(f"/api/v1/samples/{code}/scan", headers=as_role("vet")).json()["status"] == "collected"
     client.post(f"/api/v1/samples/{code}/scan", headers=as_role("lab"))
     missing = client.post(f"/api/v1/samples/{code}/result", headers=as_role("lab"), json={"result": "positive"})
     assert missing.status_code == 422

@@ -83,7 +83,7 @@ def test_photo_probability_is_fused_and_asks_about_lumps(client, as_role):
     lsd = next(c for c in body["triage"]["candidates"] if c["disease_id"] == "lsd")
     assert lsd["sources"]["image"] == 0.95
     assert body["triage"]["photo"]["ask_about_skin_nodules"] is True
-    assert body["triage"]["engine_version"] == "rules-1+lsd_v1"
+    assert body["triage"]["engine_version"] == "rules-1+lsd_v1+rf_v1"  # server adds the RF second opinion
 
 
 def test_photo_probability_must_be_a_probability(client, as_role):

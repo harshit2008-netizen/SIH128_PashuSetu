@@ -14,13 +14,14 @@ router = APIRouter(tags=["risk"])
 
 
 @router.get("/risk")
-def risk(disease: str = Query("lsd", description="Disease id, e.g. lsd, hs, fmd"),
+def risk(disease: str | None = Query(None, description="Disease id, e.g. lsd, hs, fmd; default: the first in risk_config"),
          user: User = Depends(require_roles("district_officer")), db: Session = Depends(get_db)):
     """Every block in the officer's district, highest risk first, each with its factor breakdown."""
     data = get_shared_data()
+    disease = disease or data.risk_config["diseases"][0]
     if disease not in data.rules:
         raise AppError(422, "unknown_disease", f"Unknown disease: {disease}")
     blocks = district_risk(db, data, user.district_id, disease)
     db.commit()
-    return {"label": data.risk_config["label"], "disease": disease, "weights": data.risk_config["weights"],
-            "blocks": blocks}
+    return {"label": data.risk_config["label"], "disease": disease, "diseases": data.risk_config["diseases"],
+            "weights": data.risk_config["weights"], "blocks": blocks}

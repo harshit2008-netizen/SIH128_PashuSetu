@@ -1,11 +1,19 @@
 {
   "version": 1,
-  "note": "Block risk estimate (spec 8.8): a transparent heuristic, not a trained model. risk = sum(weight * factor), clamped 0..1. Weather is only modelled for LSD and HS; other diseases get the neutral 0.5 and say so. Vaccines per disease come from vaccines.json.",
+  "note": "Block risk estimate (spec 8.8): a transparent heuristic, not a trained model. risk = sum(weight * factor), clamped 0..1. Weather is only modelled for LSD and HS; other diseases get the neutral 0.5 and say so. Vaccines per disease come from vaccines.json. 'diseases' is the order the officer sees them in; the first is shown by default.",
   "label": {
     "en": "Risk estimate v1 (rule-based)",
     "hi": "जोखिम अनुमान v1 (नियम आधारित)",
     "mr": "धोका अंदाज v1 (नियमांवर आधारित)"
   },
+  "diseases": [
+    "lsd",
+    "fmd",
+    "hs",
+    "ppr",
+    "anthrax",
+    "hpai"
+  ],
   "weights": {
     "season": 0.3,
     "weather": 0.25,

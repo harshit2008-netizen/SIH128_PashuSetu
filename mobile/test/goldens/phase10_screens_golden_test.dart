@@ -41,7 +41,7 @@ void main() {
       await tester.pumpWidget(ProviderScope(
         overrides: overrides(language, 'district_officer'),
         child: goldenApp(
-          Scaffold(body: SingleChildScrollView(padding: const EdgeInsets.all(16), child: RiskList(disease: 'lsd', onDisease: (_) {}))),
+          Scaffold(body: SingleChildScrollView(padding: const EdgeInsets.all(16), child: RiskList(disease: null, onDisease: (_) {}))),
           language: language,
         ),
       ));

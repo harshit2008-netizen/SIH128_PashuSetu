@@ -7,6 +7,7 @@ from fastapi import APIRouter
 from app.core.config import REPO_ROOT
 from app.core.shared_loader import get_shared_data
 from app.services.triage.rule_engine import engine_version
+from app.services.triage.second_opinion import METRICS_PATH
 
 router = APIRouter(tags=["meta"])
 
@@ -26,5 +27,7 @@ def engine():
                    "notifiable": r["notifiable"], "zoonotic": r["zoonotic"], "source_note": r["source_note"]}
                   for r in data.rules_in_order],
         "image_model": model_card,
+        # Server-only RF second opinion (P2); trained on rule-generated data, see its limitations.
+        "second_opinion": json.loads(METRICS_PATH.read_text(encoding="utf-8")) if METRICS_PATH.exists() else None,
         "note": "Results are suspected diseases, not a diagnosis. A vet or lab must confirm.",
     }

@@ -610,5 +610,13 @@
     }
    }
   }
+ ],
+ "diseases": [
+  "lsd",
+  "fmd",
+  "hs",
+  "ppr",
+  "anthrax",
+  "hpai"
  ]
 }

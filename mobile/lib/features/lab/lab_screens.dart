@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -230,7 +232,7 @@ class SampleList extends ConsumerWidget {
             severity: SeverityStyle.parse(s['case']?['severity'] as String?),
             summary: '${s['qr_code']}  ${sampleTypeLabel(l10n, s['sample_type'] as String)}',
             meta: '${diseaseName(shared, s['case']?['suspected_disease'] as String?, language, l10n)}, '
-                '${localized(s['case']?['village']?['name'], language)}. ${sampleStatusLabel(l10n, s['status'] as String)}',
+                '${localized(s['case']?['village']?['name'], language)}. ${sampleStatusLabel(l10n, s['status'] as String, forLab: isLab)}',
             onTap: isLab && s['status'] == 'received' ? () => showResultForm(context, ref, s) : () => context.push('/cases/${s['case_id']}'),
           ),
       ]),
@@ -254,12 +256,32 @@ class ScanButton extends ConsumerWidget {
       );
 }
 
-/// Lab home: scan incoming samples, enter results.
-class LabHome extends ConsumerWidget {
+/// Lab home: scan incoming samples, enter results. Refreshes every 10 s while
+/// open, so a sample a vet just requested shows up without pulling down.
+class LabHome extends ConsumerStatefulWidget {
   const LabHome({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LabHome> createState() => _LabHomeState();
+}
+
+class _LabHomeState extends ConsumerState<LabHome> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 10), (_) => ref.invalidate(samplesProvider));
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final settings = ref.watch(settingsProvider);
     return HomeShell(
