@@ -5,7 +5,7 @@ Farmers and pashu sevaks report sick animals (tap, voice or photo, even offline)
 *suspected* disease and what to do now. Officers see clusters on a map, assign vets, track lab samples
 and send advisories in the farmer's language.
 
-The build plan and all requirements are in [`PASHURAKSHAK_BUILD_SPEC.md`](PASHURAKSHAK_BUILD_SPEC.md). The spec calls the project "PashuRakshak", and we renamed it PashuSetu.
+The project was planned as "PashuRakshak" and renamed PashuSetu. How it is built is described in [`docs/architecture.md`](docs/architecture.md), [`docs/api.md`](docs/api.md) and [`docs/design_notes.md`](docs/design_notes.md).
 
 ## Prerequisites
 
@@ -37,6 +37,8 @@ Flutter SDK (stable) + Android Studio, GNU make (Windows: `winget install ezwinp
 | Stop the API | Ctrl+C in the `make api` terminal |
 | Stop the database | `make down` (data stays in the Docker volume) |
 | Wipe and reload demo data | `make reset-demo` |
+| Android build fails with "Unable to establish loopback connection" (Windows) | Set `JAVA_TOOL_OPTIONS=-Djdk.net.unixdomain.tmpdir=<a short folder path>` before `make apk` |
+| Phone on USB cannot reach the API | `adb reverse tcp:8000 tcp:8000` (repeat after every reconnect) |
 | Code changed but the API still behaves the old way | Stop it (Ctrl+C) and run `make api` again: on Windows the auto-reload can hang half-way |
 
 ## Everyday commands

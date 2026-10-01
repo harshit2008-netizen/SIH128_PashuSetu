@@ -1,6 +1,6 @@
 # PashuSetu architecture
 
-Summarised from `PASHURAKSHAK_BUILD_SPEC.md` Section 2. The spec is the source of truth.
+Summarised from the project's build plan (Section 2), which is kept private.
 
 ```
  Farmer / Pashu-Sevak phone (Flutter)             Vet / Lab / District officer phone (same app, role-based)

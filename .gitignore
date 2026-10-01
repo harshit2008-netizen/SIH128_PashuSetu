@@ -45,3 +45,7 @@ Thumbs.db
 # Local caches (e.g. raw OpenStreetMap downloads)
 backend/.cache/
 mobile/android/build/
+
+# Kept private (not published)
+PASHURAKSHAK_BUILD_SPEC.md
+CLAUDE.local.md

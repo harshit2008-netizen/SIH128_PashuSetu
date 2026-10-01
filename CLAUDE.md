@@ -1,6 +1,7 @@
 # CLAUDE.md — PashuSetu working notes
 
-**Source of truth:** `PASHURAKSHAK_BUILD_SPEC.md`. Read it fully before any phase.
+**Source of truth:** `PASHURAKSHAK_BUILD_SPEC.md` (kept private, not in the public repo). Read it fully before any phase.
+Machine-specific notes live in `CLAUDE.local.md` (not in git).
 **Rename:** the project is **PashuSetu (पशुसेतु)**. Wherever the spec says PashuRakshak / `pashurakshak`, use
 PashuSetu / `pashusetu`: repo root = this folder, Android org `in.pashusetu`, DB `pashusetu`, QR prefix `PS-S-`.
 
@@ -26,18 +27,6 @@ cd backend && uv run pytest
 cd mobile && flutter analyze && flutter test && flutter run
 ```
 `make seed` / `make reset-demo` wipe and rebuild the demo data. `make simulate SCENARIO=... SPEED=...` needs `make api` running.
-
-## Machine notes (Harshit's Windows laptop)
-- Flutter SDK is at `E:\dev\flutter` (on the user PATH). Python 3.11 is managed by uv (`backend/.python-version`).
-- GNU make comes from winget `ezwinports.make`. The Makefile uses Git Bash via `GIT_BASH`.
-- Docker Desktop needs WSL2 (installed, v2.7.14).
-- The Android SDK path has a space, so Flutter points at the 8.3 short path: `flutter config --android-sdk C:\Users\[user]\AppData\Local\Android\Sdk`.
-- Gradle fails with "Unable to establish loopback connection" unless `JAVA_TOOL_OPTIONS=-Djdk.net.unixdomain.tmpdir=E:\dev\tmp` is set.
-- The home network can't reach GitHub CDN IP 185.199.109.133, and Java doesn't fall back. If a Gradle/SDK download times out, fetch it with curl or `android sdk install <pkg>`.
-- Android build: `kotlin.incremental=false` (E: project vs C: pub cache breaks incremental Kotlin). No
-  permission_handler (needs compileSdk 37); photos use the camera app, so no CAMERA permission yet.
-- Team phone for testing: Vivo V2443 (Android 16), adb id `[phone-id]`. Reach the laptop via `adb reverse tcp:8000 tcp:8000`
-  (app default API URL is http://127.0.0.1:8000).
 
 ## Folder map
 ```
