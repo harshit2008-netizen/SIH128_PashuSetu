@@ -122,10 +122,22 @@ def run() -> int:
     meta = demo.call(None, "GET", "/meta/engine")
     demo.check("8 about the AI", len(meta["rules"]) == 6 and meta["image_model"] is not None,
                f"{meta['engine_version']}, 6 rules, image model: {meta['image_model']['model_version'] if meta['image_model'] else 'not trained yet'}")
+
+    # 9. P1 extras: block risk with its reasons, herd records and "Vaccinated today".
+    risk = demo.call("officer", "GET", "/risk?disease=lsd")
+    top = risk["blocks"][0]
+    demo.check("9 risk view", len(risk["blocks"]) == len(data.geo["blocks"]) and "nearby" in top["factors"],
+               f"{risk['label']['en']}: highest {top['name']['en']} {top['level']} ({top['score']})")
+    herd = next(h for h in demo.call("sevak", "GET", "/herds") if any(a["species"] == "cattle" for a in h["animals"]))
+    done = demo.call("sevak", "POST", f"/herds/{herd['id']}/vaccinations", {"vaccine": "LSD"})
+    demo.check("9 vaccinated today", done["animals"] > 0,
+               f"LSD for {done['animals']} animals in {herd['name']}, next due {done['next_due_on']}")
     return demo.failures
 
 
 def main() -> None:
+    # Hindi advisory text is printed; Windows consoles are not always UTF-8.
+    sys.stdout.reconfigure(encoding="utf-8")
     started = time.monotonic()
     failures = run()
     print(f"\nDemo check finished in {time.monotonic() - started:.0f} s: "

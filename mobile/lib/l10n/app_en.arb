@@ -499,5 +499,160 @@
         "type": "int"
       }
     }
+  },
+  "alertSpike": "Unusual rise",
+  "escalatedBadge": "Escalated",
+  "escalatedToBlock": "No response in time: sent to the block vet",
+  "escalatedToDistrict": "No response in time: sent to the district officer",
+  "escalatedCount": "{count} escalated, waiting for a response",
+  "@escalatedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tabRisk": "Risk",
+  "riskHigh": "High risk",
+  "riskMedium": "Medium risk",
+  "riskLow": "Low risk",
+  "riskWhy": "Why: {reasons}",
+  "@riskWhy": {
+    "placeholders": {
+      "reasons": {
+        "type": "String"
+      }
+    }
+  },
+  "riskFactorSeason": "season {percent}%",
+  "@riskFactorSeason": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "riskFactorWeather": "weather {percent}%",
+  "@riskFactorWeather": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "riskFactorNearby": "nearby cases {percent}%",
+  "@riskFactorNearby": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "riskFactorImmunity": "vaccination gap {percent}%",
+  "@riskFactorImmunity": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "riskNearbyCases": "{count} suspected cases within {km} km in {days} days",
+  "@riskNearbyCases": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "km": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "riskCoverage": "{percent}% of animals vaccinated",
+  "@riskCoverage": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "riskWeatherNotModelled": "Weather effect is not modelled for this disease",
+  "riskWeatherSeeded": "Weather from stored seasonal values, not live data",
+  "districtCoverage": "District vaccination coverage: {percent}%",
+  "@districtCoverage": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "herdsTitle": "Herds and vaccines",
+  "openHerds": "All animals and vaccines",
+  "vaccinatedToday": "Vaccinated today",
+  "chooseVaccine": "Which vaccine was given today?",
+  "vaccinationRecorded": "{vaccine} recorded for {count} animals. Next due {date}.",
+  "@vaccinationRecorded": {
+    "placeholders": {
+      "vaccine": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaccinationFailed": "Could not save. Check the signal and try again.",
+  "vaccinationHistory": "Vaccinations",
+  "noVaccinations": "No vaccinations recorded yet.",
+  "givenOn": "Given {date}",
+  "@givenOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "nextDueLine": "Next {vaccine}: {date}",
+  "@nextDueLine": {
+    "placeholders": {
+      "vaccine": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "overdueLine": "{vaccine} overdue since {date}",
+  "@overdueLine": {
+    "placeholders": {
+      "vaccine": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "animalCount": "{count} animals",
+  "@animalCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ageMonths": "{months} months old",
+  "@ageMonths": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
   }
 }

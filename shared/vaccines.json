@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "Vaccines the app records, with who gets them and when the next dose is due. Intervals are the usual field schedules; the vet's advice wins. `disease` links to disease_rules for the risk score's immunity gap.",
+  "vaccines": [
+    {"id": "FMD", "disease": "fmd", "species": ["cattle", "buffalo"], "interval_days": 180,
+     "name": {"en": "FMD vaccine", "hi": "खुरपका-मुंहपका टीका", "mr": "लाळ्या-खुरकूत लस"}},
+    {"id": "HS", "disease": "hs", "species": ["cattle", "buffalo"], "interval_days": 365,
+     "name": {"en": "HS vaccine", "hi": "गलघोंटू टीका", "mr": "घटसर्प लस"}},
+    {"id": "LSD", "disease": "lsd", "species": ["cattle", "buffalo"], "interval_days": 365,
+     "name": {"en": "LSD vaccine", "hi": "लम्पी स्किन टीका", "mr": "लम्पी लस"}},
+    {"id": "PPR", "disease": "ppr", "species": ["goat", "sheep"], "interval_days": 1095,
+     "name": {"en": "PPR vaccine", "hi": "पीपीआर टीका", "mr": "पीपीआर लस"}}
+  ]
+}

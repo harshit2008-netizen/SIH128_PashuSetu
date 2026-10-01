@@ -20,6 +20,10 @@ final alertsProvider = FutureProvider<List<Json>>((ref) async => _list(await ref
 final caseDetailProvider = FutureProvider.family<Json, String>(
     (ref, id) async => await ref.watch(apiClientProvider).get('/cases/$id') as Json);
 
+/// Block risk estimate for one disease (officer only), highest first.
+final riskProvider = FutureProvider.autoDispose.family<Json, String>(
+    (ref, disease) async => await ref.watch(apiClientProvider).get('/risk', query: {'disease': disease}) as Json);
+
 final vetsProvider = FutureProvider<List<Json>>((ref) async => _list(await ref.watch(apiClientProvider).get('/vets')));
 
 /// Sevak: samples to collect. Lab: samples on the way or waiting for a result.
@@ -49,6 +53,7 @@ String sampleStatusLabel(AppLocalizations l10n, String status) => switch (status
 String alertTypeLabel(AppLocalizations l10n, String type) => switch (type) {
       'zoonotic' => l10n.alertZoonotic,
       'mortality' => l10n.alertMortality,
+      'spike' => l10n.alertSpike,
       _ => l10n.alertCluster,
     };
 

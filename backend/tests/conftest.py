@@ -59,7 +59,7 @@ PHONES = {role: phone for role, phone, _, _ in seed.DEMO_USERS}
 @pytest.fixture(scope="session", autouse=True)
 def seeded_database():
     with SessionLocal() as db:
-        seed.run(db)
+        seed.run(db, weather_online=False)  # tests never call Open-Meteo
 
 
 @pytest.fixture

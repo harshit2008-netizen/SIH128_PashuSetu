@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/about/about_ai_screen.dart';
+import '../../features/animals/herd_screens.dart';
 import '../../features/auth/language_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/cases/case_detail_screen.dart';
@@ -55,6 +56,8 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: '/advisories/new',
           builder: (_, state) => AdvisoryComposerScreen(draft: state.extra as AdvisoryDraft? ?? const AdvisoryDraft())),
       GoRoute(path: '/scan', builder: (_, _) => const ScanSampleScreen()),
+      GoRoute(path: '/herds', builder: (_, _) => const HerdsScreen()),
+      GoRoute(path: '/animals/:id', builder: (_, state) => AnimalScreen(animalId: state.pathParameters['id']!)),
       GoRoute(path: '/lab', builder: (_, _) => const LabHome()),
       GoRoute(path: '/report', builder: (_, _) => const ReportFlowScreen()),
       GoRoute(

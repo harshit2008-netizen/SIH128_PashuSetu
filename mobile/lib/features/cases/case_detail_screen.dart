@@ -71,6 +71,12 @@ class _CaseBody extends ConsumerWidget {
           SeverityBadge(severity, large: true),
           Text(statusLabel(l10n, data['status'] as String), style: text.titleMedium),
         ]),
+        // Nobody responded within the SLA, so the case moved up a level (spec 8.6).
+        if ((data['escalation_level'] as int? ?? 0) > 0) ...[
+          const SizedBox(height: AppSpacing.sm),
+          Text(data['escalation_level'] == 1 ? l10n.escalatedToBlock : l10n.escalatedToDistrict,
+              style: text.titleMedium?.copyWith(color: SeverityColors.emergency.foreground)),
+        ],
         const SizedBox(height: AppSpacing.sm),
         Text('${localized(data['village']?['name'], language)}, ${localized(data['block']?['name'], language)}. '
             '${timeAgo(l10n, DateTime.parse(report['created_on_device_at'] as String))}', style: text.bodyLarge),
@@ -118,7 +124,7 @@ class _CaseBody extends ConsumerWidget {
         CaseTimeline(severity: severity, steps: [
           for (final (i, e) in (data['timeline'] as List).cast<Json>().indexed)
             TimelineStep(
-              label: e['note'] == 'Follow-up report' ? e['note'] as String : statusLabel(l10n, e['to_status'] as String),
+              label: timelineLabel(l10n, e),
               state: i == (data['timeline'] as List).length - 1 ? TimelineState.current : TimelineState.done,
               detail: [
                 if (e['actor'] != null) e['actor']['name'],

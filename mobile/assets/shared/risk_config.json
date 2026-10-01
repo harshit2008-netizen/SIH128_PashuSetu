@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "note": "Block risk estimate (spec 8.8): a transparent heuristic, not a trained model. risk = sum(weight * factor), clamped 0..1. Weather is only modelled for LSD and HS; other diseases get the neutral 0.5 and say so. Vaccines per disease come from vaccines.json.",
+  "label": {
+    "en": "Risk estimate v1 (rule-based)",
+    "hi": "जोखिम अनुमान v1 (नियम आधारित)",
+    "mr": "धोका अंदाज v1 (नियमांवर आधारित)"
+  },
+  "weights": {
+    "season": 0.3,
+    "weather": 0.25,
+    "nearby": 0.25,
+    "immunity_gap": 0.2
+  },
+  "levels": {
+    "high": 0.66,
+    "medium": 0.33
+  },
+  "season_outside": 0.3,
+  "neutral": 0.5,
+  "nearby": {
+    "radius_km": 20,
+    "days": 14,
+    "scale": 5
+  },
+  "weather_days": {
+    "past": 14,
+    "forecast": 7
+  },
+  "weather": {
+    "lsd": {
+      "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD",
+      "temp_min_c": 20,
+      "temp_max_c": 35,
+      "humidity_min": 60,
+      "rain_mm_full": 10
+    },
+    "hs": {
+      "why": "heavy rain and high humidity favour HS (galghotu)",
+      "rain_mm_full": 100,
+      "humidity_min": 75
+    }
+  }
+}

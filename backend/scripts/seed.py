@@ -27,11 +27,13 @@ from sqlalchemy.orm import Session
 import app.models  # noqa: F401  (registers tables)
 from app.core.db import Base, SessionLocal
 from app.core.shared_loader import SharedData, get_shared_data
-from app.models import Animal, Block, District, Herd, User, Vaccination, Village
+from app.models import Animal, Block, District, Herd, User, Vaccination, Village, WeatherCache
 from app.schemas.reports import ReportIn
 from app.services.cases import assign_vet, change_status
 from app.services.geo_utils import make_point
+from app.services.geo_utils import point_latlng
 from app.services.reports import ingest_report
+from app.services.risk.weather import DayWeather, cached, fetch_open_meteo, store
 from app.services.triage.rule_engine import TriageInput, evaluate
 
 NAMESPACE = uuid.UUID("7d3c1b2a-5e4f-4a6b-9c8d-0e1f2a3b4c5d")
@@ -71,8 +73,21 @@ def sid(*parts: object) -> uuid.UUID:
     return uuid.uuid5(NAMESPACE, ":".join(str(p) for p in parts))
 
 
+# Weather is not demo state: keeping it means a seed done online once still
+# gives real weather after a later offline re-seed.
+KEEP_ON_WIPE = {WeatherCache.__tablename__}
+# Plausible Pune-district daily weather by month, for seeding with no internet:
+# (temp min range, temp max range, humidity range, rain mm range).
+SEASONAL_WEATHER = {
+    "monsoon": ((20, 23), (25, 30), (80, 92), (2, 25)),      # Jun-Sep
+    "post_monsoon": ((18, 22), (28, 32), (62, 78), (0, 8)),  # Oct
+    "winter": ((10, 16), (27, 31), (42, 60), (0, 0)),        # Nov-Feb
+    "summer": ((19, 24), (34, 39), (28, 45), (0, 2)),        # Mar-May
+}
+
+
 def wipe(db: Session) -> None:
-    tables = ", ".join(t.name for t in Base.metadata.sorted_tables)
+    tables = ", ".join(t.name for t in Base.metadata.sorted_tables if t.name not in KEEP_ON_WIPE)
     db.execute(text(f"TRUNCATE TABLE {tables} RESTART IDENTITY CASCADE"))
 
 
@@ -203,11 +218,9 @@ def seed_vaccinations(db: Session, herds: list[dict], data: SharedData, users: d
     for entry in herds:
         share = coverage[code_by_block_id[entry["village"].block_id]]
         for animal in entry["animals"]:
-            for vaccine, species, interval_days in (("FMD", ("cattle", "buffalo"), 180),
-                                                    ("HS", ("cattle", "buffalo"), 365),
-                                                    ("LSD", ("cattle", "buffalo"), 365),
-                                                    ("PPR", ("goat",), 1095)):
-                if animal.species in species and rng.random() < share:
+            for entry_v in data.vaccines.values():
+                vaccine, interval_days = entry_v["id"], entry_v["interval_days"]
+                if animal.species in entry_v["species"] and rng.random() < share:
                     given = today - timedelta(days=rng.randint(15, interval_days - 5))
                     db.add(Vaccination(id=sid("vaccination", animal.id, vaccine), animal_id=animal.id,
                                        herd_id=animal.herd_id, vaccine=vaccine, given_on=given,
@@ -298,7 +311,44 @@ def progress_case(db: Session, case, users: dict, entry: dict, rng: random.Rando
     change_status(db, case, "resolved", vet, "Animal recovered", treated_at + timedelta(days=rng.randint(3, 9)))
 
 
-def run(db: Session, today: date | None = None) -> dict:
+def seasonal_day(lat: float, lng: float, day: date) -> DayWeather:
+    season = ("monsoon" if day.month in (6, 7, 8, 9) else "post_monsoon" if day.month == 10
+              else "summer" if day.month in (3, 4, 5) else "winter")
+    (tmin_lo, tmin_hi), (tmax_lo, tmax_hi), (hum_lo, hum_hi), (rain_lo, rain_hi) = SEASONAL_WEATHER[season]
+    rng = random.Random(f"{lat:.1f}:{lng:.1f}:{day.isoformat()}")  # same values on every seed
+    return DayWeather(day, round(rng.uniform(tmax_lo, tmax_hi), 1), round(rng.uniform(tmin_lo, tmin_hi), 1),
+                      round(rng.uniform(hum_lo, hum_hi)), round(rng.uniform(rain_lo, rain_hi), 1), "seeded")
+
+
+def seed_weather(db: Session, today: date, online: bool) -> str:
+    """14 past + 7 forecast days per block centroid (spec 8.10). Live Open-Meteo data when
+    online; otherwise any missing day gets a plausible seasonal value marked `seeded`."""
+    past, forecast = 14, 7
+    start, end = today - timedelta(days=past), today + timedelta(days=forecast - 1)
+    sources = set()
+    for block in db.query(Block).order_by(Block.code):
+        centre = point_latlng(block.centroid)
+        if online:
+            try:
+                store(db, centre["lat"], centre["lng"], fetch_open_meteo(centre["lat"], centre["lng"], past, forecast), today)
+                db.flush()
+                sources.add("open-meteo")
+                continue
+            except (OSError, ValueError, KeyError):
+                online = False  # no internet: do not wait on every block
+        have = {d.day for d in cached(db, centre["lat"], centre["lng"], start, end)}
+        missing = [seasonal_day(centre["lat"], centre["lng"], start + timedelta(days=i))
+                   for i in range(past + forecast) if start + timedelta(days=i) not in have]
+        if missing:
+            store(db, centre["lat"], centre["lng"], missing, today)
+            sources.add("seeded")
+        else:
+            sources.add("cache")
+    db.flush()
+    return "+".join(sorted(sources))
+
+
+def run(db: Session, today: date | None = None, weather_online: bool = True) -> dict:
     today = today or datetime.now(IST).date()
     data = get_shared_data()
     rng = random.Random(42)
@@ -308,9 +358,10 @@ def run(db: Session, today: date | None = None) -> dict:
     herds = seed_herds(db, users, {v.id: v for v in villages.values()}, rng)
     seed_vaccinations(db, herds, data, users, rng, today)
     reports = seed_history(db, data, herds, users, rng, today)
+    weather = seed_weather(db, today, weather_online)
     db.commit()
     return {"villages": len(villages), "farmers": len(users["farmers"]), "herds": len(herds),
-            "animals": sum(len(h["animals"]) for h in herds), "history_reports": reports}
+            "animals": sum(len(h["animals"]) for h in herds), "history_reports": reports, "weather": weather}
 
 
 def main() -> None:

@@ -124,9 +124,11 @@ class FarmerHome extends ConsumerWidget {
                   SampleList(emptyMessage: l10n.noSamplesToCollect),
                   SectionHeader(l10n.vaccinationsDue),
                   _VaccinationsDue(data.vaccinationsDue, language),
+                  const _OpenHerds(),
                 ] else ...[
                   SectionHeader(l10n.myAnimals),
                   _AnimalList(animals: data.animals, due: data.vaccinationsDue, language: language),
+                  const _OpenHerds(),
                 ],
                 SectionHeader(l10n.myReports),
                 ListGroup(children: [
@@ -203,6 +205,22 @@ class _AnimalList extends StatelessWidget {
         ),
     ]);
   }
+}
+
+/// Opens the herd list: animal profiles, vaccination history, "Vaccinated today".
+class _OpenHerds extends StatelessWidget {
+  const _OpenHerds();
+
+  @override
+  Widget build(BuildContext context) => Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton.icon(
+          onPressed: () => context.push('/herds'),
+          style: TextButton.styleFrom(foregroundColor: AppColors.ink, minimumSize: Size(0, FarmerMode.minTarget(context))),
+          icon: const Icon(LucideIcons.listChecks),
+          label: Text(AppLocalizations.of(context).openHerds),
+        ),
+      );
 }
 
 class _VaccinationsDue extends StatelessWidget {

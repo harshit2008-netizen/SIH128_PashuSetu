@@ -896,4 +896,134 @@ class AppLocalizationsEn extends AppLocalizations {
   String voiceTotalCount(int count) {
     return '$count in all';
   }
+
+  @override
+  String get alertSpike => 'Unusual rise';
+
+  @override
+  String get escalatedBadge => 'Escalated';
+
+  @override
+  String get escalatedToBlock => 'No response in time: sent to the block vet';
+
+  @override
+  String get escalatedToDistrict =>
+      'No response in time: sent to the district officer';
+
+  @override
+  String escalatedCount(int count) {
+    return '$count escalated, waiting for a response';
+  }
+
+  @override
+  String get tabRisk => 'Risk';
+
+  @override
+  String get riskHigh => 'High risk';
+
+  @override
+  String get riskMedium => 'Medium risk';
+
+  @override
+  String get riskLow => 'Low risk';
+
+  @override
+  String riskWhy(String reasons) {
+    return 'Why: $reasons';
+  }
+
+  @override
+  String riskFactorSeason(int percent) {
+    return 'season $percent%';
+  }
+
+  @override
+  String riskFactorWeather(int percent) {
+    return 'weather $percent%';
+  }
+
+  @override
+  String riskFactorNearby(int percent) {
+    return 'nearby cases $percent%';
+  }
+
+  @override
+  String riskFactorImmunity(int percent) {
+    return 'vaccination gap $percent%';
+  }
+
+  @override
+  String riskNearbyCases(int count, int km, int days) {
+    return '$count suspected cases within $km km in $days days';
+  }
+
+  @override
+  String riskCoverage(int percent) {
+    return '$percent% of animals vaccinated';
+  }
+
+  @override
+  String get riskWeatherNotModelled =>
+      'Weather effect is not modelled for this disease';
+
+  @override
+  String get riskWeatherSeeded =>
+      'Weather from stored seasonal values, not live data';
+
+  @override
+  String districtCoverage(int percent) {
+    return 'District vaccination coverage: $percent%';
+  }
+
+  @override
+  String get herdsTitle => 'Herds and vaccines';
+
+  @override
+  String get openHerds => 'All animals and vaccines';
+
+  @override
+  String get vaccinatedToday => 'Vaccinated today';
+
+  @override
+  String get chooseVaccine => 'Which vaccine was given today?';
+
+  @override
+  String vaccinationRecorded(String vaccine, int count, String date) {
+    return '$vaccine recorded for $count animals. Next due $date.';
+  }
+
+  @override
+  String get vaccinationFailed =>
+      'Could not save. Check the signal and try again.';
+
+  @override
+  String get vaccinationHistory => 'Vaccinations';
+
+  @override
+  String get noVaccinations => 'No vaccinations recorded yet.';
+
+  @override
+  String givenOn(String date) {
+    return 'Given $date';
+  }
+
+  @override
+  String nextDueLine(String vaccine, String date) {
+    return 'Next $vaccine: $date';
+  }
+
+  @override
+  String overdueLine(String vaccine, String date) {
+    return '$vaccine overdue since $date';
+  }
+
+  @override
+  String animalCount(int count) {
+    return '$count animals';
+  }
+
+  @override
+  String ageMonths(int months) {
+    return '$months months old';
+  }
 }

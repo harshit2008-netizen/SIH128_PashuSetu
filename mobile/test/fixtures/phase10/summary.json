@@ -1,0 +1,15 @@
+{
+ "open_cases": 14,
+ "open_by_severity": {
+  "emergency": 1,
+  "urgent": 11,
+  "routine": 2
+ },
+ "unassigned": 9,
+ "escalated": 3,
+ "vaccination_coverage": 0.864,
+ "active_alerts": 2,
+ "median_minutes_to_first_response": 420,
+ "responses_counted": 3,
+ "samples_pending": 0
+}

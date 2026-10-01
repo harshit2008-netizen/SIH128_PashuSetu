@@ -32,6 +32,11 @@
       "en": "over {days} days",
       "hi": "{days} दिनों में",
       "mr": "{days} दिवसांत"
+    },
+    "spike": {
+      "en": "{today} reports of {syndrome} today in {block}, usually about {baseline} a day",
+      "hi": "{block} में आज {syndrome} की {today} सूचनाएं, आम तौर पर रोज़ लगभग {baseline}",
+      "mr": "{block} मध्ये आज {syndrome} च्या {today} नोंदी, सहसा दररोज सुमारे {baseline}"
     }
   }
 }

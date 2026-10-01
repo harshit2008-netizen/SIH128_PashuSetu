@@ -894,4 +894,135 @@ class AppLocalizationsMr extends AppLocalizations {
   String voiceTotalCount(int count) {
     return 'एकूण $count';
   }
+
+  @override
+  String get alertSpike => 'असामान्य वाढ';
+
+  @override
+  String get escalatedBadge => 'पुढे पाठवले';
+
+  @override
+  String get escalatedToBlock =>
+      'वेळेत उत्तर नाही: तालुका पशुवैद्यांकडे पाठवले';
+
+  @override
+  String get escalatedToDistrict =>
+      'वेळेत उत्तर नाही: जिल्हा अधिकाऱ्यांकडे पाठवले';
+
+  @override
+  String escalatedCount(int count) {
+    return '$count पुढे पाठवले, उत्तर बाकी';
+  }
+
+  @override
+  String get tabRisk => 'धोका';
+
+  @override
+  String get riskHigh => 'जास्त धोका';
+
+  @override
+  String get riskMedium => 'मध्यम धोका';
+
+  @override
+  String get riskLow => 'कमी धोका';
+
+  @override
+  String riskWhy(String reasons) {
+    return 'का: $reasons';
+  }
+
+  @override
+  String riskFactorSeason(int percent) {
+    return 'ऋतू $percent%';
+  }
+
+  @override
+  String riskFactorWeather(int percent) {
+    return 'हवामान $percent%';
+  }
+
+  @override
+  String riskFactorNearby(int percent) {
+    return 'जवळची प्रकरणे $percent%';
+  }
+
+  @override
+  String riskFactorImmunity(int percent) {
+    return 'लसीकरणातील तूट $percent%';
+  }
+
+  @override
+  String riskNearbyCases(int count, int km, int days) {
+    return '$days दिवसांत $km किमीच्या आत $count संशयित प्रकरणे';
+  }
+
+  @override
+  String riskCoverage(int percent) {
+    return '$percent% जनावरांचे लसीकरण';
+  }
+
+  @override
+  String get riskWeatherNotModelled =>
+      'या आजारासाठी हवामानाचा परिणाम धरलेला नाही';
+
+  @override
+  String get riskWeatherSeeded =>
+      'हवामान साठवलेल्या हंगामी आकड्यांवरून, थेट नाही';
+
+  @override
+  String districtCoverage(int percent) {
+    return 'जिल्ह्यातील लसीकरण: $percent%';
+  }
+
+  @override
+  String get herdsTitle => 'कळप आणि लसी';
+
+  @override
+  String get openHerds => 'सर्व जनावरे आणि लसी';
+
+  @override
+  String get vaccinatedToday => 'आज लस दिली';
+
+  @override
+  String get chooseVaccine => 'आज कोणती लस दिली?';
+
+  @override
+  String vaccinationRecorded(String vaccine, int count, String date) {
+    return '$count जनावरांसाठी $vaccine नोंदवली. पुढील लस $date.';
+  }
+
+  @override
+  String get vaccinationFailed =>
+      'जतन झाले नाही. सिग्नल तपासून पुन्हा प्रयत्न करा.';
+
+  @override
+  String get vaccinationHistory => 'लसीकरण';
+
+  @override
+  String get noVaccinations => 'अजून कोणतीही लस नोंदवलेली नाही.';
+
+  @override
+  String givenOn(String date) {
+    return '$date रोजी दिली';
+  }
+
+  @override
+  String nextDueLine(String vaccine, String date) {
+    return 'पुढील $vaccine: $date';
+  }
+
+  @override
+  String overdueLine(String vaccine, String date) {
+    return '$vaccine $date पासून बाकी';
+  }
+
+  @override
+  String animalCount(int count) {
+    return '$count जनावरे';
+  }
+
+  @override
+  String ageMonths(int months) {
+    return '$months महिन्यांचे';
+  }
 }

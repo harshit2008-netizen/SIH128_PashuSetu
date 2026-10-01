@@ -33,6 +33,11 @@ class SharedData:
     lexicon: dict
     geo: dict
     alert_texts: dict
+    risk_config: dict
+    vaccines: dict[str, dict]  # vaccine id -> entry from vaccines.json
+
+    def vaccine_for(self, disease: str) -> dict | None:
+        return next((v for v in self.vaccines.values() if v["disease"] == disease), None)
 
     @property
     def rules_in_order(self) -> list[dict]:
@@ -77,6 +82,12 @@ def find_reference_problems(data: SharedData) -> list[str]:
     config = data.triage_config["actions"]
     problems += [f"triage_config: unknown action {a}"
                  for a in config["low_confidence"] + config["unknown_syndrome"] if a not in data.actions]
+    for vaccine in data.vaccines.values():
+        if vaccine["disease"] not in data.rules:
+            problems.append(f"vaccine {vaccine['id']}: unknown disease {vaccine['disease']}")
+        problems += [f"vaccine {vaccine['id']}: unknown species {s}" for s in vaccine["species"] if s not in data.species]
+    if abs(sum(data.risk_config["weights"].values()) - 1) > 1e-9:
+        problems.append("risk_config: weights must add up to 1")
     fusion = data.triage_config["fusion"]
     if fusion["disease"] not in data.rules:
         problems.append(f"triage_config.fusion: unknown disease {fusion['disease']}")
@@ -128,6 +139,8 @@ def load_shared_data(shared_dir: Path = SHARED_DIR) -> SharedData:
         lexicon=read_json(shared_dir / "symptom_lexicon.json"),
         geo=read_json(shared_dir / "geo" / "demo_district.json"),
         alert_texts=read_json(shared_dir / "alerts.json")["summaries"],
+        risk_config=read_json(shared_dir / "risk_config.json"),
+        vaccines={v["id"]: v for v in read_json(shared_dir / "vaccines.json")["vaccines"]},
     )
     problems = find_reference_problems(data)
     if problems:

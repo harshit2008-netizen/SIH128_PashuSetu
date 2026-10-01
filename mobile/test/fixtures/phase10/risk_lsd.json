@@ -1,0 +1,614 @@
+{
+ "label": {
+  "en": "Risk estimate v1 (rule-based)",
+  "hi": "जोखिम अनुमान v1 (नियम आधारित)",
+  "mr": "धोका अंदाज v1 (नियमांवर आधारित)"
+ },
+ "disease": "lsd",
+ "weights": {
+  "season": 0.3,
+  "weather": 0.25,
+  "nearby": 0.25,
+  "immunity_gap": 0.2
+ },
+ "blocks": [
+  {
+   "block_id": "e803f2d6-b985-5719-809f-7d4a4f28e94c",
+   "code": "junnar",
+   "name": {
+    "en": "Junnar",
+    "hi": "जुन्नर",
+    "mr": "जुन्नर"
+   },
+   "centroid": {
+    "lat": 19.20945,
+    "lng": 73.87719
+   },
+   "disease": "lsd",
+   "score": 0.8,
+   "level": "high",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 0.952,
+     "contribution": 0.238,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 41.9,
+     "humid_days": 20,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.753,
+     "contribution": 0.188,
+     "cases": 7,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.371,
+     "contribution": 0.074,
+     "coverage": 0.629
+    }
+   }
+  },
+  {
+   "block_id": "e255ba29-22fe-5044-852f-0a5a4d8c9521",
+   "code": "maval",
+   "name": {
+    "en": "Maval",
+    "hi": "मावळ",
+    "mr": "मावळ"
+   },
+   "centroid": {
+    "lat": 18.78812,
+    "lng": 73.55186
+   },
+   "disease": "lsd",
+   "score": 0.673,
+   "level": "high",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 1.0,
+     "contribution": 0.25,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 70.7,
+     "humid_days": 21,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.615,
+     "contribution": 0.123,
+     "coverage": 0.385
+    }
+   }
+  },
+  {
+   "block_id": "f0b80fe8-70a7-5236-ab65-188f851e0082",
+   "code": "mulshi",
+   "name": {
+    "en": "Mulshi",
+    "hi": "मुळशी",
+    "mr": "मुळशी"
+   },
+   "centroid": {
+    "lat": 18.52427,
+    "lng": 73.61551
+   },
+   "disease": "lsd",
+   "score": 0.662,
+   "level": "high",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 1.0,
+     "contribution": 0.25,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 31.3,
+     "humid_days": 21,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.562,
+     "contribution": 0.112,
+     "coverage": 0.438
+    }
+   }
+  },
+  {
+   "block_id": "56fa17e4-53fb-53f0-928e-7575210c5b59",
+   "code": "ambegaon",
+   "name": {
+    "en": "Ambegaon",
+    "hi": "आंबेगाव",
+    "mr": "आंबेगाव"
+   },
+   "centroid": {
+    "lat": 19.0466,
+    "lng": 73.83867
+   },
+   "disease": "lsd",
+   "score": 0.645,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 0.905,
+     "contribution": 0.226,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 27.8,
+     "humid_days": 19,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.593,
+     "contribution": 0.119,
+     "coverage": 0.407
+    }
+   }
+  },
+  {
+   "block_id": "9e125a35-56ec-56d7-b572-0920477d8cef",
+   "code": "khed",
+   "name": {
+    "en": "Khed",
+    "hi": "खेड",
+    "mr": "खेड"
+   },
+   "centroid": {
+    "lat": 18.85047,
+    "lng": 73.77991
+   },
+   "disease": "lsd",
+   "score": 0.612,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 1.0,
+     "contribution": 0.25,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 45.6,
+     "humid_days": 21,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.312,
+     "contribution": 0.062,
+     "coverage": 0.688
+    }
+   }
+  },
+  {
+   "block_id": "4de3e11d-a4ea-50b5-aaf2-642229a65373",
+   "code": "baramati",
+   "name": {
+    "en": "Baramati",
+    "hi": "बारामती",
+    "mr": "बारामती"
+   },
+   "centroid": {
+    "lat": 18.14788,
+    "lng": 74.5734
+   },
+   "disease": "lsd",
+   "score": 0.61,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 0.667,
+     "contribution": 0.167,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 68.3,
+     "humid_days": 14,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.714,
+     "contribution": 0.143,
+     "coverage": 0.286
+    }
+   }
+  },
+  {
+   "block_id": "165f5c47-ab59-5f21-a54b-5e99a534bd5b",
+   "code": "daund",
+   "name": {
+    "en": "Daund",
+    "hi": "दौंड",
+    "mr": "दौंड"
+   },
+   "centroid": {
+    "lat": 18.461,
+    "lng": 74.57906
+   },
+   "disease": "lsd",
+   "score": 0.61,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 0.667,
+     "contribution": 0.167,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 38.6,
+     "humid_days": 14,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.714,
+     "contribution": 0.143,
+     "coverage": 0.286
+    }
+   }
+  },
+  {
+   "block_id": "c28b9414-6c94-510c-bbd1-a2255cdc6c58",
+   "code": "purandar",
+   "name": {
+    "en": "Purandar",
+    "hi": "पुरंदर",
+    "mr": "पुरंदर"
+   },
+   "centroid": {
+    "lat": 18.34443,
+    "lng": 74.02952
+   },
+   "disease": "lsd",
+   "score": 0.606,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 1.0,
+     "contribution": 0.25,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 44.9,
+     "humid_days": 21,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.278,
+     "contribution": 0.056,
+     "coverage": 0.722
+    }
+   }
+  },
+  {
+   "block_id": "947b0a9f-74b3-5944-8a03-3d306d4b05f6",
+   "code": "haveli",
+   "name": {
+    "en": "Haveli",
+    "hi": "हवेली",
+    "mr": "हवेली"
+   },
+   "centroid": {
+    "lat": 18.51049,
+    "lng": 73.91537
+   },
+   "disease": "lsd",
+   "score": 0.597,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 0.762,
+     "contribution": 0.191,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 49.1,
+     "humid_days": 16,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.533,
+     "contribution": 0.107,
+     "coverage": 0.467
+    }
+   }
+  },
+  {
+   "block_id": "4bb3d064-815b-5708-a2e7-14ac7c23f145",
+   "code": "velhe",
+   "name": {
+    "en": "Velhe",
+    "hi": "वेल्हे",
+    "mr": "वेल्हे"
+   },
+   "centroid": {
+    "lat": 18.29775,
+    "lng": 73.63632
+   },
+   "disease": "lsd",
+   "score": 0.594,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 1.0,
+     "contribution": 0.25,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 49.2,
+     "humid_days": 21,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.222,
+     "contribution": 0.044,
+     "coverage": 0.778
+    }
+   }
+  },
+  {
+   "block_id": "da9f2003-11af-5f25-a81a-05b063a3aed4",
+   "code": "bhor",
+   "name": {
+    "en": "Bhor",
+    "hi": "भोर",
+    "mr": "भोर"
+   },
+   "centroid": {
+    "lat": 18.15081,
+    "lng": 73.84306
+   },
+   "disease": "lsd",
+   "score": 0.55,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 1.0,
+     "contribution": 0.25,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 35.9,
+     "humid_days": 21,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "coverage": 1.0
+    }
+   }
+  },
+  {
+   "block_id": "8cd5aac4-145a-5075-abb6-97007b41896b",
+   "code": "indapur",
+   "name": {
+    "en": "Indapur",
+    "hi": "इंदापूर",
+    "mr": "इंदापूर"
+   },
+   "centroid": {
+    "lat": 18.11713,
+    "lng": 75.02628
+   },
+   "disease": "lsd",
+   "score": 0.532,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 0.476,
+     "contribution": 0.119,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 53.7,
+     "humid_days": 10,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.565,
+     "contribution": 0.113,
+     "coverage": 0.435
+    }
+   }
+  },
+  {
+   "block_id": "d0516627-8cee-5e97-921f-d0bbf2cbfbaf",
+   "code": "shirur",
+   "name": {
+    "en": "Shirur",
+    "hi": "शिरूर",
+    "mr": "शिरूर"
+   },
+   "centroid": {
+    "lat": 18.82659,
+    "lng": 74.37253
+   },
+   "disease": "lsd",
+   "score": 0.5,
+   "level": "medium",
+   "factors": {
+    "season": {
+     "value": 1.0,
+     "contribution": 0.3
+    },
+    "weather": {
+     "value": 0.762,
+     "contribution": 0.191,
+     "modelled": true,
+     "days": 21,
+     "rain_mm": 46.6,
+     "humid_days": 16,
+     "source": [
+      "open-meteo"
+     ],
+     "why": "warm, humid days with some rain help the flies and mosquitoes that spread LSD"
+    },
+    "nearby": {
+     "value": 0.0,
+     "contribution": 0.0,
+     "cases": 0,
+     "radius_km": 20,
+     "days": 14
+    },
+    "immunity_gap": {
+     "value": 0.05,
+     "contribution": 0.01,
+     "coverage": 0.95
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,426 @@
+[
+ {
+  "id": "c6d848d5-ea59-582d-ab4c-343d4dc960b9",
+  "name": "Dhumal gotha",
+  "village": {
+   "en": "Bori Budruk",
+   "hi": "बोरी बुद्रुक",
+   "mr": "बोरी बुद्रुक"
+  },
+  "animals": [
+   {
+    "id": "d2c6ef45-e5cd-5add-a89d-cdf44c8f6d92",
+    "herd_id": "c6d848d5-ea59-582d-ab4c-343d4dc960b9",
+    "ear_tag": "123214436995",
+    "name": "Heera",
+    "species": "cattle",
+    "breed": "HF cross",
+    "sex": "female",
+    "age_months": 89,
+    "vaccinations": [
+     {
+      "id": "d4b78a68-d76c-4753-b3db-f639e07526cc",
+      "vaccine": "LSD",
+      "given_on": "2026-10-01",
+      "next_due_on": "2027-10-01"
+     },
+     {
+      "id": "af9528d9-e9cc-5e44-adba-ab6226f2b250",
+      "vaccine": "FMD",
+      "given_on": "2026-08-16",
+      "next_due_on": "2027-02-12"
+     },
+     {
+      "id": "e966215f-dd4e-503d-8768-2414c06e7bae",
+      "vaccine": "LSD",
+      "given_on": "2026-01-26",
+      "next_due_on": "2027-01-26"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "FMD",
+      "due_on": "2027-02-12",
+      "overdue": false
+     },
+     {
+      "vaccine": "LSD",
+      "due_on": "2027-10-01",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "f6225d8b-4a36-5aec-8a65-a354277458fc",
+    "herd_id": "c6d848d5-ea59-582d-ab4c-343d4dc960b9",
+    "ear_tag": "954294433114",
+    "name": "Kapila",
+    "species": "cattle",
+    "breed": "HF cross",
+    "sex": "female",
+    "age_months": 114,
+    "vaccinations": [
+     {
+      "id": "ad3f720f-e01f-456e-b5ca-b2f2f10b7d38",
+      "vaccine": "LSD",
+      "given_on": "2026-10-01",
+      "next_due_on": "2027-10-01"
+     },
+     {
+      "id": "ed8ae3a7-8a9d-5d3a-9c8b-268f07fdde8b",
+      "vaccine": "FMD",
+      "given_on": "2026-08-24",
+      "next_due_on": "2027-02-20"
+     },
+     {
+      "id": "245575f0-4ec6-52db-8e18-e00c097bc90f",
+      "vaccine": "LSD",
+      "given_on": "2026-01-15",
+      "next_due_on": "2027-01-15"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "FMD",
+      "due_on": "2027-02-20",
+      "overdue": false
+     },
+     {
+      "vaccine": "LSD",
+      "due_on": "2027-10-01",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "60126a26-2165-5256-8967-7f1a947d2b7d",
+    "herd_id": "c6d848d5-ea59-582d-ab4c-343d4dc960b9",
+    "ear_tag": "379801847378",
+    "name": "Laxmi",
+    "species": "cattle",
+    "breed": "Sahiwal",
+    "sex": "female",
+    "age_months": 29,
+    "vaccinations": [
+     {
+      "id": "85c544e2-390c-4ba6-a058-ebead37a674d",
+      "vaccine": "LSD",
+      "given_on": "2026-10-01",
+      "next_due_on": "2027-10-01"
+     },
+     {
+      "id": "571aa0c4-2dfd-5b25-8ac3-f73f51924a57",
+      "vaccine": "FMD",
+      "given_on": "2026-04-18",
+      "next_due_on": "2026-10-15"
+     },
+     {
+      "id": "36ec6e33-ab0d-548b-9795-67694142673d",
+      "vaccine": "LSD",
+      "given_on": "2026-03-25",
+      "next_due_on": "2027-03-25"
+     },
+     {
+      "id": "b48477ad-81b7-5bbf-b6c7-d14830379610",
+      "vaccine": "HS",
+      "given_on": "2026-02-01",
+      "next_due_on": "2027-02-01"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "FMD",
+      "due_on": "2026-10-15",
+      "overdue": false
+     },
+     {
+      "vaccine": "HS",
+      "due_on": "2027-02-01",
+      "overdue": false
+     },
+     {
+      "vaccine": "LSD",
+      "due_on": "2027-10-01",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "fb3ffbd2-d7e6-56a8-a520-5d558b7a8f88",
+    "herd_id": "c6d848d5-ea59-582d-ab4c-343d4dc960b9",
+    "ear_tag": "677245536519",
+    "name": "Radha",
+    "species": "cattle",
+    "breed": "Gir",
+    "sex": "female",
+    "age_months": 49,
+    "vaccinations": [
+     {
+      "id": "26638bb1-8c40-4d0a-8428-465a53707e9c",
+      "vaccine": "LSD",
+      "given_on": "2026-10-01",
+      "next_due_on": "2027-10-01"
+     },
+     {
+      "id": "f6bf27be-1b2c-5216-b8c5-f98786b5d9b4",
+      "vaccine": "FMD",
+      "given_on": "2026-07-08",
+      "next_due_on": "2027-01-04"
+     },
+     {
+      "id": "3a9b9d11-1f51-5d52-9837-aa7264bd7ae2",
+      "vaccine": "HS",
+      "given_on": "2026-03-16",
+      "next_due_on": "2027-03-16"
+     },
+     {
+      "id": "52d9bb43-088d-577f-ab13-094f775f2747",
+      "vaccine": "LSD",
+      "given_on": "2026-03-10",
+      "next_due_on": "2027-03-10"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "FMD",
+      "due_on": "2027-01-04",
+      "overdue": false
+     },
+     {
+      "vaccine": "HS",
+      "due_on": "2027-03-16",
+      "overdue": false
+     },
+     {
+      "vaccine": "LSD",
+      "due_on": "2027-10-01",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "f1b0f0fb-f251-5982-8dd6-9743d0c0d881",
+    "herd_id": "c6d848d5-ea59-582d-ab4c-343d4dc960b9",
+    "ear_tag": "499087372233",
+    "name": "Rani",
+    "species": "buffalo",
+    "breed": "Murrah",
+    "sex": "female",
+    "age_months": 23,
+    "vaccinations": [
+     {
+      "id": "d747931a-4511-4c50-bbd7-53f77ffff4e7",
+      "vaccine": "LSD",
+      "given_on": "2026-10-01",
+      "next_due_on": "2027-10-01"
+     },
+     {
+      "id": "d2e0b5e0-909f-5176-9e87-26dbb5b6e947",
+      "vaccine": "HS",
+      "given_on": "2026-07-11",
+      "next_due_on": "2027-07-11"
+     },
+     {
+      "id": "e13df57b-24fd-5d5e-9577-e3cd768bc276",
+      "vaccine": "FMD",
+      "given_on": "2026-05-30",
+      "next_due_on": "2026-11-26"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "FMD",
+      "due_on": "2026-11-26",
+      "overdue": false
+     },
+     {
+      "vaccine": "HS",
+      "due_on": "2027-07-11",
+      "overdue": false
+     },
+     {
+      "vaccine": "LSD",
+      "due_on": "2027-10-01",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "7639ccf3-3a6f-574d-bb33-783c32446e10",
+    "herd_id": "c6d848d5-ea59-582d-ab4c-343d4dc960b9",
+    "ear_tag": "288029879499",
+    "name": "Tulsi",
+    "species": "cattle",
+    "breed": "Gir",
+    "sex": "female",
+    "age_months": 24,
+    "vaccinations": [
+     {
+      "id": "13f3ff31-b0cc-4758-a41b-6b69fd514863",
+      "vaccine": "LSD",
+      "given_on": "2026-10-01",
+      "next_due_on": "2027-10-01"
+     },
+     {
+      "id": "74356970-ebda-5a2d-92c7-20f3c310a13c",
+      "vaccine": "FMD",
+      "given_on": "2026-08-05",
+      "next_due_on": "2027-02-01"
+     },
+     {
+      "id": "2d1921eb-6cdc-515f-baa3-c058e4c98744",
+      "vaccine": "LSD",
+      "given_on": "2026-05-20",
+      "next_due_on": "2027-05-20"
+     },
+     {
+      "id": "aebd7b8d-473f-5b1a-a745-ed600aa89dc6",
+      "vaccine": "HS",
+      "given_on": "2025-10-31",
+      "next_due_on": "2026-10-31"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "HS",
+      "due_on": "2026-10-31",
+      "overdue": false
+     },
+     {
+      "vaccine": "FMD",
+      "due_on": "2027-02-01",
+      "overdue": false
+     },
+     {
+      "vaccine": "LSD",
+      "due_on": "2027-10-01",
+      "overdue": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "3bbe9e6a-a136-5941-a996-646dcf920ba0",
+  "name": "Gaikwad goats",
+  "village": {
+   "en": "Uchchhil",
+   "hi": "उच्छिल",
+   "mr": "उच्छिल"
+  },
+  "animals": [
+   {
+    "id": "c5f0afa5-5763-5591-a595-65d16cb6fd9d",
+    "herd_id": "3bbe9e6a-a136-5941-a996-646dcf920ba0",
+    "ear_tag": "122926902939",
+    "name": null,
+    "species": "goat",
+    "breed": "Berari",
+    "sex": "female",
+    "age_months": 41,
+    "vaccinations": [
+     {
+      "id": "7735d251-c366-52c3-b88d-e743c9b51727",
+      "vaccine": "PPR",
+      "given_on": "2026-03-05",
+      "next_due_on": "2029-03-04"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "PPR",
+      "due_on": "2029-03-04",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "3e80bf67-03ed-5562-ad61-0af3406afef0",
+    "herd_id": "3bbe9e6a-a136-5941-a996-646dcf920ba0",
+    "ear_tag": "769467002266",
+    "name": null,
+    "species": "goat",
+    "breed": "Sangamneri",
+    "sex": "female",
+    "age_months": 38,
+    "vaccinations": [
+     {
+      "id": "cf476521-858a-5480-bea6-2af5602a4704",
+      "vaccine": "PPR",
+      "given_on": "2025-08-17",
+      "next_due_on": "2028-08-16"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "PPR",
+      "due_on": "2028-08-16",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "cf4852bd-c25e-5693-a5de-a6f28fcee50d",
+    "herd_id": "3bbe9e6a-a136-5941-a996-646dcf920ba0",
+    "ear_tag": "838713541566",
+    "name": null,
+    "species": "goat",
+    "breed": "Berari",
+    "sex": "male",
+    "age_months": 32,
+    "vaccinations": [],
+    "next_due": []
+   },
+   {
+    "id": "645e9e96-2686-529f-873b-75eb4927be4a",
+    "herd_id": "3bbe9e6a-a136-5941-a996-646dcf920ba0",
+    "ear_tag": null,
+    "name": null,
+    "species": "goat",
+    "breed": "Sangamneri",
+    "sex": "female",
+    "age_months": 19,
+    "vaccinations": [
+     {
+      "id": "4ddf6470-01b0-565c-b91c-a2d5c255d81b",
+      "vaccine": "PPR",
+      "given_on": "2026-03-23",
+      "next_due_on": "2029-03-22"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "PPR",
+      "due_on": "2029-03-22",
+      "overdue": false
+     }
+    ]
+   },
+   {
+    "id": "1a050b9f-ab13-541a-8a32-f8f0d9e2e2e8",
+    "herd_id": "3bbe9e6a-a136-5941-a996-646dcf920ba0",
+    "ear_tag": null,
+    "name": null,
+    "species": "goat",
+    "breed": "Berari",
+    "sex": "female",
+    "age_months": 49,
+    "vaccinations": [
+     {
+      "id": "0c6d42bb-72cb-5eeb-9c08-20708deedce5",
+      "vaccine": "PPR",
+      "given_on": "2024-06-08",
+      "next_due_on": "2027-06-08"
+     }
+    ],
+    "next_due": [
+     {
+      "vaccine": "PPR",
+      "due_on": "2027-06-08",
+      "overdue": false
+     }
+    ]
+   }
+  ]
+ }
+]

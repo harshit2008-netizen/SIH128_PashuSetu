@@ -55,6 +55,15 @@ With one phone, switch roles with Settings > Change role (demo).
 8. **Honesty.** Settings > About the AI: the three layers in plain words, the photo model's real test results
    (from the model card written by the Kaggle run) and its known limits. Engine version rules-1+lsd_v1.
 
+## Extra (P1) if there is time
+
+9. **Risk.** Officer: bottom sheet > Risk. Blocks ranked by the rule-based risk estimate for LSD, circles on the map,
+   each with "Why: season 37%, weather 30%" and nearby cases and vaccination coverage. Tap HS to compare.
+10. **Escalation.** Leave a new urgent case untouched for 5 minutes (demo SLA): it shows "Escalated" in the case list
+    and "No response in time: sent to the block vet" on the case. After 10 minutes it goes to the district officer.
+11. **Vaccination.** Sevak: home > "All animals and vaccines" > a herd > "Vaccinated today" > a vaccine.
+    The next due date updates for every animal in the herd.
+
 ## Backups
 
 - Phone disconnects: plug back in, run `adb reverse tcp:8000 tcp:8000` again.

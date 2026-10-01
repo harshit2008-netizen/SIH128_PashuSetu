@@ -6,12 +6,12 @@ from datetime import UTC, datetime, timedelta
 from fastapi import APIRouter, Depends, Query
 from geoalchemy2.shape import to_shape
 from shapely.geometry import mapping
-from sqlalchemy import func, select
+from sqlalchemy import exists, func, select
 from sqlalchemy.orm import Session
 
 from app.core.db import get_db
 from app.core.security import RESPONDERS, require_roles
-from app.models import Alert, Block, Case, LabSample, Report, User, Village
+from app.models import Alert, Animal, Block, Case, Herd, LabSample, Report, User, Vaccination, Village
 from app.services.access import visible_cases
 from app.services.cases import CLOSED_STATUSES
 from app.services.geo_utils import point_latlng
@@ -40,6 +40,18 @@ def median_minutes_to_first_response(db: Session, user: User) -> tuple[int | Non
     return (round(statistics.median(minutes)) if minutes else None), len(minutes)
 
 
+def vaccination_coverage(db: Session, user: User) -> float | None:
+    """Share of the district's animals with at least one vaccination still valid today."""
+    today = datetime.now(UTC).date()
+    animals = (select(Animal.id).join(Herd, Animal.herd_id == Herd.id).join(Village, Herd.village_id == Village.id)
+               .join(Block, Village.block_id == Block.id).where(Block.district_id == user.district_id))
+    total = db.scalar(select(func.count()).select_from(animals.subquery()))
+    if not total:
+        return None
+    valid = exists().where(Vaccination.animal_id == Animal.id, Vaccination.next_due_on >= today)
+    return round(db.scalar(select(func.count()).select_from(animals.where(valid).subquery())) / total, 3)
+
+
 @router.get("/dashboard/summary")
 def summary(user: User = Depends(require_roles(*RESPONDERS)), db: Session = Depends(get_db)):
     """Open cases by severity, active alerts, median minutes to first response, samples pending."""
@@ -50,6 +62,9 @@ def summary(user: User = Depends(require_roles(*RESPONDERS)), db: Session = Depe
         "open_cases": len(open_cases),
         "open_by_severity": {s: sum(1 for c in open_cases if c.severity == s) for s in ("emergency", "urgent", "routine")},
         "unassigned": sum(1 for c in open_cases if c.assigned_vet_id is None),
+        # Nobody responded within the SLA (spec 8.6): these land on the officer's list first.
+        "escalated": sum(1 for c in open_cases if c.escalation_level > 0),
+        "vaccination_coverage": vaccination_coverage(db, user),
         "active_alerts": db.scalar(select(func.count()).select_from(visible_alerts(user).subquery())),
         "median_minutes_to_first_response": median,
         "responses_counted": counted,

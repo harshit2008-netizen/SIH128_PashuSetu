@@ -1647,6 +1647,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} in all'**
   String voiceTotalCount(int count);
+
+  /// No description provided for @alertSpike.
+  ///
+  /// In en, this message translates to:
+  /// **'Unusual rise'**
+  String get alertSpike;
+
+  /// No description provided for @escalatedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Escalated'**
+  String get escalatedBadge;
+
+  /// No description provided for @escalatedToBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'No response in time: sent to the block vet'**
+  String get escalatedToBlock;
+
+  /// No description provided for @escalatedToDistrict.
+  ///
+  /// In en, this message translates to:
+  /// **'No response in time: sent to the district officer'**
+  String get escalatedToDistrict;
+
+  /// No description provided for @escalatedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} escalated, waiting for a response'**
+  String escalatedCount(int count);
+
+  /// No description provided for @tabRisk.
+  ///
+  /// In en, this message translates to:
+  /// **'Risk'**
+  String get tabRisk;
+
+  /// No description provided for @riskHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High risk'**
+  String get riskHigh;
+
+  /// No description provided for @riskMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium risk'**
+  String get riskMedium;
+
+  /// No description provided for @riskLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low risk'**
+  String get riskLow;
+
+  /// No description provided for @riskWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Why: {reasons}'**
+  String riskWhy(String reasons);
+
+  /// No description provided for @riskFactorSeason.
+  ///
+  /// In en, this message translates to:
+  /// **'season {percent}%'**
+  String riskFactorSeason(int percent);
+
+  /// No description provided for @riskFactorWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'weather {percent}%'**
+  String riskFactorWeather(int percent);
+
+  /// No description provided for @riskFactorNearby.
+  ///
+  /// In en, this message translates to:
+  /// **'nearby cases {percent}%'**
+  String riskFactorNearby(int percent);
+
+  /// No description provided for @riskFactorImmunity.
+  ///
+  /// In en, this message translates to:
+  /// **'vaccination gap {percent}%'**
+  String riskFactorImmunity(int percent);
+
+  /// No description provided for @riskNearbyCases.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} suspected cases within {km} km in {days} days'**
+  String riskNearbyCases(int count, int km, int days);
+
+  /// No description provided for @riskCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% of animals vaccinated'**
+  String riskCoverage(int percent);
+
+  /// No description provided for @riskWeatherNotModelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather effect is not modelled for this disease'**
+  String get riskWeatherNotModelled;
+
+  /// No description provided for @riskWeatherSeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather from stored seasonal values, not live data'**
+  String get riskWeatherSeeded;
+
+  /// No description provided for @districtCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'District vaccination coverage: {percent}%'**
+  String districtCoverage(int percent);
+
+  /// No description provided for @herdsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Herds and vaccines'**
+  String get herdsTitle;
+
+  /// No description provided for @openHerds.
+  ///
+  /// In en, this message translates to:
+  /// **'All animals and vaccines'**
+  String get openHerds;
+
+  /// No description provided for @vaccinatedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccinated today'**
+  String get vaccinatedToday;
+
+  /// No description provided for @chooseVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Which vaccine was given today?'**
+  String get chooseVaccine;
+
+  /// No description provided for @vaccinationRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'{vaccine} recorded for {count} animals. Next due {date}.'**
+  String vaccinationRecorded(String vaccine, int count, String date);
+
+  /// No description provided for @vaccinationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save. Check the signal and try again.'**
+  String get vaccinationFailed;
+
+  /// No description provided for @vaccinationHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccinations'**
+  String get vaccinationHistory;
+
+  /// No description provided for @noVaccinations.
+  ///
+  /// In en, this message translates to:
+  /// **'No vaccinations recorded yet.'**
+  String get noVaccinations;
+
+  /// No description provided for @givenOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Given {date}'**
+  String givenOn(String date);
+
+  /// No description provided for @nextDueLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Next {vaccine}: {date}'**
+  String nextDueLine(String vaccine, String date);
+
+  /// No description provided for @overdueLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{vaccine} overdue since {date}'**
+  String overdueLine(String vaccine, String date);
+
+  /// No description provided for @animalCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} animals'**
+  String animalCount(int count);
+
+  /// No description provided for @ageMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{months} months old'**
+  String ageMonths(int months);
 }
 
 class _AppLocalizationsDelegate

@@ -81,3 +81,6 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
   Phone decodes with the engine decoder and crops a centred square, same as train.py; parity test in integration_test/.
 - Phase 5 (voice): parser `features/report/voice/lexicon_parser.dart` + `shared/voice_test_sentences.json`
   (35 sentences, hi/mr/en). Add a sentence whenever a real phrase is missed. On-phone speech check needs a person.
+- Phase 10 (P1): spikes (EARS-C2), SLA escalation, weather + block risk (shared/risk_config.json), herds/animals/
+  vaccinations (shared/vaccines.json), risk tab, escalation display. Marathi strings exist but need native review.
+  Seed keeps weather_cache across re-seeds; tests seed with weather_online=False.

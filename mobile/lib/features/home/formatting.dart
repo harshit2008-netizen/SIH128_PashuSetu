@@ -37,3 +37,12 @@ String statusLabel(AppLocalizations l10n, String status) => switch (status) {
       'closed_ruled_out' => l10n.statusClosedRuledOut,
       _ => status,
     };
+
+/// A timeline line: a status change, a follow-up report, or an SLA escalation
+/// (the server writes "escalation:1" / "escalation:2", the app words it).
+String timelineLabel(AppLocalizations l10n, Map<String, dynamic> event) => switch (event['note']) {
+      'escalation:1' => l10n.escalatedToBlock,
+      'escalation:2' => l10n.escalatedToDistrict,
+      'Follow-up report' => event['note'] as String,
+      _ => statusLabel(l10n, event['to_status'] as String),
+    };

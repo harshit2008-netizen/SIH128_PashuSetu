@@ -893,4 +893,131 @@ class AppLocalizationsHi extends AppLocalizations {
   String voiceTotalCount(int count) {
     return 'कुल $count';
   }
+
+  @override
+  String get alertSpike => 'असामान्य बढ़त';
+
+  @override
+  String get escalatedBadge => 'आगे भेजा गया';
+
+  @override
+  String get escalatedToBlock => 'समय पर जवाब नहीं: ब्लॉक पशु डॉक्टर को भेजा';
+
+  @override
+  String get escalatedToDistrict => 'समय पर जवाब नहीं: ज़िला अधिकारी को भेजा';
+
+  @override
+  String escalatedCount(int count) {
+    return '$count आगे भेजे गए, जवाब बाकी';
+  }
+
+  @override
+  String get tabRisk => 'जोखिम';
+
+  @override
+  String get riskHigh => 'ज़्यादा जोखिम';
+
+  @override
+  String get riskMedium => 'मध्यम जोखिम';
+
+  @override
+  String get riskLow => 'कम जोखिम';
+
+  @override
+  String riskWhy(String reasons) {
+    return 'क्यों: $reasons';
+  }
+
+  @override
+  String riskFactorSeason(int percent) {
+    return 'ऋतु $percent%';
+  }
+
+  @override
+  String riskFactorWeather(int percent) {
+    return 'मौसम $percent%';
+  }
+
+  @override
+  String riskFactorNearby(int percent) {
+    return 'पास के मामले $percent%';
+  }
+
+  @override
+  String riskFactorImmunity(int percent) {
+    return 'टीकाकरण की कमी $percent%';
+  }
+
+  @override
+  String riskNearbyCases(int count, int km, int days) {
+    return '$days दिनों में $km किमी के अंदर $count संभावित मामले';
+  }
+
+  @override
+  String riskCoverage(int percent) {
+    return '$percent% पशुओं का टीकाकरण';
+  }
+
+  @override
+  String get riskWeatherNotModelled =>
+      'इस रोग के लिए मौसम का असर नहीं जोड़ा गया';
+
+  @override
+  String get riskWeatherSeeded => 'मौसम रखे हुए मौसमी आंकड़ों से, लाइव नहीं';
+
+  @override
+  String districtCoverage(int percent) {
+    return 'ज़िले में टीकाकरण: $percent%';
+  }
+
+  @override
+  String get herdsTitle => 'पशु समूह और टीके';
+
+  @override
+  String get openHerds => 'सभी पशु और टीके';
+
+  @override
+  String get vaccinatedToday => 'आज टीका लगाया';
+
+  @override
+  String get chooseVaccine => 'आज कौन सा टीका लगाया?';
+
+  @override
+  String vaccinationRecorded(String vaccine, int count, String date) {
+    return '$count पशुओं के लिए $vaccine दर्ज। अगला टीका $date।';
+  }
+
+  @override
+  String get vaccinationFailed => 'सेव नहीं हुआ। सिग्नल देखकर फिर कोशिश करें।';
+
+  @override
+  String get vaccinationHistory => 'टीके';
+
+  @override
+  String get noVaccinations => 'अभी कोई टीका दर्ज नहीं।';
+
+  @override
+  String givenOn(String date) {
+    return '$date को लगाया';
+  }
+
+  @override
+  String nextDueLine(String vaccine, String date) {
+    return 'अगला $vaccine: $date';
+  }
+
+  @override
+  String overdueLine(String vaccine, String date) {
+    return '$vaccine $date से बाकी';
+  }
+
+  @override
+  String animalCount(int count) {
+    return '$count पशु';
+  }
+
+  @override
+  String ageMonths(int months) {
+    return '$months महीने का';
+  }
 }

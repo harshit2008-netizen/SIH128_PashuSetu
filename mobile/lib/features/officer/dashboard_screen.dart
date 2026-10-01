@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:latlong2/latlong.dart' hide Path;
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../core/settings/app_settings.dart';
@@ -15,6 +16,7 @@ import '../home/formatting.dart';
 import '../home/home_data.dart' show caseQueueProvider;
 import 'map_widgets.dart';
 import 'officer_data.dart';
+import 'risk_list.dart';
 
 /// Vet and district officer home: district map, KPIs, alerts and cases.
 /// Polls every 10 s while visible (fine for the demo; no push service yet).
@@ -25,13 +27,14 @@ class DashboardScreen extends ConsumerStatefulWidget {
   ConsumerState<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-enum _Tab { alerts, cases }
+enum _Tab { alerts, cases, risk }
 
 class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   static const _refreshEvery = Duration(seconds: 10);
   Timer? _timer;
   DateTime _updatedAt = DateTime.now();
   _Tab _tab = _Tab.alerts;
+  String _riskDisease = 'lsd';
   final _map = MapController();
 
   @override
@@ -51,7 +54,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       ..invalidate(dashboardSummaryProvider)
       ..invalidate(dashboardMapProvider)
       ..invalidate(alertsProvider)
-      ..invalidate(caseQueueProvider);
+      ..invalidate(caseQueueProvider)
+      ..invalidate(riskProvider);
     setState(() => _updatedAt = DateTime.now());
   }
 
@@ -61,6 +65,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     final map = ref.watch(dashboardMapProvider).value;
     final bounds = boundsOf(map?['bounds'] as Json?);
     final features = ((map?['features'] as List?) ?? const []).cast<Json>();
+    final isOfficer = ref.watch(settingsProvider).role == 'district_officer';
+    final risk = _tab == _Tab.risk ? ref.watch(riskProvider(_riskDisease)).value : null;
     return Scaffold(
       appBar: AppBar(
         title: const AppMark(),
@@ -85,6 +91,19 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             ),
             children: [
               osmTiles(),
+              // Risk: a circle at each block centre (no invented boundaries, spec 10.7).
+              if (risk != null)
+                CircleLayer(circles: [
+                  for (final b in (risk['blocks'] as List).cast<Json>())
+                    CircleMarker(
+                      point: LatLng((b['centroid']['lat'] as num).toDouble(), (b['centroid']['lng'] as num).toDouble()),
+                      radius: 6000,
+                      useRadiusInMeter: true,
+                      color: riskColors(b['level'] as String).edge.withValues(alpha: 0.35),
+                      borderColor: riskColors(b['level'] as String).edge,
+                      borderStrokeWidth: 2,
+                    ),
+                ]),
               PolygonLayer(polygons: [
                 for (final f in features)
                   if (f['properties']['kind'] == 'alert') alertPolygon(f),
@@ -127,6 +146,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   segments: [
                     ButtonSegment(value: _Tab.alerts, label: Text(l10n.tabAlerts), icon: const Icon(LucideIcons.siren)),
                     ButtonSegment(value: _Tab.cases, label: Text(l10n.tabCases), icon: const Icon(LucideIcons.inbox)),
+                    if (isOfficer)
+                      ButtonSegment(value: _Tab.risk, label: Text(l10n.tabRisk), icon: const Icon(LucideIcons.gauge)),
                   ],
                   selected: {_tab},
                   showSelectedIcon: false,
@@ -139,7 +160,12 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   onSelectionChanged: (value) => setState(() => _tab = value.first),
                 ),
                 const SizedBox(height: AppSpacing.md),
-                if (_tab == _Tab.alerts) const _AlertList() else const _CaseList(),
+                switch (_tab) {
+                  _Tab.alerts => const _AlertList(),
+                  _Tab.cases => const _CaseList(),
+                  _Tab.risk => RiskList(
+                      disease: _riskDisease, onDisease: (d) => setState(() => _riskDisease = d)),
+                },
               ],
             ),
           ),
@@ -220,19 +246,29 @@ class _CaseList extends ConsumerWidget {
     final shared = ref.watch(sharedDataProvider).value;
     final queue = ref.watch(caseQueueProvider);
     final isVet = ref.watch(settingsProvider).role == 'vet';
+    final escalated = ref.watch(dashboardSummaryProvider).value?['escalated'] as int? ?? 0;
     return queue.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => EmptyState(message: '$e'),
-      data: (result) => ListGroup(children: [
+      data: (result) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        if (escalated > 0)
+          Padding(
+            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+            child: Text(l10n.escalatedCount(escalated),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: SeverityColors.emergency.foreground)),
+          ),
+        ListGroup(children: [
         if (result.$1.isEmpty) EmptyState(message: l10n.noCases),
         for (final c in result.$1)
           AlertRow(
             severity: SeverityStyle.parse(c['severity'] as String?),
             summary: diseaseName(shared, c['suspected_disease'] as String?, language, l10n),
             meta: '${localized(c['village']?['name'], language)}${isVet ? '' : ', ${localized(c['block']?['name'], language)}'}. '
-                '${timeAgo(l10n, DateTime.parse(c['created_at'] as String))}. ${statusLabel(l10n, c['status'] as String)}',
+                '${timeAgo(l10n, DateTime.parse(c['created_at'] as String))}. ${statusLabel(l10n, c['status'] as String)}'
+                '${(c['escalation_level'] as int? ?? 0) > 0 ? '. ${l10n.escalatedBadge}' : ''}',
             onTap: () => context.push('/cases/${c['id']}'),
           ),
+        ]),
       ]),
     );
   }

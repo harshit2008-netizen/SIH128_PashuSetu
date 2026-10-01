@@ -17,6 +17,7 @@ class SharedData {
     this.geo = const {},
     this.advisoryTemplates = const {},
     this.lexicon = const {},
+    this.vaccines = const {},
   });
 
   /// species id -> entry from symptoms.json
@@ -43,6 +44,9 @@ class SharedData {
   /// Spoken phrases -> symptom, species and number (symptom_lexicon.json), for voice input.
   final Map<String, dynamic> lexicon;
 
+  /// vaccine id (FMD, HS, ...) -> entry from vaccines.json: name, species, interval.
+  final Map<String, Map<String, dynamic>> vaccines;
+
   /// Rules sorted by id, the order both engines score them in.
   List<Map<String, dynamic>> get rulesInOrder =>
       (rules.keys.toList()..sort()).map((id) => rules[id]!).toList();
@@ -68,6 +72,7 @@ class SharedData {
       geo: await readJson('geo/demo_district.json'),
       advisoryTemplates: _byId((await readJson('advisories/templates.json'))['templates']),
       lexicon: await readJson('symptom_lexicon.json'),
+      vaccines: _byId((await readJson('vaccines.json'))['vaccines']),
     );
   }
 

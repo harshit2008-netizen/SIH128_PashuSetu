@@ -23,6 +23,9 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-10-01 | Photos are decoded with the engine's image decoder, not the pure-Dart one | Matches TensorFlow's libjpeg-turbo decoding (the Dart decoder was 3 grey levels off on progressive JPEGs), faster, and the model sees exactly what the preview shows |
 | 2026-10-01 | "Speak instead" is a full-width outlined button above the sign tiles, opening a bottom sheet | Spec 9.8 step 2; voice fills the same tiles, so tapping stays the main path and nothing is hidden behind voice |
 | 2026-10-01 | Heard signs are shown ticked; tapping one strikes it through instead of removing it | The reporter sees what was heard and what they rejected; only "Use these" changes the report |
+| 2026-10-01 | Block risk shown as circles at block centres, not polygons | No licensed taluka boundaries in the repo; spec 10.7 forbids invented official-looking borders |
+| 2026-10-01 | Risk levels reuse the severity palette (high red, medium amber, low blue-grey) and each row has a left edge in that colour | Same visual language as alerts; colour plus the word "High risk", never colour alone |
+| 2026-10-01 | "Vaccinated today" is two taps: the herd's button, then the vaccine (only vaccines for that herd's species are offered) | Spec 10.8; a sevak records a whole herd on one visit |
 
 ## Visual QA log
 
@@ -45,3 +48,4 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-10-01 | Real phone, photo step with a real LSD photo from the gallery (screenshots not committed: the gallery photo's licence is unknown) | None. Amber "looks like lumpy skin disease. Suspected only." line, then the lumps question with 64 dp Yes (ink) / No (outlined); Yes ticks "Lumps on the skin" | No change |
 | 2026-10-01 | Real phone, triage result with photo (`screenshots/phase6_result_with_photo.png`) | "Photo: 100% like lumpy skin disease" overstated certainty | Shown percent capped at 99% (`photoPercent`) |
 | 2026-10-01 | Real phone, About the AI in English and Hindi (`screenshots/phase6_about_ai_top.png`, `phase6_about_ai_hi.png`) | None. Metrics, dataset, limits and versions all read from the bundled model card; Devanagari not clipped | Limits stay in English (they come from the model card) |
+| 2026-10-01 | Goldens from real API replies: risk tab and herds, English and Hindi at 360 px (`mobile/test/goldens/images/risk_tab_*.png`, `herds_*.png`) | None blocking. Long disease names wrap into a second chip row; Devanagari not clipped; next-due dates show the year when not this year | No change |
