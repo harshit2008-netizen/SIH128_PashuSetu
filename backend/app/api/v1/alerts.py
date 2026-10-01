@@ -33,6 +33,8 @@ def alert_out(db: Session, alert: Alert) -> dict:
         "block": {"id": block.id, "code": block.code, "name": block.name} if block else None,
         "created_at": alert.created_at, "updated_at": alert.updated_at,
         "acknowledged_at": alert.acknowledged_at, "acknowledged_by": person(db, alert.acknowledged_by),
+        # Set only after the human health department's system accepted it (P2 webhook).
+        "one_health_notified_at": alert.one_health_notified_at,
     }
 
 

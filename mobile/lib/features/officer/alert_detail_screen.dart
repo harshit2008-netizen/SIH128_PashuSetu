@@ -105,6 +105,18 @@ class _AlertBodyState extends ConsumerState<_AlertBody> {
           ...((explanation['village_names'] as List?)?.cast<String>() ?? const []),
           timeAgo(l10n, DateTime.parse(alert['created_at'] as String)),
         ].join(', '), style: text.bodyLarge),
+        // Shown only after the human health system accepted the webhook (never assumed).
+        if (alert['one_health_notified_at'] != null) ...[
+          const SizedBox(height: AppSpacing.xs),
+          Row(children: [
+            const Icon(LucideIcons.hospital, size: 18, color: AppColors.ink),
+            const SizedBox(width: AppSpacing.xs),
+            Expanded(
+              child: Text(l10n.oneHealthNotified(timeAgo(l10n, DateTime.parse(alert['one_health_notified_at'] as String))),
+                  style: text.titleMedium),
+            ),
+          ]),
+        ],
         const SizedBox(height: AppSpacing.md),
         ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.listGroup),

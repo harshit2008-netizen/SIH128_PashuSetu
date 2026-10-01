@@ -656,5 +656,13 @@
     }
   },
   "markCollected": "Mark as collected",
-  "sampleStatusRequestedLab": "Waiting to be collected"
+  "sampleStatusRequestedLab": "Waiting to be collected",
+  "oneHealthNotified": "Human health department notified {time}",
+  "@oneHealthNotified": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  }
 }

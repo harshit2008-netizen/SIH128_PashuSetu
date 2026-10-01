@@ -45,6 +45,9 @@ class Settings(BaseSettings):
     demo_sla_routine_min: int = 15
 
     notifier_channels: str = "inapp"
+    # One Health (P2): POST zoonotic alerts to the human health department. Off when empty.
+    one_health_webhook_url: str = ""
+    one_health_webhook_secret: str = ""  # if set, each POST carries an HMAC-SHA256 signature
     open_meteo_base_url: str = "https://api.open-meteo.com/v1/forecast"
     upload_dir: str = "./uploads"
     cors_origins: str = "*"

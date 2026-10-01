@@ -31,6 +31,9 @@ class Alert(Entity):
     district_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("districts.id"))
     acknowledged_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     acknowledged_by: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("users.id"))
+    # One Health webhook (P2): set only after the human health system accepted the alert.
+    one_health_notified_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    one_health_attempts: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
 
 
 class LabSample(Entity):

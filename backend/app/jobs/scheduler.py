@@ -14,6 +14,7 @@ from app.core.config import get_settings
 from app.core.db import SessionLocal
 from app.core.shared_loader import get_shared_data
 from app.services.escalation import run_escalation
+from app.services.notifier.one_health import send_pending
 from app.services.risk.weather import refresh_all_blocks
 from app.services.surveillance.aberration import run_spikes
 from app.services.surveillance.alerting import IST, run_clustering
@@ -51,6 +52,14 @@ def weather_job() -> None:
     log.info("weather job: %d blocks with a full 21-day window", full)
 
 
+def one_health_job() -> None:
+    with SessionLocal() as db:
+        sent = send_pending(db, get_shared_data())
+        db.commit()
+    if sent:
+        log.info("One Health webhook: %d zoonotic alerts delivered", len(sent))
+
+
 def start_scheduler() -> None:
     settings = get_settings()
     if not settings.scheduler_enabled or scheduler.running:
@@ -61,6 +70,8 @@ def start_scheduler() -> None:
     scheduler.add_job(spikes_job, "cron", hour=6, minute=0, id="spikes", replace_existing=True)
     scheduler.add_job(escalation_job, "interval", minutes=1, id="escalation", replace_existing=True)
     scheduler.add_job(weather_job, "cron", hour=5, minute=30, id="weather", replace_existing=True)
+    if settings.one_health_webhook_url:
+        scheduler.add_job(one_health_job, "interval", minutes=1, id="one_health", replace_existing=True)
     scheduler.start()
 
 

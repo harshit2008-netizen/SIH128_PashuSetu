@@ -292,5 +292,6 @@
   "animalCount": "{count} पशु",
   "ageMonths": "{months} महीने का",
   "markCollected": "इकट्ठा हो गया",
-  "sampleStatusRequestedLab": "इकट्ठा होना बाकी"
+  "sampleStatusRequestedLab": "इकट्ठा होना बाकी",
+  "oneHealthNotified": "मानव स्वास्थ्य विभाग को सूचना दी गई {time}"
 }

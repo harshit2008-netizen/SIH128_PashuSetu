@@ -1032,4 +1032,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sampleStatusRequestedLab => 'Waiting to be collected';
+
+  @override
+  String oneHealthNotified(String time) {
+    return 'Human health department notified $time';
+  }
 }

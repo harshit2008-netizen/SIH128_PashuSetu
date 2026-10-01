@@ -1026,4 +1026,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get sampleStatusRequestedLab => 'इकट्ठा होना बाकी';
+
+  @override
+  String oneHealthNotified(String time) {
+    return 'मानव स्वास्थ्य विभाग को सूचना दी गई $time';
+  }
 }

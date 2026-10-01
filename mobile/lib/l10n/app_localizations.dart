@@ -1851,6 +1851,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Waiting to be collected'**
   String get sampleStatusRequestedLab;
+
+  /// No description provided for @oneHealthNotified.
+  ///
+  /// In en, this message translates to:
+  /// **'Human health department notified {time}'**
+  String oneHealthNotified(String time);
 }
 
 class _AppLocalizationsDelegate

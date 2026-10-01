@@ -292,5 +292,6 @@
   "animalCount": "{count} जनावरे",
   "ageMonths": "{months} महिन्यांचे",
   "markCollected": "गोळा केला",
-  "sampleStatusRequestedLab": "गोळा करणे बाकी"
+  "sampleStatusRequestedLab": "गोळा करणे बाकी",
+  "oneHealthNotified": "मानवी आरोग्य विभागाला कळवले {time}"
 }
