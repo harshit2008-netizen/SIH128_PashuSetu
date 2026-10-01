@@ -35,6 +35,7 @@ class SharedData:
     alert_texts: dict
     risk_config: dict
     vaccines: dict[str, dict]  # vaccine id -> entry from vaccines.json
+    sms: dict  # SMS reply texts (sms.json)
 
     def vaccine_for(self, disease: str) -> dict | None:
         return next((v for v in self.vaccines.values() if v["disease"] == disease), None)
@@ -143,6 +144,7 @@ def load_shared_data(shared_dir: Path = SHARED_DIR) -> SharedData:
         alert_texts=read_json(shared_dir / "alerts.json")["summaries"],
         risk_config=read_json(shared_dir / "risk_config.json"),
         vaccines={v["id"]: v for v in read_json(shared_dir / "vaccines.json")["vaccines"]},
+        sms=read_json(shared_dir / "sms.json"),
     )
     problems = find_reference_problems(data)
     if problems:

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "needs_native_review": true,
+  "note": "Replies for reports sent by SMS (P2). The gateway sends the reply text back to the farmer. Keep them short: one SMS is about 70 Devanagari characters, so these take 2-3 parts.",
+  "replies": {
+    "received": {
+      "en": "PashuSetu: report received. Suspected {disease} ({severity}). {action}. Call {helpline}. Not a diagnosis, a vet will confirm.",
+      "hi": "पशुसेतु: सूचना मिली। {disease} की आशंका ({severity})। {action}। {helpline} पर कॉल करें। यह पक्का निदान नहीं, पशु डॉक्टर पुष्टि करेंगे।",
+      "mr": "पशुसेतु: नोंद मिळाली. {disease} चा संशय ({severity}). {action}. {helpline} वर कॉल करा. हे निदान नाही, पशुवैद्य खात्री करतील."
+    },
+    "received_unclear": {
+      "en": "PashuSetu: report received. No clear match, the vet will check. Call {helpline} if more animals fall sick.",
+      "hi": "पशुसेतु: सूचना मिली। साफ़ मेल नहीं, पशु डॉक्टर जांच करेंगे। और पशु बीमार हों तो {helpline} पर कॉल करें।",
+      "mr": "पशुसेतु: नोंद मिळाली. स्पष्ट जुळत नाही, पशुवैद्य तपासतील. आणखी जनावरे आजारी पडली तर {helpline} वर कॉल करा."
+    },
+    "need_animal": {
+      "en": "PashuSetu: which animal is sick? Send again with cow, buffalo, goat, sheep, pig or hen, and what you see.",
+      "hi": "पशुसेतु: कौन सा पशु बीमार है? गाय, भैंस, बकरी, भेड़, सूअर या मुर्गी लिखकर, जो दिख रहा है वह फिर भेजें।",
+      "mr": "पशुसेतु: कोणते जनावर आजारी आहे? गाय, म्हैस, शेळी, मेंढी, डुक्कर किंवा कोंबडी लिहून, जे दिसते ते पुन्हा पाठवा."
+    },
+    "need_signs": {
+      "en": "PashuSetu: we could not read any signs. Send what you see, e.g. \"cow has fever and lumps on skin, 2 sick\".",
+      "hi": "पशुसेतु: कोई लक्षण समझ नहीं आया। जो दिख रहा है वह भेजें, जैसे \"गाय को बुखार है, गांठें हैं, दो बीमार\"।",
+      "mr": "पशुसेतु: कोणतेही लक्षण समजले नाही. जे दिसते ते पाठवा, उदा. \"गायीला ताप आहे, गाठी आहेत, दोन आजारी\"."
+    },
+    "not_registered": {
+      "en": "PashuSetu: this number is not registered. Ask your pashu sevak to add you.",
+      "hi": "पशुसेतु: यह नंबर दर्ज नहीं है। अपने पशु सेवक से जुड़वाएं।",
+      "mr": "पशुसेतु: हा नंबर नोंदलेला नाही. तुमच्या पशुसेवकाकडून नोंद करून घ्या."
+    }
+  },
+  "severity": {
+    "emergency": {"en": "emergency", "hi": "आपात", "mr": "आणीबाणी"},
+    "urgent": {"en": "urgent", "hi": "तुरंत", "mr": "तातडीचे"},
+    "routine": {"en": "routine", "hi": "सामान्य", "mr": "नेहमीचे"}
+  }
+}
