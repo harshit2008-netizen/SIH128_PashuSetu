@@ -21,6 +21,8 @@ Design decisions, and what visual QA found and changed. See spec Section 9 (the 
 | 2026-10-01 | Photo check shows inline under the photo (small spinner, then one sentence), never a full-screen spinner | Spec 10.6; the model answers in 30-50 ms after a 250-400 ms first load |
 | 2026-10-01 | Photo percentages shown to users stay within 1-99% | The model said 0.999 on a real photo; "100%" reads as a diagnosis |
 | 2026-10-01 | Photos are decoded with the engine's image decoder, not the pure-Dart one | Matches TensorFlow's libjpeg-turbo decoding (the Dart decoder was 3 grey levels off on progressive JPEGs), faster, and the model sees exactly what the preview shows |
+| 2026-10-01 | "Speak instead" is a full-width outlined button above the sign tiles, opening a bottom sheet | Spec 9.8 step 2; voice fills the same tiles, so tapping stays the main path and nothing is hidden behind voice |
+| 2026-10-01 | Heard signs are shown ticked; tapping one strikes it through instead of removing it | The reporter sees what was heard and what they rejected; only "Use these" changes the report |
 
 ## Visual QA log
 

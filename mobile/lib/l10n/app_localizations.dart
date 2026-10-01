@@ -1545,6 +1545,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This app build has no photo model.'**
   String get aboutNoModel;
+
+  /// No description provided for @speakInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak instead'**
+  String get speakInstead;
+
+  /// No description provided for @voicePreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting the microphone'**
+  String get voicePreparing;
+
+  /// No description provided for @voiceListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening. Say what you see.'**
+  String get voiceListening;
+
+  /// No description provided for @voiceExample.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: \"The cow has lumps on the skin and a fever, two cows are sick\"'**
+  String get voiceExample;
+
+  /// No description provided for @voiceStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get voiceStop;
+
+  /// No description provided for @voiceHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'We heard'**
+  String get voiceHeard;
+
+  /// No description provided for @voiceCorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct? Untick anything that is wrong.'**
+  String get voiceCorrect;
+
+  /// No description provided for @voiceNothing.
+  ///
+  /// In en, this message translates to:
+  /// **'We did not catch any signs. Speak again, or tap the signs.'**
+  String get voiceNothing;
+
+  /// No description provided for @voiceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Speech input is not available on this phone. Tap the signs instead.'**
+  String get voiceUnavailable;
+
+  /// No description provided for @voiceNoPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'The microphone is not allowed. Tap the signs instead, or allow the microphone in the phone\'s settings.'**
+  String get voiceNoPermission;
+
+  /// No description provided for @voiceFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'{language} speech is not installed on this phone, so we are listening in English.'**
+  String voiceFallback(String language);
+
+  /// No description provided for @voiceUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Use these'**
+  String get voiceUse;
+
+  /// No description provided for @voiceAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak again'**
+  String get voiceAgain;
+
+  /// No description provided for @voiceAnimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Animal: {name}'**
+  String voiceAnimal(String name);
+
+  /// No description provided for @voiceSickCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} sick'**
+  String voiceSickCount(int count);
+
+  /// No description provided for @voiceDeadCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} dead'**
+  String voiceDeadCount(int count);
+
+  /// No description provided for @voiceTotalCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} in all'**
+  String voiceTotalCount(int count);
 }
 
 class _AppLocalizationsDelegate

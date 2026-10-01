@@ -241,5 +241,22 @@
   "aboutDataset": "फोटो: {name} ({licence}).",
   "aboutLimits": "माहीत असलेल्या मर्यादा",
   "aboutVersions": "आवृत्त्या",
-  "aboutNoModel": "या ॲपमध्ये फोटो मॉडेल नाही."
+  "aboutNoModel": "या ॲपमध्ये फोटो मॉडेल नाही.",
+  "speakInstead": "बोलून सांगा",
+  "voicePreparing": "मायक्रोफोन सुरू होत आहे",
+  "voiceListening": "ऐकत आहोत. जे दिसते ते सांगा.",
+  "voiceExample": "उदा.: \"गायीला ताप आला आहे आणि अंगावर गाठी आहेत\"",
+  "voiceStop": "थांबवा",
+  "voiceHeard": "आम्ही ऐकले",
+  "voiceCorrect": "बरोबर आहे? जे चुकीचे आहे ते काढा.",
+  "voiceNothing": "कोणतेही लक्षण समजले नाही. पुन्हा बोला, किंवा लक्षणे निवडा.",
+  "voiceUnavailable": "या फोनवर बोलून लिहिणे उपलब्ध नाही. लक्षणे निवडा.",
+  "voiceNoPermission": "मायक्रोफोनची परवानगी नाही. लक्षणे निवडा, किंवा फोनच्या सेटिंगमध्ये मायक्रोफोन सुरू करा.",
+  "voiceFallback": "या फोनवर {language} आवाज ओळख नाही, म्हणून इंग्रजीत ऐकत आहोत.",
+  "voiceUse": "हे जोडा",
+  "voiceAgain": "पुन्हा बोला",
+  "voiceAnimal": "प्राणी: {name}",
+  "voiceSickCount": "{count} आजारी",
+  "voiceDeadCount": "{count} मेले",
+  "voiceTotalCount": "एकूण {count}"
 }

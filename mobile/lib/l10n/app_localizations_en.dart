@@ -831,4 +831,69 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutNoModel => 'This app build has no photo model.';
+
+  @override
+  String get speakInstead => 'Speak instead';
+
+  @override
+  String get voicePreparing => 'Starting the microphone';
+
+  @override
+  String get voiceListening => 'Listening. Say what you see.';
+
+  @override
+  String get voiceExample =>
+      'For example: \"The cow has lumps on the skin and a fever, two cows are sick\"';
+
+  @override
+  String get voiceStop => 'Stop';
+
+  @override
+  String get voiceHeard => 'We heard';
+
+  @override
+  String get voiceCorrect => 'Correct? Untick anything that is wrong.';
+
+  @override
+  String get voiceNothing =>
+      'We did not catch any signs. Speak again, or tap the signs.';
+
+  @override
+  String get voiceUnavailable =>
+      'Speech input is not available on this phone. Tap the signs instead.';
+
+  @override
+  String get voiceNoPermission =>
+      'The microphone is not allowed. Tap the signs instead, or allow the microphone in the phone\'s settings.';
+
+  @override
+  String voiceFallback(String language) {
+    return '$language speech is not installed on this phone, so we are listening in English.';
+  }
+
+  @override
+  String get voiceUse => 'Use these';
+
+  @override
+  String get voiceAgain => 'Speak again';
+
+  @override
+  String voiceAnimal(String name) {
+    return 'Animal: $name';
+  }
+
+  @override
+  String voiceSickCount(int count) {
+    return '$count sick';
+  }
+
+  @override
+  String voiceDeadCount(int count) {
+    return '$count dead';
+  }
+
+  @override
+  String voiceTotalCount(int count) {
+    return '$count in all';
+  }
 }

@@ -78,6 +78,7 @@ class ReportDraft {
     this.village,
     this.gps,
     this.locating = false,
+    this.voiceTranscript,
   });
 
   final String? species;
@@ -100,6 +101,9 @@ class ReportDraft {
   final ({double lat, double lng})? gps;
   final bool locating;
 
+  /// What the recogniser wrote, kept with the report (spec 10.5).
+  final String? voiceTranscript;
+
   ReportDraft copyWith({
     String? species,
     Value<String?>? animalId,
@@ -114,6 +118,7 @@ class ReportDraft {
     Village? village,
     Value<({double lat, double lng})?>? gps,
     bool? locating,
+    Value<String?>? voiceTranscript,
   }) =>
       ReportDraft(
         species: species ?? this.species,
@@ -129,6 +134,7 @@ class ReportDraft {
         village: village ?? this.village,
         gps: gps == null ? this.gps : gps.value,
         locating: locating ?? this.locating,
+        voiceTranscript: voiceTranscript == null ? this.voiceTranscript : voiceTranscript.value,
       );
 
   /// Validation from spec 10.4. Returns a problem key, or null when fine.
@@ -247,6 +253,32 @@ class ReportDraftController extends Notifier<ReportDraft> {
     if (state.photoPath == path) state = state.copyWith(photoCheck: Value(outcome));
   }
 
+  /// Adds what the reporter confirmed after speaking. Species first: changing
+  /// it clears the ticked signs, which are then filled from the sentence.
+  /// Voice never sends a report; the reporter still checks and taps Send.
+  void applyVoice({
+    required String transcript,
+    required Set<String> symptoms,
+    String? species,
+    int? sick,
+    int? dead,
+    int? total,
+  }) {
+    if (species != null && species != state.species) setSpecies(species);
+    final newSick = sick ?? state.sick;
+    final newDead = dead ?? state.dead;
+    var newTotal = total ?? state.total;
+    if (newTotal != null && newTotal < newSick + newDead) newTotal = null; // a mis-heard total; the reporter can set it
+    state = state.copyWith(
+      symptoms: {...state.symptoms, ...symptoms},
+      sick: newSick,
+      dead: newDead,
+      total: Value(newTotal),
+      // The server accepts up to 2000 characters; longer would block the outbox.
+      voiceTranscript: Value(transcript.length > 2000 ? transcript.substring(0, 2000) : transcript),
+    );
+  }
+
   /// Answer to "The photo looks like it has skin lumps. Did you see lumps on the skin?"
   /// Yes adds the sign, so triage runs again with it (spec 7.9).
   void answerLumps({required bool seen, required String sign}) {
@@ -298,6 +330,7 @@ class ReportDraftController extends Notifier<ReportDraft> {
       'onset_date': now.subtract(Duration(days: draft.onset.daysAgo)).toIso8601String().substring(0, 10),
       'herd_id': draft.herdId,
       'animal_id': draft.animalId,
+      'voice_transcript': draft.voiceTranscript,
       'device_triage': {
         'engine_version': result.engineVersion,
         'top': top?.diseaseId,

@@ -1,0 +1,453 @@
+{
+ "version": 1,
+ "note": "Sample sentences for the voice parser (spec 10.5): at least 10 per language. 'expect' lists every symptom id that must be heard (order does not matter) and the species and counts, null when not said. Needs native review like the lexicon. Add a sentence whenever a real phrase is missed.",
+ "needs_native_review": true,
+ "hi": [
+  {
+   "text": "गाय के शरीर पर गांठें हैं, बुखार है, दो गाय बीमार हैं",
+   "expect": {
+    "symptoms": [
+     "skin_nodules",
+     "fever"
+    ],
+    "species": "cattle",
+    "sick": 2,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "भैंस को तेज़ बुखार है और चारा नहीं खा रही",
+   "expect": {
+    "symptoms": [
+     "fever",
+     "anorexia"
+    ],
+    "species": "buffalo",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "गाय के मुंह से लार टपक रही है और वह लंगड़ा रही है",
+   "expect": {
+    "symptoms": [
+     "excessive_salivation",
+     "lameness"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "बुखार नहीं है लेकिन दूध कम हो गया है",
+   "expect": {
+    "symptoms": [
+     "drop_in_milk"
+    ],
+    "species": null,
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "पांच मुर्गियां मर गईं और अंडे कम हो गए",
+   "expect": {
+    "symptoms": [
+     "sudden_high_mortality",
+     "drop_in_egg_production"
+    ],
+    "species": "poultry",
+    "sick": null,
+    "dead": 5,
+    "total": null
+   }
+  },
+  {
+   "text": "bukhar hai aur khansi bhi hai",
+   "expect": {
+    "symptoms": [
+     "fever",
+     "coughing"
+    ],
+    "species": null,
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "दस गायों में से दो बीमार हैं, उनको दस्त हो रहे हैं",
+   "expect": {
+    "symptoms": [
+     "diarrhoea"
+    ],
+    "species": "cattle",
+    "sick": 2,
+    "dead": null,
+    "total": 10
+   }
+  },
+  {
+   "text": "दो दिन से बछड़े की आंखों से पानी आ रहा है और नाक बह रही है",
+   "expect": {
+    "symptoms": [
+     "ocular_discharge",
+     "nasal_discharge"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "गाय के गले में सूजन है और सांस लेने में तकलीफ है",
+   "expect": {
+    "symptoms": [
+     "throat_swelling",
+     "difficulty_breathing"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "मेरी भैंस के खुर में घाव हैं और मुंह में छाले हैं",
+   "expect": {
+    "symptoms": [
+     "foot_lesions",
+     "mouth_sores"
+    ],
+    "species": "buffalo",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "एक गाय अचानक मर गई, नाक से खून आ रहा था",
+   "expect": {
+    "symptoms": [
+     "sudden_death",
+     "bleeding_from_orifices"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": 1,
+    "total": null
+   }
+  },
+  {
+   "text": "गाय की गाँठें और बुख़ार",
+   "expect": {
+    "symptoms": [
+     "skin_nodules",
+     "fever"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "fever है और lumps दिख रहे हैं",
+   "expect": {
+    "symptoms": [
+     "fever",
+     "skin_nodules"
+    ],
+    "species": null,
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  }
+ ],
+ "mr": [
+  {
+   "text": "गायीला ताप आला आहे आणि अंगावर गाठी आहेत",
+   "expect": {
+    "symptoms": [
+     "fever",
+     "skin_nodules"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "म्हशीला ताप आहे, ती चारा खात नाही",
+   "expect": {
+    "symptoms": [
+     "fever",
+     "anorexia"
+    ],
+    "species": "buffalo",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "गायीच्या तोंडातून लाळ गळते आणि ती लंगडते",
+   "expect": {
+    "symptoms": [
+     "excessive_salivation",
+     "lameness"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "दोन गायी आजारी आहेत आणि एक गाय मेली",
+   "expect": {
+    "symptoms": [],
+    "species": "cattle",
+    "sick": 2,
+    "dead": 1,
+    "total": null
+   }
+  },
+  {
+   "text": "दूध कमी झाले आहे आणि जुलाब होत आहेत",
+   "expect": {
+    "symptoms": [
+     "drop_in_milk",
+     "diarrhoea"
+    ],
+    "species": null,
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "ताप नाही पण खोकला आहे",
+   "expect": {
+    "symptoms": [
+     "coughing"
+    ],
+    "species": null,
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "पाच कोंबड्या मेल्या आणि अंडी कमी झाली",
+   "expect": {
+    "symptoms": [
+     "sudden_high_mortality",
+     "drop_in_egg_production"
+    ],
+    "species": "poultry",
+    "sick": null,
+    "dead": 5,
+    "total": null
+   }
+  },
+  {
+   "text": "शेळीला धाप लागते आणि नाक गळते",
+   "expect": {
+    "symptoms": [
+     "difficulty_breathing",
+     "nasal_discharge"
+    ],
+    "species": "goat",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "म्हशीच्या गळ्याला सूज आहे",
+   "expect": {
+    "symptoms": [
+     "throat_swelling"
+    ],
+    "species": "buffalo",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "वीस गायींपैकी तीन आजारी आहेत",
+   "expect": {
+    "symptoms": [],
+    "species": "cattle",
+    "sick": 3,
+    "dead": null,
+    "total": 20
+   }
+  },
+  {
+   "text": "गायीचे डोळ्यातून पाणी येते आणि ती थरथरते",
+   "expect": {
+    "symptoms": [
+     "ocular_discharge",
+     "trembling_staggering"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  }
+ ],
+ "en": [
+  {
+   "text": "My cow has lumps on the skin and a fever, two cows are sick",
+   "expect": {
+    "symptoms": [
+     "skin_nodules",
+     "fever"
+    ],
+    "species": "cattle",
+    "sick": 2,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "The buffalo is not eating and milk dropped",
+   "expect": {
+    "symptoms": [
+     "anorexia",
+     "drop_in_milk"
+    ],
+    "species": "buffalo",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "No fever but the cow is coughing",
+   "expect": {
+    "symptoms": [
+     "coughing"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "Three hens died suddenly and the birds have swollen comb",
+   "expect": {
+    "symptoms": [
+     "sudden_death",
+     "swollen_head_comb_wattles"
+    ],
+    "species": "poultry",
+    "sick": null,
+    "dead": 3,
+    "total": null
+   }
+  },
+  {
+   "text": "The goat has a runny nose and hard breathing",
+   "expect": {
+    "symptoms": [
+     "nasal_discharge",
+     "difficulty_breathing"
+    ],
+    "species": "goat",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "Out of ten cows two are sick, they are limping",
+   "expect": {
+    "symptoms": [
+     "lameness"
+    ],
+    "species": "cattle",
+    "sick": 2,
+    "dead": null,
+    "total": 10
+   }
+  },
+  {
+   "text": "The calf has watery eyes and is drooling",
+   "expect": {
+    "symptoms": [
+     "ocular_discharge",
+     "excessive_salivation"
+    ],
+    "species": "cattle",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "Swollen throat and bleeding from the nose",
+   "expect": {
+    "symptoms": [
+     "throat_swelling",
+     "bleeding_from_orifices"
+    ],
+    "species": null,
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "The pig has diarrhea and is not coughing",
+   "expect": {
+    "symptoms": [
+     "diarrhoea"
+    ],
+    "species": "pig",
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  },
+  {
+   "text": "One sheep died suddenly, the body swelled quickly and did not stiffen",
+   "expect": {
+    "symptoms": [
+     "sudden_death",
+     "rapid_bloating_carcass",
+     "absence_of_rigor_mortis"
+    ],
+    "species": "sheep",
+    "sick": null,
+    "dead": 1,
+    "total": null
+   }
+  },
+  {
+   "text": "Less milk for two days",
+   "expect": {
+    "symptoms": [
+     "drop_in_milk"
+    ],
+    "species": null,
+    "sick": null,
+    "dead": null,
+    "total": null
+   }
+  }
+ ]
+}

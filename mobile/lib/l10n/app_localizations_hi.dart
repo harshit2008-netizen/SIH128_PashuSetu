@@ -828,4 +828,69 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aboutNoModel => 'इस ऐप में फ़ोटो मॉडल नहीं है।';
+
+  @override
+  String get speakInstead => 'बोलकर बताएं';
+
+  @override
+  String get voicePreparing => 'माइक्रोफ़ोन चालू हो रहा है';
+
+  @override
+  String get voiceListening => 'सुन रहे हैं। जो दिख रहा है वह बोलें।';
+
+  @override
+  String get voiceExample =>
+      'जैसे: \"गाय के शरीर पर गांठें हैं, बुखार है, दो गाय बीमार हैं\"';
+
+  @override
+  String get voiceStop => 'रोकें';
+
+  @override
+  String get voiceHeard => 'हमने सुना';
+
+  @override
+  String get voiceCorrect => 'सही है? जो गलत हो उसे हटा दें।';
+
+  @override
+  String get voiceNothing =>
+      'कोई लक्षण समझ नहीं आया। फिर से बोलें, या लक्षण चुनें।';
+
+  @override
+  String get voiceUnavailable =>
+      'इस फ़ोन पर बोलकर लिखना उपलब्ध नहीं है। लक्षण चुनें।';
+
+  @override
+  String get voiceNoPermission =>
+      'माइक्रोफ़ोन की अनुमति नहीं है। लक्षण चुनें, या फ़ोन की सेटिंग में माइक्रोफ़ोन चालू करें।';
+
+  @override
+  String voiceFallback(String language) {
+    return 'इस फ़ोन पर $language आवाज़ पहचान नहीं है, इसलिए अंग्रेज़ी में सुन रहे हैं।';
+  }
+
+  @override
+  String get voiceUse => 'ये जोड़ें';
+
+  @override
+  String get voiceAgain => 'फिर से बोलें';
+
+  @override
+  String voiceAnimal(String name) {
+    return 'पशु: $name';
+  }
+
+  @override
+  String voiceSickCount(int count) {
+    return '$count बीमार';
+  }
+
+  @override
+  String voiceDeadCount(int count) {
+    return '$count मरे';
+  }
+
+  @override
+  String voiceTotalCount(int count) {
+    return 'कुल $count';
+  }
 }

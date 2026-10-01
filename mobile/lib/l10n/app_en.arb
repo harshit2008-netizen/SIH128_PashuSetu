@@ -447,5 +447,57 @@
   },
   "aboutLimits": "Known limits",
   "aboutVersions": "Versions",
-  "aboutNoModel": "This app build has no photo model."
+  "aboutNoModel": "This app build has no photo model.",
+  "speakInstead": "Speak instead",
+  "voicePreparing": "Starting the microphone",
+  "voiceListening": "Listening. Say what you see.",
+  "voiceExample": "For example: \"The cow has lumps on the skin and a fever, two cows are sick\"",
+  "voiceStop": "Stop",
+  "voiceHeard": "We heard",
+  "voiceCorrect": "Correct? Untick anything that is wrong.",
+  "voiceNothing": "We did not catch any signs. Speak again, or tap the signs.",
+  "voiceUnavailable": "Speech input is not available on this phone. Tap the signs instead.",
+  "voiceNoPermission": "The microphone is not allowed. Tap the signs instead, or allow the microphone in the phone's settings.",
+  "voiceFallback": "{language} speech is not installed on this phone, so we are listening in English.",
+  "@voiceFallback": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "voiceUse": "Use these",
+  "voiceAgain": "Speak again",
+  "voiceAnimal": "Animal: {name}",
+  "@voiceAnimal": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "voiceSickCount": "{count} sick",
+  "@voiceSickCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceDeadCount": "{count} dead",
+  "@voiceDeadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceTotalCount": "{count} in all",
+  "@voiceTotalCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

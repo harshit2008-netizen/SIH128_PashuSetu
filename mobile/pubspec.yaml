@@ -29,6 +29,7 @@ dependencies:
   path: ^1.9.1
   path_provider: ^2.1.6
   qr_flutter: ^4.1.0
+  speech_to_text: ^7.5.0
   tflite_flutter: ^0.12.1
   url_launcher: ^6.3.2
   uuid: ^4.6.0

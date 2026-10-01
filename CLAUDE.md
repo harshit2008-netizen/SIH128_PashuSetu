@@ -76,6 +76,8 @@ docs/      architecture, api, demo_script, design_notes, screenshots/
 - Phase 7 (surveillance + simulator): done, commit d61a7a7.
 - Phase 8 (officer, lab, advisories): done, commit abd47b3.
 - Phase 9 (demo hardening): demo script, `make demo-check`, README, checklist in `docs/demo_checklist.md`.
-  Open items: Phase 5 (voice), backup screen recording, native-speaker review.
+  Open items: backup screen recording, native-speaker review.
 - Phase 6 (LSD image model): done. Kaggle training + app integration (fusion.dart, image_classifier.dart, About the AI).
   Phone decodes with the engine decoder and crops a centred square, same as train.py; parity test in integration_test/.
+- Phase 5 (voice): parser `features/report/voice/lexicon_parser.dart` + `shared/voice_test_sentences.json`
+  (35 sentences, hi/mr/en). Add a sentence whenever a real phrase is missed. On-phone speech check needs a person.

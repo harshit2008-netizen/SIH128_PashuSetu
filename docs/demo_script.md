@@ -1,8 +1,7 @@
 # Demo script (5 minutes)
 
-This is spec Section 14 adapted to what is built today (Phases 0–4, 7, 8).
-Steps 1–2 use tap input and the rule engine only: voice (Phase 5) and the LSD photo model (Phase 6) are not built yet.
-Say so plainly if a judge asks. Never claim the photo is analysed.
+This is spec Section 14 with everything P0 built: tap or voice input, the on-phone LSD photo model, offline outbox,
+outbreak detection, the lab loop and advisories.
 
 ## Before the judges arrive (10 min)
 
@@ -32,10 +31,14 @@ With one phone, switch roles with Settings > Change role (demo).
 
 ## Live steps
 
-1. **Offline report.** Sevak: Settings > "Simulate no signal" on. Tap Report, choose cow, tap "Lumps on the skin" and "Fever", sick 2.
-   Optionally attach a photo (camera or gallery); it is stored with the case, not analysed yet.
-2. **On-device triage.** The result screen shows "Suspected: Lumpy skin disease", severity, why-chips and "Do this now" steps,
-   plus the line "This is not a diagnosis. A vet or lab must confirm." The sync pill says it is waiting to send.
+1. **Offline report with voice.** Sevak (Hindi): Settings > "Simulate no signal" on. Tap Report, choose गाय, then
+   "बोलकर बताएं" and say: *"गाय के शरीर पर गांठें हैं, बुखार है, दो गाय बीमार हैं"*. The sheet shows what it heard
+   (lumps on the skin, fever, 2 sick) as tiles that can be unticked; tap "ये जोड़ें". Voice never sends on its own.
+   The first time, Android asks for the microphone: answer "While using the app".
+2. **Photo + on-device AI.** Upload an LSD photo (or take one of a printed photo). Under the photo: "looks like lumpy skin
+   disease, suspected only". Send: the result says "Suspected: Lumpy skin disease", Urgent, with a Photo chip and
+   "Photo: N% like lumpy skin disease", plus "This is not a diagnosis. A vet or lab must confirm."
+   The sync pill says it is waiting to send.
 3. **Sync.** Turn "Simulate no signal" off. The pill changes to all sent. Officer: the case appears on the map within 10 s.
 4. **Outbreak detection.** Laptop: `make simulate SCENARIO=lsd_outbreak SPEED=5`.
    Officer: pins appear in neighbouring villages, then an Urgent cluster alert:
@@ -49,8 +52,8 @@ With one phone, switch roles with Settings > Change role (demo).
    Any role: the case timeline lists every step with times; the officer's "Median first response" KPI is filled.
 7. **One Health.** Laptop: `make simulate SCENARIO=anthrax_single`. Officer: a red Emergency zoonotic alert
    with the human-safety note ("Do not open the carcass").
-8. **Honesty.** Settings shows the triage engine version (rules-1). Explain the rule engine is transparent,
-   the same rules run on the phone and the server (golden test vectors prove it), and the image model is next (Phase 6).
+8. **Honesty.** Settings > About the AI: the three layers in plain words, the photo model's real test results
+   (from the model card written by the Kaggle run) and its known limits. Engine version rules-1+lsd_v1.
 
 ## Backups
 

@@ -241,5 +241,22 @@
   "aboutDataset": "फ़ोटो: {name} ({licence})।",
   "aboutLimits": "ज्ञात सीमाएं",
   "aboutVersions": "संस्करण",
-  "aboutNoModel": "इस ऐप में फ़ोटो मॉडल नहीं है।"
+  "aboutNoModel": "इस ऐप में फ़ोटो मॉडल नहीं है।",
+  "speakInstead": "बोलकर बताएं",
+  "voicePreparing": "माइक्रोफ़ोन चालू हो रहा है",
+  "voiceListening": "सुन रहे हैं। जो दिख रहा है वह बोलें।",
+  "voiceExample": "जैसे: \"गाय के शरीर पर गांठें हैं, बुखार है, दो गाय बीमार हैं\"",
+  "voiceStop": "रोकें",
+  "voiceHeard": "हमने सुना",
+  "voiceCorrect": "सही है? जो गलत हो उसे हटा दें।",
+  "voiceNothing": "कोई लक्षण समझ नहीं आया। फिर से बोलें, या लक्षण चुनें।",
+  "voiceUnavailable": "इस फ़ोन पर बोलकर लिखना उपलब्ध नहीं है। लक्षण चुनें।",
+  "voiceNoPermission": "माइक्रोफ़ोन की अनुमति नहीं है। लक्षण चुनें, या फ़ोन की सेटिंग में माइक्रोफ़ोन चालू करें।",
+  "voiceFallback": "इस फ़ोन पर {language} आवाज़ पहचान नहीं है, इसलिए अंग्रेज़ी में सुन रहे हैं।",
+  "voiceUse": "ये जोड़ें",
+  "voiceAgain": "फिर से बोलें",
+  "voiceAnimal": "पशु: {name}",
+  "voiceSickCount": "{count} बीमार",
+  "voiceDeadCount": "{count} मरे",
+  "voiceTotalCount": "कुल {count}"
 }

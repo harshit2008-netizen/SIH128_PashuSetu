@@ -19,6 +19,7 @@ import '../home/home_data.dart';
 import '../triage/engine/fusion.dart';
 import '../triage/engine/rule_engine.dart';
 import 'report_draft.dart';
+import 'voice/voice_sheet.dart';
 
 /// The 5-step report (spec 9.8): 1 Animal, 2 Signs, 3 Photo, 4 How many, 5 Check and send.
 class ReportFlowScreen extends ConsumerStatefulWidget {
@@ -310,6 +311,19 @@ class _SignsStep extends ConsumerWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(l10n.signsTitle, style: Theme.of(context).textTheme.headlineMedium),
       Text(l10n.signsHint, style: Theme.of(context).textTheme.bodyLarge),
+      const SizedBox(height: AppSpacing.md),
+      // Voice fills the same tiles below; the reporter can still untick them.
+      OutlinedButton.icon(
+        onPressed: () => showVoiceSheet(context),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.ink,
+          side: const BorderSide(color: AppColors.ink, width: 1.5),
+          minimumSize: const Size.fromHeight(AppTouch.farmerMinTarget),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.primaryAction)),
+        ),
+        icon: const Icon(LucideIcons.mic),
+        label: Text(l10n.speakInstead),
+      ),
       const SizedBox(height: AppSpacing.md),
       SymptomGrid(children: [
         for (final s in signs)
