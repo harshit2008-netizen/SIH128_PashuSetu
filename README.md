@@ -3,7 +3,7 @@
 Livestock health surveillance and early-warning Android app for Smart India Hackathon 2026.
 Farmers and pashu sevaks report sick animals (tap, voice or photo, even offline). The phone gives a
 *suspected* disease and what to do now. Officers see clusters on a map, assign vets, track lab samples
-and send advisories in the farmer's language.
+and send advisories in the farmer's language
 
 The project was planned as "PashuRakshak" and renamed PashuSetu. How it is built is described in [`docs/architecture.md`](docs/architecture.md), [`docs/api.md`](docs/api.md) and [`docs/design_notes.md`](docs/design_notes.md).
 
